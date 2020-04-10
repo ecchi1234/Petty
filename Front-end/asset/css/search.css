@@ -1,0 +1,12 @@
+.heading{
+    background-color: aquamarine;
+    height: 50px;
+}
+.footer{
+    background-color: brown;
+    height: 50px;
+}
+.content{
+    background-color: blue;
+    height: calc(100vh - 100px);
+}

@@ -1,0 +1,299 @@
+body{
+    font-family: 'My Font Regular', sans-serif;
+}
+@font-face{
+    font-family: My Font Regular;
+    src: url("../resource/fonts/Baloo_Bhai_2/BalooBhai2-Regular.ttf");
+}
+@font-face{
+    font-family: My Font Bold;
+    src: url("../resource/fonts/Baloo_Bhai_2/BalooBhai2-Bold.ttf");
+}
+@font-face{
+    font-family: My Font Paragraph;
+    src: url("../resource/fonts/Roboto/Roboto-Regular.ttf")
+}
+/*Header*/
+#petty-header {
+    height: 60px;
+    width: 100%;
+    position: relative;
+    background-color: #f19f1f;
+}
+
+.logo {
+    position: absolute;
+    left: 10px;
+    height: 60px;
+    width: 60px;
+    background-image: url("../resource/icon/logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+.search{
+    display: flex;
+    position: absolute;
+    left: 100px;
+    top: 10px;
+}
+.txtSearch {
+    width:500px; 
+    height:40px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#btnSearch{
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#search-icon{
+    display: block;
+    background-image: url("../resource/icon/search.png");
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+#btnSearch:hover{
+    background-color: #108896;
+    cursor: pointer;
+}
+#search-icon{
+    width: 16px;
+    height: 16px;
+    background-image: url("../resource/icon/search.png");
+}
+.cart {
+    display: flex;
+    position: absolute;
+    right: 200px;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #fff;
+    top: calc((100% - 44px)/2);
+    border-radius: 3px;
+    padding: 9px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.cart i{
+    width: 20px;
+    height: 20px;
+    background-image: url("../resource/icon/smart-cart.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}
+.cart span{
+    color: #fff;
+    font-family: 'My Font Bold';
+    margin-left: 20px;
+}
+.user {
+    position: absolute;
+    right: 0px;
+    padding: 0px 10px 0px 350px;
+}
+
+.catalog {
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    background-color: #f19f1f;
+    height: 50px;
+    flex-wrap: nowrap;
+}
+.item-catalog{
+    height: 100%;
+    padding: 10px;
+    font-family: 'My Font Bold', sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.item-catalog:focus{
+    background-color: #ef5030;
+}
+.item-catalog:hover{
+    background-color: #ef5030;
+    cursor: pointer;
+}
+.content{
+    font-family: 'My Font Paragraph';
+}
+.content .item.overview{
+    height: 640px;
+    background-color: #ffefd5;
+}
+.mySlides{
+    display: none;
+}
+.mySlides{
+    width: calc(640*1.875);
+    height: 100%;
+    margin: auto;
+}
+.content .item {
+    display: flex;
+    background-color: blueviolet;
+    height: 440px;
+}
+.content .item.service{
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 650px;
+}
+.content .item.service .title{
+    font-family: 'My Font Bold', sans-serif;
+    font-size: 50px;
+    color: #108896;
+    margin: 50px;
+}
+.content .item.service .service-description{
+    width: 700px;
+    text-align: center;
+    color: #989797;
+}
+.content .item.service .service-list{
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 40px;
+    justify-content: center;
+}
+.content .item.service .service-list .service-item{
+    width: 200px;
+    height: 350px;
+    border: 1px solid #ccc;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #ffefd5;
+}
+button.more-info{
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom: 5px;
+    font-family: 'My Font Bold';
+    background-color: #ef5030;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    color: #fff;
+    box-sizing: border-box;
+}
+button.more-info:hover{
+    background-color: #108896;
+    cursor: pointer;
+}
+.service-image{
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    background-color: chartreuse;
+    background-image: url("https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+    background-size: cover;
+}
+.service-title{
+    margin-top: 10px;
+    font-family: 'My Font Bold', sans-serif;
+    color: #292929;
+}
+.service-description-sub{
+    color: #989797;
+}
+.hot-product {
+    width:50%;
+    border: #000000 solid 1px;
+}
+
+.sale {
+    width: calc(100% - 50%);
+    border: #000000 solid 1px;
+}
+
+footer {
+    display: flex;
+    height: 200px;
+    background-color: #f19f1f;
+    align-items: center;
+    justify-content: center;
+}
+footer #petty-logo{
+    width: 200px;
+    height: 200px;
+    background-image: url("../resource/icon/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-right: 30px;
+}
+footer .information{
+    text-align: center;
+    font-family: 'My Font Paragraph';
+    margin-right: 30px;
+}
+.information i#mobile{
+    display: inline-block;
+    background-image: url("../resource/icon/phone.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.information i#email{
+    display: inline-block;
+    background-image: url("../resource/icon/envelope.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.information i#address{
+    display: inline-block;
+    background-image: url("../resource/icon/pin.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+footer .media{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer .media .media-text{
+    font-family: 'My Font Bold';
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+footer .media #facebook{
+    background-image: url("../resource/icon/facebook.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
