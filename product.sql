@@ -3,6 +3,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+07:00";
 
+CREATE DATABASE IF NOT EXISTS petty;
+USE Petty;
 
 CREATE TABLE `product` (
   `productCode` varchar(15) NOT NULL,
