@@ -50,7 +50,7 @@
             $query_string = substr($query_string, 0, strlen($query_string) - 3);
 
             // connect to the database
-            $conn = mysqli_connect('localhost', 'root', '', 'petty');
+            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
             $query = mysqli_query($conn, $query_string);
             $result_count = mysqli_num_rows($query);

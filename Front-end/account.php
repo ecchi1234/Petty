@@ -22,10 +22,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Header-->
     <div id="petty-header">
         <div class="logo"></div>
-        <div class="search">
+        <form class="search" action="search.php" method="GET">
             <input class="txtSearch" name="key" type="text" placeholder="Tìm kiếm">
             <button id="btnSearch" type="submit" formmethod="get" onclick="window.location.href='search.php';"><i id="search-icon"></i></button>
-        </div>
+        </form>
         <div class="cart">
             <i></i>
             <span>Giỏ hàng</span>
