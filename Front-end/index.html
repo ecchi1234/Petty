@@ -11,10 +11,10 @@
     <!--Header-->
     <div id="petty-header">
         <div class="logo"></div>
-        <div class="search">
+        <form class="search" action="search.php" method="GET">
             <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-            <button id="btnSearch" onclick="window.location.href = 'search.html';"><i id="search-icon"></i></button>
-        </div>
+            <button type="submit" id="btnSearch" onclick="window.location.href = 'search.html';"><i id="search-icon"></i></button>
+        </form>
         <div class="cart">
             <i></i>
             <span>Giỏ hàng</span>
