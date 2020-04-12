@@ -11,16 +11,16 @@
     <!--Header-->
     <div id="petty-header">
         <div class="logo"></div>
-        <div class="search">
-            <input class="txtSearch" type="text" name="key" placeholder="Tìm kiếm">
-            <button id="btnSearch" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
-        </div>
+        <form class="search" action="search.php" method="GET">
+            <input class="txtSearch" name="key" type="text" placeholder="Tìm kiếm">
+            <button id="btnSearch" type="submit" formmethod="get" onclick="window.location.href='search.php';"><i id="search-icon"></i></button>
+        </form>
         <div class="cart">
             <i></i>
             <span>Giỏ hàng</span>
         </div>
         <div class="user">
-            tài khoản
+            <input type="button" name="login" value="Tài khoản" onclick="window.location.href='login.php';">
         </div>
     </div>
     <!--Menu-->
@@ -32,6 +32,9 @@
         <div class="item-catalog">Blog</div>
     </div>
     <?php
+        // Include config file
+        require_once "config.php";
+
         if (isset($_GET['key']) && $_GET['key'] != ''){
                         
             // save the keywords from the url
@@ -41,18 +44,16 @@
             $query_string = "SELECT * FROM product WHERE ";
             $display_words = "";
 
-            // seperate each of the productLine
-            $productLine = explode(' ', $key); 
-            foreach($productLine as $word){
+            // seperate each of the keyword
+            $keywords = explode(' ', $key); 
+            foreach($keywords as $word){
                 $query_string .= " keywords LIKE '%".$word."%' OR ";
                 $display_words .= $word." ";
             }
             $query_string = substr($query_string, 0, strlen($query_string) - 3);
 
-            // connect to the database
-            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-            $query = mysqli_query($conn, $query_string);
+            $query = mysqli_query($link, $query_string);
             $result_count = mysqli_num_rows($query);
 
             // check to see if any results were returned
