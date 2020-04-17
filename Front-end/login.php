@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Petty</title>
@@ -142,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </form>
 
     <!--Footer-->
-    <footer>
+    <div class="footer">
         <div id="petty-logo"></div>
         <div class="information">
             <p><i id="mobile"></i>000-000-000</p>
@@ -153,7 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p class="media-text">Follow Us</p>
             <i id="facebook"></i>
         </div>
-    </footer>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
