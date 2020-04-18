@@ -13,10 +13,10 @@
 <body>
     <!--Header-->
     <div id="petty-header">
-        <a href="./Front-end/index.html"><div class="logo"></div></a>
+        <a href="index.php"><div class="logo"></div></a>
         <form class="search" action="search.php" method="GET">
-            <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-            <button type="submit" id="btnSearch" onclick="window.location.href = 'search.html';"><i id="search-icon"></i></button>
+            <input class="txtSearch" name="key" type="text" placeholder="Tìm kiếm">
+            <button type="submit" id="btnSearch" formmethod="get" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
         </form>
         <div class="cart">
             <i></i>

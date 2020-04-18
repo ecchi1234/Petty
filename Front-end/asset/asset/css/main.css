@@ -1,0 +1,569 @@
+/*
+css chung cho các trang
+*/
+body{
+    font-family: 'My Font Regular', sans-serif;
+    position: relative;
+    min-height: 100%;
+}
+@font-face{
+    font-family: My Font Regular;
+    src: url("../resource/fonts/Baloo_Bhai_2/BalooBhai2-Regular.ttf");
+}
+@font-face{
+    font-family: My Font Bold;
+    src: url("../resource/fonts/Baloo_Bhai_2/BalooBhai2-Bold.ttf");
+}
+@font-face{
+    font-family: My Font Paragraph;
+    src: url("../resource/fonts/Roboto/Roboto-Regular.ttf")
+}
+/* CSS cho index.html */
+/*Header*/
+#petty-header {
+    height: 60px;
+    width: 100%;
+    position: relative;
+    background-color: #f19f1f;
+}
+
+.logo {
+    position: absolute;
+    left: 10px;
+    height: 60px;
+    width: 60px;
+    background-image: url("../resource/icon/logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+.search{
+    display: flex;
+    position: absolute;
+    left: 100px;
+    top: 10px;
+}
+.txtSearch {
+    width:500px; 
+    height:40px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#btnSearch{
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#search-icon{
+    display: block;
+    background-image: url("../resource/icon/search.png");
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+#btnSearch:hover{
+    background-color: #108896;
+    cursor: pointer;
+}
+#search-icon{
+    width: 16px;
+    height: 16px;
+    background-image: url("../resource/icon/search.png");
+}
+.cart {
+    display: flex;
+    position: absolute;
+    right: 200px;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #fff;
+    top: calc((100% - 44px)/2);
+    border-radius: 3px;
+    padding: 9px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.cart i{
+    width: 20px;
+    height: 20px;
+    background-image: url("../resource/icon/smart-cart.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}
+.cart span{
+    color: #fff;
+    font-family: 'My Font Bold';
+    margin-left: 20px;
+}
+.user {
+    position: absolute;
+    right: 0px;
+    padding: 0px 10px 0px 350px;
+}
+
+.catalog {
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    background-color: #f19f1f;
+    height: 50px;
+    flex-wrap: nowrap;
+}
+.item-catalog{
+    height: 100%;
+    padding: 10px;
+    font-family: 'My Font Bold', sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.item-catalog:focus{
+    background-color: #ef5030;
+}
+.item-catalog:hover{
+    background-color: #ef5030;
+    cursor: pointer;
+}
+.content{
+    font-family: 'My Font Paragraph';
+}
+.content .item.overview{
+    height: 640px;
+    background-color: #ffefd5;
+}
+.mySlides{
+    display: none;
+}
+.mySlides{
+    width: calc(640*1.875);
+    height: 100%;
+    margin: auto;
+}
+.content .item {
+    display: flex;
+    background-color: blueviolet;
+    height: 100%;
+}
+.content .item.service{
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+.content .item.service .title{
+    font-family: 'My Font Bold', sans-serif;
+    font-size: 50px;
+    color: #108896;
+    margin: 50px;
+}
+.content .item.service .service-description{
+    width: 700px;
+    text-align: center;
+    color: #989797;
+}
+.content .item.service .service-list{
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 40px;
+    justify-content: center;
+}
+.content .item.service .service-list .service-item{
+    width: 200px;
+    height: 350px;
+    border: 1px solid #ccc;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #ffefd5;
+}
+button.more-info{
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom: 5px;
+    font-family: 'My Font Bold';
+    background-color: #ef5030;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    color: #fff;
+    box-sizing: border-box;
+}
+button.more-info:hover{
+    background-color: #108896;
+    cursor: pointer;
+}
+.service-image{
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    background-color: chartreuse;
+    background-image: url("https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+    background-size: cover;
+}
+.service-title{
+    margin-top: 10px;
+    font-family: 'My Font Bold', sans-serif;
+    color: #292929;
+}
+.service-description-sub{
+    color: #989797;
+}
+.hot-product {
+    width:50%;
+    border: #000000 solid 1px;
+}
+
+.sale {
+    width: calc(100% - 50%);
+    border: #000000 solid 1px;
+}
+
+.footer {
+    display: flex;
+    height: 200px;
+    background-color: #f19f1f;
+    align-items: center;
+    justify-content: center;
+}
+.footer #petty-logo{
+    width: 200px;
+    height: 200px;
+    background-image: url("../resource/icon/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-right: 30px;
+}
+.footer .information{
+    text-align: center;
+    font-family: 'My Font Paragraph';
+    margin-right: 30px;
+}
+.information i#mobile{
+    display: inline-block;
+    background-image: url("../resource/icon/phone.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.information i#email{
+    display: inline-block;
+    background-image: url("../resource/icon/envelope.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.information i#address{
+    display: inline-block;
+    background-image: url("../resource/icon/pin.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.footer .media{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer .media .media-text{
+    font-family: 'My Font Bold';
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+.footer .media #facebook{
+    background-image: url("../resource/icon/facebook.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+.sidebar-item:hover{
+    background-color: #FFC400;
+    cursor: pointer;
+}
+/*css cho account.html*/
+.userpage-content{
+    display: flex;
+    min-height: 100%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.userpage-content .userpage-sidebar{
+    width: 250px;
+    height: 100%;
+}
+.userpage-content .user-information{
+    margin-left: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: calc(100% - 250px);
+}
+.userpage-sidebar-menu .sidebar-item{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ef5030;
+}
+.userpage-sidebar-menu .sidebar-item i{
+    margin-right: 10px;
+    font-size: 25px;
+}
+.userpage-brief .userpage-brief-right{
+    font-family: 'My Font Paragraph';
+    color: #989797;
+    font-size: 20px;
+}
+.information-header{
+    border-bottom: 1px solid #ccc;
+    font-size: 30px;
+}
+.fill-information{
+    display: flex;
+}
+.fill-information input.not-radio{
+    border: 1px solid #ef5030;
+    background-color: #ffefd5;
+    border-radius: 10px;
+    height: 40px;
+    padding: 10px;
+    width: 500px;
+    margin-bottom: 20px;
+}
+
+.fill-information label.not-radio{
+    color: #989797;
+    font-family: 'My Font Paragraph';
+}
+.fill-information button{
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+    padding: 10px;
+    width: 70px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.user-information .upload-avatar{
+    width: 400px;
+    height: 250px;
+    margin-left: 40px;
+    border-left: 1px solid #ccc;
+    text-align: center;
+    align-items: center;
+    padding: 40px;
+    margin-top: 30px;
+    position: relative;
+}
+.user-information .upload-avatar .fa.fa-user-circle-o{
+    font-size: 100px;
+    color: #f19f1f;
+}
+.user-information .upload-avatar input{
+    position: absolute;
+    display: block;
+    left: 125px;
+    top: 160px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+    border-radius: 5px;
+}
+.userpage-sidebar{
+    padding-top: 20px;
+}
+.userpage-sidebar .userpage-brief{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+.fa.fa-user{
+    font-size: 35px;
+    margin-right: 10px;
+    color: #f19f1f;
+}
+
+/*Trang tìm kiếm*/
+.container{
+    min-height: 100%;
+    position: relative;
+    height: 100%;
+    padding: 30px;
+}
+/*Header của trang tìm kiếm (hiện trên đầu mỗi list sản phẩm khi hiện ra)*/
+.header-product{
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.header-product form.order-by{
+    right: 0px;
+    position: absolute;
+}
+.header-product .result-number{
+    position: absolute;
+    right: 300px;
+}
+/*Làm hiệu ứng ứng cho các ô sản phẩm*/
+.product-grid{ font-family: 'My Font Regular', sans-serif; }
+.product-grid .product-image{
+    position: relative;
+    overflow: hidden;
+}
+.product-grid .product-image a.image{ display: block; }
+.product-grid .product-image img{
+    width: 100%;
+    height: auto;
+}
+.product-image .pic-1{
+    backface-visibility: hidden;
+    transition: all 0.5s;
+}
+.product-grid:hover .product-image .pic-1{ opacity: 0; }
+.product-image .pic-2{
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .3s ease;
+}
+.product-grid:hover .product-image .pic-2{
+    opacity: 1;
+    transform: scale(1);
+}
+.product-grid .product-discount-label{
+    color: #fff;
+    background-color: #f19f1f;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 20px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    transition:all 0.3s;
+}
+.product-grid .product-content{
+    padding: 7px;
+    position: relative;
+}
+.product-grid .rating{
+    padding: 0;
+    margin: 0 0 12px;
+    list-style: none;
+}
+.product-grid .rating li{
+    color: #FFC400;
+    font-size: 13px;
+    display: inline-block;
+}
+.product-grid .rating li.disable{ color: #dddddd; }
+.product-grid .title{
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: block;
+    margin: 0 0 10px;
+}
+.product-grid .title a{
+    color: #707070;
+    transition: all 500ms;
+}
+.product-grid .title a:hover{ color: #ff6600; }
+.product-grid .price{
+    color: #108896;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    transition: all 0.5s;
+}
+.product-grid .price span{
+    color: #c0c0c0;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 5px;
+    text-decoration: line-through;
+}
+.product-grid:hover .price{ opacity: 0; }
+.product-grid .social{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    transition: all 0.5s ease-out;
+}
+.product-grid:hover .social{ opacity: 1; }
+.product-grid .social li{
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+.product-grid .social li a{
+    color: #fff;
+    background: #ef5030;
+    font-size: 14px;
+    text-align: center;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    display: block;
+    position: relative;
+    transition: all 250ms ease-out;
+}
+.product-grid .social li a:hover{
+    color: #fff;
+    background-color: #ff6600;
+}
+@media only screen and (max-width:990px){
+    .product-grid{ margin-bottom: 40px; }
+}
