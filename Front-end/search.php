@@ -138,8 +138,7 @@
                 $key_string = substr($key_string, 0, strlen($key_string) - 1);
 
                 $i = $result_count;
-                $i = $i/MAX_PRODUCT_IN_PAGE;
-                echo $i;
+                $i = intval($i/MAX_PRODUCT_IN_PAGE);
                 if($result_count%MAX_PRODUCT_IN_PAGE != 0)
                 {
                     ++$i; 
