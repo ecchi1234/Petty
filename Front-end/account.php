@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     require_once "config.php";
     $id = $_SESSION['id'];
     //initialization variable
-    $name = $prefername = $dateOfBirth =$email = $phoneNumber = $gender = "";
+    $name = $image = $prefername = $dateOfBirth =$email = $phoneNumber = $gender = "";
     $name_err = $phoneNumber_err = $gender_err = $dateOfBirth_err = "";
     //select from userdetail table
     $sql = "SELECT * FROM userdetail WHERE id = ".$id;
@@ -31,6 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         }
         $dateOfBirth = $row['DateOfBirth'];
         $gender = $row['gender'];
+        $image = $row['imageLink'];
     }
     //select from users table
     $sql = "SELECT * FROM users WHERE id = ".$id;
@@ -83,6 +84,35 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $gender = trim($_POST["gender"]);
         }
 
+        //upload image
+        if(empty($name_err))
+        {
+            $target_dir = "uploads/".$_SESSION['username'];
+            $target_file = $target_dir.basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image
+            if(isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["image"]["tmp_name"]);
+                if($check !== false) {
+                    $uploadOk = 1;
+                } else {
+                    $uploadOk = 0;
+                }
+            }
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+                $uploadOk = 0;
+            }
+            if ($uploadOk != 0) 
+            {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $image = "uploads/".$_SESSION['username'].$_FILES["image"]["name"];
+                }
+            }
+        }
+        echo $uploadOK;
+        echo $name_err;
         //check before insert
         if(empty($name_err) && empty($phoneNumber_err) && empty($dateOfBirth_err) && empty($gender_err))
         {
@@ -91,16 +121,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $query = mysqli_query($link, $sql);
             if(mysqli_num_rows($query) > 0)
             {
-                $sql = "UPDATE userdetail SET Name = ?,  preferName = ?,  DateOfBirth = ?,  gender = ? WHERE id = ".$id;
+                $sql = "UPDATE userdetail SET Name = ?,  preferName = ?,  DateOfBirth = ?,  gender = ?, imageLink = ? WHERE id = ".$id;
                 if($stmt = mysqli_prepare($link, $sql)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "ssss", $param_name, $param_prefername, $param_DateOfBirth, $param_gender);
+                    mysqli_stmt_bind_param($stmt, "sssss", $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink);
                     
                     // Set parameters
                     $param_name = $name;
                     $param_prefername = $prefername; 
                     $param_DateOfBirth = $dateOfBirth;
                     $param_gender = $gender;
+                    $param_imageLink = $image;
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
 
@@ -114,10 +145,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
             else
             {
-                $sql = "INSERT INTO userdetail (ID, Name, prefername, DateOfBirth, gender) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO userdetail (ID, Name, prefername, DateOfBirth, gender, imageLink) VALUES (?, ?, ?, ?, ?, ?)";
                 if($stmt = mysqli_prepare($link, $sql)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "issss",$param_id, $param_name, $param_prefername, $param_DateOfBirth, $param_gender);
+                    mysqli_stmt_bind_param($stmt, "isssss",$param_id, $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink);
                     
                     // Set parameters
                     $param_id = $id;
@@ -125,6 +156,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     $param_prefername = $prefername; 
                     $param_DateOfBirth = $dateOfBirth;
                     $param_gender = $gender;
+                    $param_imageLink = $image;
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
 
@@ -216,7 +248,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
         <div class="user-information">
             <div class="information-header">Hồ sơ của tôi</div>
-            <form class="fill-information" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form class="fill-information" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <div class="form">
                     <label for="prefername" class="not-radio">Tên hiển thị</label><br>
                     <input type="text" name="prefername" class="not-radio" value="<?php  
@@ -262,8 +294,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <button type="submit">Lưu</button>
                 </div>
                 <div class="upload-avatar">
-                    <i class="fa fa-user-circle-o"></i>
-                    <input type="button" value="Chọn ảnh">
+                    <img class="fa fa-user-circle-o" src=<?php echo $image?>>
+                    <input type="file" name="image" value="Chọn ảnh">
                 </div>
             </form>
         </div>
