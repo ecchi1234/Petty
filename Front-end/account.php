@@ -7,9 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-?>
 
-<?php 
     require_once "config.php";
     $id = $_SESSION['id'];
     //initialization variable
@@ -40,13 +38,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     $row = mysqli_fetch_assoc($query);
     $email = $row['email'];
     $phoneNumber = $row['phonenumber'];
-
     //change user profile
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         //name
-        if(empty(trim($_POST["name"]))))
+        if(empty(trim($_POST["name"])))
         {
             $name_err = "Xin nhập tên";
         }
@@ -59,7 +56,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         $email = trim($_POST["email"]);
 
-        if(empty(trim($_POST["phonenumber"])))
+        if(empty(trim($_POST["phoneNumber"])))
         {
             $phoneNumber_err = "Xin nhập số điện thoại";
         }
@@ -85,6 +82,81 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         {
             $gender = trim($_POST["gender"]);
         }
+
+        //check before insert
+        if(empty($name_err) && empty($phoneNumber_err) && empty($dateOfBirth_err) && empty($gender_err))
+        {
+            $sql = "SELECT * FROM userdetail WHERE id = ".$id;
+
+            $query = mysqli_query($link, $sql);
+            if(mysqli_num_rows($query) > 0)
+            {
+                $sql = "UPDATE userdetail SET Name = ?,  preferName = ?,  DateOfBirth = ?,  gender = ? WHERE id = ".$id;
+                if($stmt = mysqli_prepare($link, $sql)){
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "ssss", $param_name, $param_prefername, $param_DateOfBirth, $param_gender);
+                    
+                    // Set parameters
+                    $param_name = $name;
+                    $param_prefername = $prefername; 
+                    $param_DateOfBirth = $dateOfBirth;
+                    $param_gender = $gender;
+                    // Attempt to execute the prepared statement
+                    if(mysqli_stmt_execute($stmt)){
+
+                    } else{
+                        echo "Something went wrong. Please try again later.";
+                    }
+
+                    // Close statement
+                    mysqli_stmt_close($stmt);
+                }
+            }
+            else
+            {
+                $sql = "INSERT INTO userdetail (ID, Name, prefername, DateOfBirth, gender) VALUES (?, ?, ?, ?, ?)";
+                if($stmt = mysqli_prepare($link, $sql)){
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "issss",$param_id, $param_name, $param_prefername, $param_DateOfBirth, $param_gender);
+                    
+                    // Set parameters
+                    $param_id = $id;
+                    $param_name = $name;
+                    $param_prefername = $prefername; 
+                    $param_DateOfBirth = $dateOfBirth;
+                    $param_gender = $gender;
+                    // Attempt to execute the prepared statement
+                    if(mysqli_stmt_execute($stmt)){
+
+                    } else{
+                        echo "Something went wrong. Please try again later.";
+                    }
+
+                    // Close statement
+                    mysqli_stmt_close($stmt);
+                }
+            }
+            $sql = "UPDATE users SET email = ?,  phonenumber = ? WHERE id =".$id;
+            if($stmt = mysqli_prepare($link, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "ss", $param_email, $param_phonenumber);
+                    
+                // Set parameters
+                $param_email = $email;
+                $param_phonenumber = $phoneNumber;
+
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    header("location: account.php");
+                } else{
+                    echo "Something went wrong. Please try again later.";
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
+            }
+        }
+        mysqli_close($link);
     }
 ?>
 
@@ -147,31 +219,46 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <form class="fill-information" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form">
                     <label for="prefername" class="not-radio">Tên hiển thị</label><br>
-                    <input type="text" name="prefername" class="not-radio" value=<?php  
-                        echo $name;
-                    ?>><br>
+                    <input type="text" name="prefername" class="not-radio" value="<?php  
+                        echo $prefername;
+                    ?>"><br>
                     <label for="name" class="not-radio">Tên</label><br>
-                    <input type="text" name="name" class="not-radio" value=""><br>
+                    <input type="text" name="name" class="not-radio" value="<?php
+                        echo $name;
+                    ?>"><span><?php 
+                        echo $name_err;
+                    ?></span><br>
                     <label for="email" class="not-radio">Email</label><br>
-                    <input type="email" name="email" class="not-radio" value=<?php
+                    <input type="email" name="email" class="not-radio" value="<?php
                         echo $email;
-                     ?>><br>
+                     ?>"><br>
                     <label for="phoneNumber" class="not-radio">Số điện thoại</label><br>
-                    <input type="tel" name="phoneNumber" class="not-radio" value=<?php
+                    <input type="tel" name="phoneNumber" class="not-radio" value="<?php
                         echo $phoneNumber;
-                     ?>><br>
+                     ?>"><span><?php 
+                        echo $phoneNumber_err;
+                    ?></span><br>
                     <label for="dateOfBirth" class="not-radio">Ngày sinh</label><br>
-                    <input type="date" name="dateOfBirth" class="not-radio" value=<?php
+                    <input type="date" name="dateOfBirth" class="not-radio" value="<?php
                         echo $dateOfBirth;
-                     ?>><br>
-                    <input type="radio" name="gender" value="female" <?php
-                        ($gender == 'female')? 'checked' : "";
+                     ?>"><span><?php 
+                        echo $dateOfBirth_err;
+                    ?></span><br>
+                    <input type="radio" name="gender" value="nữ" <?php
+                        echo ($gender == 'nữ')? 'checked' : "";
                     ?>>
                     <label for="gender">Nữ</label>
-                    <input type="radio" name="gender" value="male" <?php
-                        ($gender == 'male')? 'checked' : "";
+                    <input type="radio" name="gender" value="nam" <?php
+                        echo ($gender == 'nam')? 'checked' : "";
                     ?>>
-                    <label for="gender">Nam</label><br>
+                    <label for="gender">Nam</label>
+                    <input type="radio" name="gender" value="khác" <?php
+                        echo ($gender == 'khác')? 'checked' : "";
+                    ?>>
+                    <label for="gender">Khác</label><br>
+                    <span><?php 
+                        echo $gender_err;
+                    ?></span><br>
                     <button type="submit">Lưu</button>
                 </div>
                 <div class="upload-avatar">
