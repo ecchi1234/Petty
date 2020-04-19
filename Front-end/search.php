@@ -12,7 +12,7 @@
 <body>
     <!--Header-->
     <div id="petty-header">
-        <div class="logo"></div>
+        <a href="index.php"><div class="logo"></div></a>
         <form class="search" action="search.php" method="GET">
             <input class="txtSearch" name="key" type="text" placeholder="Tìm kiếm">
             <button id="btnSearch" type="submit" formmethod="get" onclick="window.location.href='search.php';"><i id="search-icon"></i></button>
@@ -185,15 +185,6 @@
                     echo "</div>
                         </ul>";
                 }
-
-                
-                // echo "<div> 
-                //     <ul style='list-style-type: none;'>
-                //         <li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=2"."'>3</a></li>
-                //         <li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=1"."'>2</a></li>
-                //         <li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=0"."'>1</a></li>
-                //     </ul>
-                //     </div>";
             }
             else
             echo 'No results found. Please search something else.';

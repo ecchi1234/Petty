@@ -202,7 +202,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="userpage-sidebar">
             <div class="userpage-brief">
                 <div class="user-avatar"><i class="fa fa-user"></i></div>
-                <div class="userpage-brief-right">Nguyễn Văn A</div>
+                <div class="userpage-brief-right"><?php echo $name?></div>
             </div>
             <div class="userpage-sidebar-menu">
                 <div class="sidebar-item" id="account"><i class="fa fa-user-o"></i>Tài khoản của tôi</div>
