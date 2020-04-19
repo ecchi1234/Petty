@@ -115,7 +115,10 @@
                                         <li class='fa fa-star disable'></li>
                                     </ul>
                                     <h3 class='title'><a href='#'>".$row['productName']."</a></h3>
+
+                                    <div class='price'>$".$row['price']."<span></span></div>
                                     <ul class='social'>
+
                                         <li><a href='#'><i class='fa fa-shopping-cart'></i></a></li>
                                         <li><a href='#'><i class='fa fa-heart'></i></a></li>
                                         <li><a href='#'><i class='fa fa-eye'></i></a></li>
