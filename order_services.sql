@@ -66,7 +66,7 @@ ALTER TABLE `order_services`
 -- AUTO_INCREMENT for table `order_services`
 --
 ALTER TABLE `order_services`
-  MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
