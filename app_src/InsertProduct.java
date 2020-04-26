@@ -1,6 +1,7 @@
 
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.sql.*;
@@ -12,8 +13,9 @@ public class InsertProduct extends JPanel{
     private JLabel productLineLabel;
     private JTextField productName;
     private JLabel productNameLabel;
-    private JTextField image;
+    private JButton image;
     private JLabel imageLabel;
+    private JFileChooser image_chooser;
     private JFormattedTextField productQuantity;
     private JLabel productQuantityLabel;
     private JFormattedTextField price;
@@ -30,6 +32,7 @@ public class InsertProduct extends JPanel{
     public static int fontSize = 16;
     private JButton back;
     private JButton submit;
+    private String imageLink;
 
     public InsertProduct(JFrame frame){
         this.frame = frame;
@@ -50,7 +53,12 @@ public class InsertProduct extends JPanel{
 
     private void initButton()
     {
+        imageLink = "";
         back = new JButton("Quay lại");
+        image_chooser = new JFileChooser();
+        image_chooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter restrict = new FileNameExtensionFilter("only image", "png", "jpg", "bmp", "jpeg");
+        image_chooser.addChoosableFileFilter(restrict);
         constraints.gridx = 0;
         constraints.gridy = 16;
         constraints.gridwidth = 1;
@@ -85,12 +93,19 @@ public class InsertProduct extends JPanel{
                 }
             }
         });
+
+        image.addActionListener(e -> {
+            image_chooser.showOpenDialog(frame);
+            imageLabel.setText("Đã chọn");
+            if(image_chooser.getSelectedFile() != null)
+                imageLink = image_chooser.getSelectedFile().getAbsolutePath();
+        });
     }
 
     private boolean checkInput()
     {
         if(keywords.getText().length() != 0 && productLine.getText().length() != 0
-                && productName.getText().length() != 0 && image.getText().length() != 0
+                && productName.getText().length() != 0 && imageLink.length() != 0
                 && productQuantity.getText().length() != 0 && price.getText().length() != 0
                 && producer.getText().length() != 0 && productDescription.getText().length() != 0)
         {
@@ -110,7 +125,7 @@ public class InsertProduct extends JPanel{
         preparedStatement.setString(1, keywords.getText());
         preparedStatement.setString(2, productLine.getText());
         preparedStatement.setString(3, productName.getText());
-        preparedStatement.setString(4, image.getText());
+        preparedStatement.setString(4, imageLink);
         preparedStatement.setString(5, productQuantity.getText());
         preparedStatement.setString(6, price.getText());
         preparedStatement.setString(7, producer.getText());
@@ -138,7 +153,7 @@ public class InsertProduct extends JPanel{
         productLineLabel.setFont(font);
         productNameLabel = new JLabel("Tên sản phẩm");
         productNameLabel.setFont(font);
-        imageLabel = new JLabel("Link ảnh");
+        imageLabel = new JLabel("Chưa chọn ảnh");
         imageLabel.setFont(font);
         productQuantityLabel = new JLabel("Số lượng trong kho");
         productQuantityLabel.setFont(font);
@@ -158,7 +173,7 @@ public class InsertProduct extends JPanel{
         productName = new JTextField();
         productName.setFont(font);
         productName.setPreferredSize(new Dimension(800, 50));
-        image = new JTextField();
+        image = new JButton("Chọn ảnh");
         image.setFont(font);
         image.setPreferredSize(new Dimension(800, 50));
         productQuantity = new JFormattedTextField(new NumberFormatter());

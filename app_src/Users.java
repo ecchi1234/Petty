@@ -1,18 +1,25 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Vector;
 
 public class Users extends JPanel {
     private JTable table;
     private JPanel tableWrapper;
     private JFrame frame;
-    private Vector column;
     private GridBagLayout layout;
     private GridBagConstraints constraints;
     private JButton back;
+    private JButton reload;
+    private JButton saveChange;
+    private JTextField search;
+    private JButton search_b;
+    private TableColumn tableColumn;
     public Users(JFrame frame)
     {
         this.frame = frame;
@@ -30,15 +37,33 @@ public class Users extends JPanel {
         setBounds(0,0, Petty.width, Petty.height);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(new Dimension(Petty.width, Petty.height));
-        initTable();
         initButton();
+        initTable();
     }
 
     private void initButton()
     {
-        back = new JButton("Quay lại");
+        search = new JTextField();
+        search.setPreferredSize(new Dimension(400, 40));
+        search.setFont(new Font(Font.SANS_SERIF, 0, 18));
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        this.add(search,constraints);
+        search_b = new JButton("Tìm");
         constraints.gridx = 1;
         constraints.gridy = 0;
+        this.add(search_b);
+        reload = new JButton("Tải lại");
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        this.add(reload, constraints);
+        saveChange = new JButton("Lưu");
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        this.add(saveChange, constraints);
+        back = new JButton("Quay lại");
+        constraints.gridx = 1;
+        constraints.gridy = 3;
         constraints.gridheight = 0;
         this.add(back, constraints);
         addListener();
@@ -51,6 +76,69 @@ public class Users extends JPanel {
             frame.add(mainMenu);
             destroy();
         });
+        reload.addActionListener(e -> {
+            try {
+                initData();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        saveChange.addActionListener(e -> {
+            try {
+                saveChange();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        search_b.addActionListener(e -> {
+            try {
+                search();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    private void search()  throws Exception
+    {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        String url = "jdbc:mysql://localhost/petty";
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(url, "root", "");
+        String query = "SELECT * FROM userdetail WHERE Name LIKE '%" + search.getText() + "%' " +
+                "ORDER BY SUBSTRING_INDEX(CONCAT(' ', NAME),' ',-1) COLLATE utf8mb4_vietnamese_ci";
+        PreparedStatement statement = conn.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next())
+        {
+            String ID = resultSet.getString("ID");
+            String Name = resultSet.getString("Name");
+            String preferName = resultSet.getString("preferName");
+            String dateOfBirth = resultSet.getString("DateOfBirth");
+            String gender = resultSet.getString("gender");
+            String imageLink = resultSet.getString("imageLink");
+            String[] s = { ID, Name, preferName, dateOfBirth, gender, imageLink};
+            model.addRow(s);
+        }
+        conn.close();
+    }
+
+    private void saveChange() throws Exception {
+        String url = "jdbc:mysql://localhost/petty";
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(url, "root", "");
+        for (int i = 0; i < table.getRowCount(); ++i)
+        {
+            String query = "UPDATE userdetail SET Name = ?, preferName = ?, Dateofbirth = ? , Gender = ?, imagelink = ? WHERE ID= " + table.getValueAt(i, 0);
+            PreparedStatement statement = conn.prepareStatement(query);
+            for(int j = 1; j < 6; ++j)
+            {
+                statement.setString(j, table.getValueAt(i, j).toString());
+            }
+            statement.execute();
+        }
+        conn.close();
     }
 
     private void destroy()
@@ -65,6 +153,11 @@ public class Users extends JPanel {
         String[] column = {"ID","Name","preferName","Date of birth","Gender","image link"};
         String[][] data = {};
         table = new JTable(new DefaultTableModel(data, column));
+        tableColumn = table.getColumnModel().getColumn(4);
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Nam");
+        comboBox.addItem("Nữ");
+        tableColumn.setCellEditor(new DefaultCellEditor(comboBox));
         try {
             initData();
         } catch (Exception e) {
@@ -75,21 +168,21 @@ public class Users extends JPanel {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tableWrapper.add(scrollPane);
         constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridheight = 3;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridy = 1;
         this.add(tableWrapper, constraints);
     }
 
     //read data
     private void initData() throws Exception {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
         String url = "jdbc:mysql://localhost/petty";
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(url, "root", "");
-        String query = "SELECT * FROM userdetail";
+        String query = "SELECT * FROM userdetail ORDER BY SUBSTRING_INDEX(CONCAT(' ', NAME),' ',-1) COLLATE utf8mb4_vietnamese_ci";
         PreparedStatement statement = conn.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
-        if(resultSet.next())
+        while(resultSet.next())
         {
             String ID = resultSet.getString("ID");
             String Name = resultSet.getString("Name");
@@ -97,9 +190,10 @@ public class Users extends JPanel {
             String dateOfBirth = resultSet.getString("DateOfBirth");
             String gender = resultSet.getString("gender");
             String imageLink = resultSet.getString("imageLink");
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model = (DefaultTableModel) table.getModel();
             String[] s = { ID, Name, preferName, dateOfBirth, gender, imageLink};
             model.addRow(s);
         }
+        conn.close();
     }
 }
