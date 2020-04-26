@@ -69,6 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $phone_number = trim($_POST["phone_number"]);
     }
+    
+
 
     
     // Check input errors before inserting in database
@@ -146,7 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!--Content-->
     <div class="content container" style="min-height: 300px; display: flex; padding-top: 15px; padding-bottom: 15px;">
         <div class="mr-4">
-            <img src="../Front-end/asset/asset/resource/img/cat2.png">
+            <img src="./asset/resource/img/cat2.png">
         </div>
         <div>
             <div>
@@ -165,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input class="form-control" type="text" name="username" placeholder="Enter your username..."  value="<?php echo $username; ?>" required>
                         </div>
                         
-                        <span><?php echo $username_err?></span>
+                        <span></span>
                     </div>    
                     <div class="item-reg">
                         <label>Password(*)</label>
@@ -175,7 +177,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div>
                             <input class="form-control" type="password" name="password" placeholder="Enter your password..."  value="<?php echo $password; ?>" required>
                         </div>
-                        <span><?php echo $password_err?></span>
+                        <span></span>
                     </div>
                     <div class="item-reg">
                         <label>Confirm Password(*)</label>
@@ -185,7 +187,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div>
                             <input  class="form-control" type="password" name="confirm_password" placeholder="Confirm your password..."  value="<?php echo $confirm_password; ?>" required>
                         </div>
-                        <span><?php echo $confirm_password_err?></span>
+                        <span></span>
                     </div>
                     <div class="item-reg">
                         <label>Email</label>

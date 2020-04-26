@@ -1,6 +1,11 @@
+/*Test thử*/
+
 /*
 css chung cho các trang
 */
+html{
+    scroll-behavior: smooth;
+}
 body{
     font-family: 'My Font Regular', sans-serif;
     position: relative;
@@ -18,16 +23,24 @@ body{
     font-family: My Font Paragraph;
     src: url("../resource/fonts/Roboto/Roboto-Regular.ttf")
 }
+@font-face{
+    font-family: 'My Font Paragraph Bold';
+    src: url("../resource/fonts/Roboto/Roboto-Bold.ttf")
+}
 /* CSS cho index.html */
 /*Header*/
-#petty-header {
+
+.container-fluid {
     height: 60px;
     width: 100%;
-    position: relative;
     background-color: #f19f1f;
 }
-
+#petty-header{
+    position: relative;
+    padding-top: 9px;
+}
 .logo {
+    top: 0px;
     position: absolute;
     left: 10px;
     height: 60px;
@@ -78,11 +91,10 @@ body{
 .cart {
     display: flex;
     position: absolute;
-    right: 200px;
+    right: 0px;
     width: 150px;
     height: 40px;
     border: 2px solid #fff;
-    top: calc((100% - 44px)/2);
     border-radius: 3px;
     padding: 9px;
     box-sizing: border-box;
@@ -100,17 +112,27 @@ body{
 .cart span{
     color: #fff;
     font-family: 'My Font Bold';
-    margin-left: 20px;
+    margin-left: 10px;
+}
+.cart .product-count{
+    background-color: #ffefd5; 
+    width: 24px; 
+    text-align: center; 
+    margin-left: 5px;
+    border-radius: 5px;
+    color: #333;
 }
 .user {
     position: absolute;
-    right: 0px;
-    padding: 0px 10px 0px 350px;
+    right: 175px;
 }
-
+.fas.fa-caret-down{
+    font-size: 15px;
+    color: white;
+}
 .catalog {
     justify-content: center;
-    border-top: 1px solid #ccc;
+    /* border-top: 1px solid #ccc; */
     width: 100%;
     display: flex;
     background-color: #f19f1f;
@@ -136,22 +158,45 @@ body{
 .content{
     font-family: 'My Font Paragraph';
 }
-.content .item.overview{
-    height: 640px;
-    background-color: #ffefd5;
-}
-.mySlides{
-    display: none;
-}
-.mySlides{
-    width: calc(640*1.875);
-    height: 100%;
-    margin: auto;
-}
+
 .content .item {
     display: flex;
-    background-color: blueviolet;
     height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+/*Style cho slide*/
+.carousel-item {
+    min-height: 600px;
+    background: no-repeat center center scroll;
+    background-size: cover;
+}
+.carousel-item img{
+    width: 100%;
+    height: auto;
+}
+.owl-theme .owl-dots .owl-dot.active span{
+    background-color: #ef5030!important;
+}
+
+.owl-carousel .prev-slide{
+    position: absolute;
+    left: 5px;
+    top: 194px;
+    font-size: 2rem;
+    color: #ef5030;
+}
+.owl-carousel .next-slide{
+    position: absolute;
+    right: 5px;
+    font-size: 2rem;
+    top: 194px;
+    color: #ef5030;
+}
+/*----------------------------*/
+.sale-product-title{
+    font-family: 'My Font Bold';
+    color: #108896;
 }
 .content .item.service{
     position: relative;
@@ -174,15 +219,11 @@ body{
     color: #989797;
 }
 .content .item.service .service-list{
-    display: flex;
     flex-wrap: nowrap;
     margin: 40px;
-    justify-content: center;
 }
 .content .item.service .service-list .service-item{
-    width: 200px;
-    height: 350px;
-    border: 1px solid #ccc;
+    height: 600px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -208,15 +249,28 @@ button.more-info:hover{
     background-color: #108896;
     cursor: pointer;
 }
+.vet .service-image{
+    background-image: url("https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=801&q=80");
+}
+.great-products .service-image{
+    background-image: url("https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+}
+.hotel .service-image{
+    background-image: url("https://images.unsplash.com/photo-1554693190-383dd5302125?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80");
+}
+.dog-walking .service-image{
+    background-image: url("https://images.unsplash.com/photo-1501720804996-ae418d1ba820?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1945&q=80");
+}
+
 .service-image{
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    height: 300px;
     border-radius: 10px;
-    background-color: chartreuse;
     background-image: url("https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
     background-size: cover;
 }
 .service-title{
+    font-size: 1.5rem;
     margin-top: 10px;
     font-family: 'My Font Bold', sans-serif;
     color: #292929;
@@ -224,16 +278,113 @@ button.more-info:hover{
 .service-description-sub{
     color: #989797;
 }
-.hot-product {
-    width:50%;
-    border: #000000 solid 1px;
-}
+
 
 .sale {
-    width: calc(100% - 50%);
-    border: #000000 solid 1px;
+    /* width: calc(100% - 50%); */
+    width: 100%;
+    padding: 10px;
 }
-
+/*---------------------------------------*/
+/*css cho phần about us*/
+.card-header{
+    min-width: 498px;
+    background-color: #ef5030;
+    border: none;
+    text-align: center;
+    font-family: 'My Font Bold';
+}
+.card-header a{
+    color: #fff;
+}
+.panel.card{
+    margin-bottom: 20px;
+    border: none;
+}
+.card-header:hover{
+    background-color: #108896;
+    cursor: pointer;
+}
+/*CSS cho phần mấy list icon ở dưới*/
+.dog-and-pet-house{
+    background-image: url("../resource/icon/dog-and-pets-house.png");
+}
+.high-quality{
+    background-image: url("../resource/icon/dog\ play.png");
+}
+.vet-services{
+    background-image: url("../resource/icon/vetService\ hover\ \ \(2\).png");
+}
+.special-care{
+    background-image: url("../resource/icon/dog-having-a\ bath.png");
+}
+div.rounded-circle{
+    margin-top: 50px;
+    width: 200px; 
+    height: 200px; 
+    background-color: #ffefd5; 
+    position: relative;
+    border: 5px solid #ef5030;
+}
+.rounded-circle .good{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 120px;
+    height: 120px;
+    position: absolute; 
+    left: 36px; 
+    top: 28px;
+}
+.zoom {
+    padding: 50px;
+    transition: transform .2s; /* Animation */
+    width: 200px;
+    height: 200px;
+}
+.zoom:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    cursor: pointer;
+  }
+.list-about{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+}
+.list-about h4{
+    margin-top: 40px;
+    font-family: 'My Font Bold';
+}
+.list-about p{
+    text-align: center;
+    color: #989797;
+    font-family: 'My Font Paragraph';
+}
+/*---------------------------------------*/
+/*css cho phần feedback*/
+.feedback-item{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.feedback-item p{
+    font-family: 'My Font Bold';
+    color: #333;
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 0px;
+}
+.feedback-item span{
+    color: #FFC400;
+}
+#feedback.owl-carousel .prev-slide, #feedback.owl-carousel .next-slide{
+    display: none;
+}
+/*css cho chân trang*/
 .footer {
     display: flex;
     height: 200px;
@@ -305,8 +456,9 @@ button.more-info:hover{
     height: 40px;
 }
 .sidebar-item:hover{
-    background-color: #FFC400;
+    background-color: #ffefd5;
     cursor: pointer;
+    border-radius: 5px;
 }
 /*css cho account.html*/
 .userpage-content{
@@ -389,9 +541,10 @@ button.more-info:hover{
     margin-top: 30px;
     position: relative;
 }
-.user-information .upload-avatar .fa.fa-user-circle-o{
+.user-information .upload-avatar .far.fa-images{
     font-size: 100px;
     color: #f19f1f;
+    opacity: 0.5;
 }
 .user-information .upload-avatar input{
     position: absolute;
@@ -416,14 +569,14 @@ button.more-info:hover{
     align-items: center;
     border-bottom: 1px solid #ccc;
 }
-.fa.fa-user{
+.fas.fa-user{
     font-size: 35px;
     margin-right: 10px;
     color: #f19f1f;
 }
 
 /*Trang tìm kiếm*/
-.container{
+.container.search-product{
     min-height: 100%;
     position: relative;
     height: 100%;
@@ -475,7 +628,7 @@ button.more-info:hover{
     opacity: 1;
     transform: scale(1);
 }
-.product-grid .product-discount-label{
+.owl-carousel .product-discount-label, .product-grid .product-discount-label{
     color: #fff;
     background-color: #f19f1f;
     font-size: 14px;
@@ -566,4 +719,310 @@ button.more-info:hover{
 }
 @media only screen and (max-width:990px){
     .product-grid{ margin-bottom: 40px; }
+}
+/*---------------------------*/
+/*CSS cho giỏ hàng*/
+.detail-cart{
+    font-family: 'My Font Bold';
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.productInCart{
+    /* background-color: antiquewhite; */
+    padding: 10px;
+}
+.productInCart .row{
+    margin-left: 0px; 
+    margin-right: 0px; 
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c0c0c0; 
+    padding: 10px;
+}
+.productInCart .row.heading{
+    font-family: 'My Font Bold';
+    font-size: 1rem;
+    background-color: #ef5030;
+    padding: 20px;
+    color: #fff;
+    border-bottom: none;
+}
+
+.productInCart .product-quantity-title, .productInCart .product-subtotal-title, .productInCart .product-price-title, .productInCart .product-price{
+    text-align: center;
+}
+.input-group-btn{
+    background-color: #ef5030;
+}
+.input-group-btn button i{
+    color: #fff;
+}
+.input-group-btn.left{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.input-group-btn.right{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.product-name a{
+    color: #333;
+}
+.product-name a:hover{
+    color: #f19f1f;
+}
+.far.fa-times-circle{
+    position: absolute; 
+    left: 0px; 
+    top: 40px; 
+    font-size: 20px; 
+    color:#ccc;
+}
+.far.fa-times-circle:hover{
+    color: #f19f1f;
+    cursor: pointer;
+}
+.content .title-image-cart{
+    width: 100%; 
+    height: 500px; 
+    background-size:cover; 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    background-image: url('https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+}
+.content .title-image-cart p{
+    color: #fff; 
+    font-family: 'My Font Regular'; 
+    font-size: 3rem; 
+    position: absolute; 
+    top: calc((500px - 72px)/2); 
+    left: calc((100% - 328px)/2);
+}
+.home-cart button.continue-shop{
+    background-color: #fff;
+    border: 2px solid #ef5030;
+    color: #ef5030;
+    font-family: 'My Font Regular';
+    border-radius: 5px;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.home-cart button i.fas.fa-long-arrow-alt-left{
+    margin-right: 10px;
+}
+.home-cart button.continue-shop:hover{
+    color: #fff;
+    background-color: #ef5030;
+}
+.checkout-card{
+    margin-top: 10px;
+    position: sticky; 
+    bottom: 0px;
+    height: 100%;
+}
+.checkout-card.row{
+    margin-left: 0px; 
+    margin-right: 0px;
+    border: 1px solid #dddddd; 
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.shop-next-time{
+    padding: 0px;
+}
+.checkout-card.row .accept-coupon{
+    border: 1px solid #ff6600;
+    background-color: #ff6600;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+.checkout-card.row .coupon-code{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 0px;
+    padding: 5px;
+}
+/*CSS cho trang chi tiết mặt hàng*/
+.product-detail-page .title-catalog{
+    font-family: 'My Font Regular';
+}
+.product-detail-page .view-product .product-detail .product-name{
+    font-family: 'My Font Regular';
+}
+.view-product{
+    display: flex;
+    padding: 20px;
+}
+.view-product .product-image img{
+    width: 500px;
+    height: 500px;
+}
+.view-product .product-status{
+    display: flex;
+}
+
+.view-product .product-status .rating{
+    margin-right: 20px;
+}
+.view-product .product-status .rating i.fas.fa-star{
+    color: #FFC400;
+}
+
+.view-product .product-status .rating span.level{
+    text-decoration: underline;
+    color: #FFC400;
+    font-size: 20px;
+}
+.view-product .product-status .number-of-rating{
+    font-size: 20px;
+}
+.view-product .product-status .number-of-rating a{
+    color: #333;
+}
+.view-product .product-status .number-of-rating a:hover{
+    text-decoration: unset;
+}
+.view-product .product-status .number-of-rating span{
+    color: #c0c0c0;
+}
+.product-detail-page{
+    padding: 20px;
+}
+.view-product .product-price h2{
+   margin: 10px 0 10px 0;
+   color: #ef5030;
+}
+.add-cart span{
+    margin-left: 10px;
+}
+.add-cart button{
+    padding: 10px; 
+    width: 200px; 
+    border-radius: 5px; 
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+}
+.add-wishlist i{
+    color: #333;
+    font-size: 25px;
+}
+.add-wishlist i:hover{
+    cursor: pointer;
+    color: #ef5030;
+}
+/*--------------------*/
+/*css cho phần mô tả mặt hàng và phần nhận xét của khách hàng*/
+.title{
+    font-family: 'My Font Regular';
+}
+/*----------------------*/
+/*css cho phần khách hàng nhận xét*/
+.rating-overview{
+    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.rating-average{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.rate-item{
+    display: flex; 
+    margin-top: 10px; 
+    align-items: baseline; 
+    justify-content: center;
+}
+.rating-num .fas.fa-star{
+    color: #333;
+}
+.rating-percentage{
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.progress-bar{
+    background-color: #ef5030;
+}
+.sharing-comment{
+    text-align: center;
+    padding: 20px;
+}
+.sharing-comment button{
+    width: 250px;
+    padding: 5px;
+    border: none;
+    background-color: #f19f1f;
+    color: #333;
+    border-radius: 5px;
+}
+/*css cho phần từng nhận xét cụ thể*/
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.item-review .customer-name{
+    font-family: 'My Font Paragraph Bold';
+    color: #108896;
+}
+.item-review .posted-time{
+    color: #c0c0c0;
+}
+.review-description .label i{
+    color: #FFC400;
+}
+.customer-review .title{
+    margin-top: 30px;
+}
+/*----------------------*/
+/*css cho sản phẩm liên quan*/
+.related-products .related-title{
+    text-align: center;
+}
+.related-products .more button{
+    margin-left: calc((100% - 88px)/2);
+    background-color: #f19f1f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'My Font Regular';
+    margin-top:10px;
+}
+/*------*/
+/*css cho phần hộp thoại nhảy ra lúc ấn mua hàng*/
+.toast-body button{
+    border: none;
+    background-color: #ef5030;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+/*css cho trang đăng ký*/
+.item-reg{
+    margin-top: 10px;
+}
+.item-reg .submit, .item-reg .reset{
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100px;
+}
+.item-reg .submit{
+    background-color: #f19f1f;
+}
+.item-reg .submit:hover{
+    opacity: 0.8;
+}
+.item-reg .reset{
+    background-color: #108896;
+}
+.item-reg .reset:hover{
+    opacity: 0.8;
+}
+.petty-form .item-reg label{
+    font-family: 'My Font Bold';
 }

@@ -196,28 +196,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html lang="vi">
 <head>
     
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Petty</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="asset/css/base.css">
-    <link rel="stylesheet" href="asset/css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./asset/css/base.css">
+    <link rel="stylesheet" href="./asset/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Front-end/asset/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../Front-end/asset/css/owl.theme.default.min.css">
 </head>
 <body>
     <!--Header-->
-    <div id="petty-header">
-        <a href="index.php"><div class="logo"></div></a>
-        <form class="search" action="search.php" method="GET">
-            <input class="txtSearch" name="key" type="text" placeholder="Tìm kiếm">
-            <button type="submit" id="btnSearch" formmethod="get" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
-        </form>
-        <div class="cart">
-            <i></i>
-            <span>Giỏ hàng</span>
-        </div>
-        <div class="user">
-            tài khoản
+    <div class="container-fluid">
+        <div class="container" id="petty-header" style="width: 100%; height: 100%;">
+            <div class="logo"></div>
+            <form class="search" action="search.php" method="GET">
+                <input class="txtSearch" type="text" placeholder="Tìm kiếm">
+                <button type="submit" id="btnSearch" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
+            </form>
+            <span><i class="fas fa-bell" style="color: white; position: absolute; right: 334px; font-size: 20px; top: 19px;"></i></span>
+            <div class="user">
+                <span style="color: white; margin-right: 10px;">ecchi123</span>
+                <img class="rounded-circle" src="https://static.wikia.nocookie.net/a3dddab1-5138-4786-ad66-03920667dc3a" style="width: 45px; height: auto; border: 1px solid #ef5030;">
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="cart">
+                <i></i>
+                <span>Giỏ hàng</span>
+            </div>
         </div>
     </div>
     <!--Menu-->

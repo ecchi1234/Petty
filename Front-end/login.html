@@ -149,7 +149,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                               </div>
                             <input class="form-control" type="text" name="username" placeholder="Enter your username..."  value="<?php echo $username; ?>" required>
                         </div>
-                        <span><?php echo $username_err?></span>
+                        
+                        <span></span>
                     </div>    
                     <div class="item-reg">
                         <label>Password(*)</label>
@@ -159,8 +160,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div>
                             <input class="form-control" type="password" name="password" placeholder="Enter your password..."  value="<?php echo $password; ?>" required>
                         </div>
-                        <span><?php echo $password_err?></span>
+                        <span></span>
                     </div>
+                    
                     <div class="item-reg" style="margin-top: 30px;">
                         <input class="submit" type="submit" value="Login">
                     </div>
