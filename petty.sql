@@ -2214,6 +2214,9 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
+ALTER TABLE `product`
+  MODIFY `productCode` int(10) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT cho bảng `employees`
 --
