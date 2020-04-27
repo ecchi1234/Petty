@@ -2,10 +2,10 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 23, 2020 lúc 10:49 AM
--- Phiên bản máy phục vụ: 10.4.11-MariaDB
--- Phiên bản PHP: 7.2.28
+-- Host: 127.0.0.1
+-- Generation Time: Apr 27, 2020 at 05:04 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,136 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `petty`
+-- Database: `petty`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employees`
+-- Table structure for table `discountproduct`
+--
+
+CREATE TABLE `discountproduct` (
+  `discountID` int(11) NOT NULL,
+  `productCode` int(10) NOT NULL,
+  `discountRate` int(2) NOT NULL,
+  `startTime` date NOT NULL,
+  `endTime` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `discountproduct`
+--
+
+INSERT INTO `discountproduct` (`discountID`, `productCode`, `discountRate`, `startTime`, `endTime`) VALUES
+(1, 10007, 2, '2019-08-06', '2019-09-06'),
+(2, 10010, 5, '2019-08-03', '2019-09-03'),
+(3, 10022, 10, '2019-10-01', '2019-11-01'),
+(4, 10017, 5, '2019-10-13', '2019-11-13'),
+(5, 10021, 2, '2019-09-01', '2019-09-10'),
+(6, 10025, 2, '2019-08-15', '2019-08-25'),
+(7, 10029, 4, '2019-12-01', '2020-01-01'),
+(8, 10030, 3, '2019-07-15', '2019-08-15'),
+(9, 10031, 8, '2019-06-30', '2019-07-31'),
+(10, 10032, 7, '2019-09-20', '2019-10-20'),
+(11, 10033, 2, '2019-10-01', '2019-11-01'),
+(12, 10035, 5, '2019-08-03', '2019-09-07'),
+(13, 10036, 3, '2019-11-01', '2020-01-01'),
+(14, 10038, 10, '2019-10-01', '2019-11-01'),
+(15, 10039, 5, '2019-10-13', '2019-11-13'),
+(16, 10040, 2, '2019-09-01', '2019-09-10'),
+(17, 10041, 2, '2019-08-15', '2019-08-25'),
+(18, 10042, 4, '2019-12-01', '2020-01-01'),
+(19, 10045, 3, '2019-07-15', '2019-08-15'),
+(20, 10046, 8, '2019-06-30', '2019-07-31'),
+(21, 10049, 7, '2019-09-20', '2019-10-20'),
+(22, 10050, 2, '2019-10-01', '2019-11-01'),
+(23, 10051, 5, '2019-08-03', '2019-09-07'),
+(24, 10056, 3, '2019-11-01', '2020-01-01'),
+(25, 10058, 10, '2019-10-01', '2019-11-01'),
+(26, 10060, 5, '2019-10-13', '2019-11-13'),
+(27, 10061, 2, '2019-09-01', '2019-09-10'),
+(28, 10062, 2, '2019-08-15', '2019-08-25'),
+(29, 10064, 4, '2019-12-01', '2020-01-01'),
+(30, 10070, 3, '2019-07-15', '2019-08-15'),
+(31, 10066, 8, '2019-06-30', '2019-07-31'),
+(32, 10069, 7, '2019-09-20', '2019-10-20'),
+(33, 10059, 2, '2019-10-01', '2019-11-01'),
+(34, 10063, 5, '2019-08-03', '2019-09-07'),
+(35, 10065, 3, '2019-11-01', '2020-01-01'),
+(36, 10073, 2, '2019-12-01', '2020-01-10'),
+(37, 10077, 5, '2020-01-13', '2020-02-13'),
+(38, 10087, 2, '2020-01-05', '2020-01-19'),
+(39, 10096, 2, '2020-02-15', '2020-03-25'),
+(40, 10074, 4, '2020-01-01', '2020-01-31'),
+(41, 10075, 3, '2020-02-20', '2020-03-03'),
+(42, 10093, 8, '2020-01-30', '2020-02-29'),
+(43, 10097, 7, '2020-02-20', '2020-03-15'),
+(44, 10031, 2, '2020-01-18', '2020-02-02'),
+(45, 10040, 5, '2020-02-02', '2020-02-20'),
+(46, 10032, 3, '2020-01-01', '2020-01-11'),
+(47, 10274, 2, '2019-12-01', '2020-01-10'),
+(48, 10259, 5, '2020-01-13', '2020-02-13'),
+(49, 10254, 2, '2020-01-05', '2020-01-19'),
+(50, 10218, 2, '2020-02-15', '2020-03-25'),
+(51, 10219, 4, '2020-01-01', '2020-01-31'),
+(52, 10223, 3, '2020-02-20', '2020-03-03'),
+(53, 10226, 8, '2020-01-30', '2020-02-29'),
+(54, 10201, 7, '2020-02-20', '2020-03-15'),
+(55, 10176, 2, '2020-01-18', '2020-02-02'),
+(56, 10182, 5, '2020-02-02', '2020-02-20'),
+(57, 10187, 15, '2020-01-01', '2020-01-11'),
+(58, 10112, 2, '2020-03-01', '2020-03-15'),
+(59, 10114, 5, '2020-02-13', '2020-03-13'),
+(60, 10124, 2, '2020-03-05', '2020-03-19'),
+(61, 10125, 2, '2020-03-15', '2020-03-31'),
+(62, 10134, 4, '2020-03-02', '2020-04-03'),
+(63, 10136, 3, '2020-03-20', '2020-04-20'),
+(64, 10137, 8, '2020-04-01', '2020-04-14'),
+(65, 10156, 7, '2020-03-20', '2020-04-04'),
+(66, 10157, 2, '2020-03-03', '2020-04-04'),
+(67, 10160, 5, '2020-03-02', '2020-03-20'),
+(68, 10234, 3, '2020-03-01', '2020-03-30'),
+(69, 10235, 2, '2020-04-01', '2020-04-15'),
+(70, 10313, 2, '2020-03-01', '2020-03-15'),
+(71, 10293, 5, '2020-02-13', '2020-03-13'),
+(72, 10292, 2, '2020-03-05', '2020-03-19'),
+(73, 10291, 2, '2020-03-15', '2020-03-31'),
+(74, 10290, 4, '2020-03-02', '2020-04-03'),
+(75, 10289, 3, '2020-03-20', '2020-04-20'),
+(76, 10288, 8, '2020-04-01', '2020-04-14'),
+(77, 10287, 7, '2020-03-20', '2020-04-04'),
+(78, 10286, 2, '2020-03-03', '2020-04-04'),
+(79, 10283, 5, '2020-03-02', '2020-03-20'),
+(80, 10282, 3, '2020-03-01', '2020-03-30'),
+(81, 10281, 2, '2020-04-01', '2020-04-15'),
+(82, 10278, 3, '2020-03-01', '2020-04-01'),
+(83, 10276, 7, '2020-03-04', '2020-04-01'),
+(84, 10274, 5, '2020-03-05', '2020-04-15'),
+(85, 10273, 6, '2020-03-02', '2020-04-01'),
+(86, 10263, 8, '2020-03-01', '2020-04-20'),
+(87, 10244, 2, '2020-03-01', '2020-03-15'),
+(88, 10243, 5, '2020-02-13', '2020-03-13'),
+(89, 10242, 2, '2020-03-05', '2020-03-19'),
+(90, 10241, 2, '2020-03-15', '2020-03-31'),
+(91, 10240, 4, '2020-03-02', '2020-04-03'),
+(92, 10238, 3, '2020-03-20', '2020-04-20'),
+(93, 10237, 8, '2020-04-01', '2020-04-14'),
+(94, 10236, 7, '2020-03-20', '2020-04-04'),
+(95, 10235, 2, '2020-03-03', '2020-04-04'),
+(96, 10231, 5, '2020-03-02', '2020-03-20'),
+(97, 10234, 3, '2020-03-01', '2020-03-30'),
+(98, 10233, 2, '2020-04-01', '2020-04-15'),
+(99, 10202, 3, '2020-03-01', '2020-04-01'),
+(100, 10199, 7, '2020-03-04', '2020-04-01'),
+(101, 10196, 5, '2020-03-05', '2020-04-15'),
+(102, 10191, 6, '2020-03-02', '2020-04-01'),
+(103, 10194, 8, '2020-03-01', '2020-04-20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -38,7 +161,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`employeeNumber`, `employeeName`, `gender`, `email`, `phoneNumber`, `address`) VALUES
@@ -97,7 +220,7 @@ INSERT INTO `employees` (`employeeNumber`, `employeeName`, `gender`, `email`, `p
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderproducts`
+-- Table structure for table `orderproducts`
 --
 
 CREATE TABLE `orderproducts` (
@@ -111,7 +234,7 @@ CREATE TABLE `orderproducts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `orderproducts`
+-- Dumping data for table `orderproducts`
 --
 
 INSERT INTO `orderproducts` (`orderNumber`, `orderDate`, `ID`, `requiredDate`, `shippedDate`, `status`, `comments`) VALUES
@@ -458,7 +581,7 @@ INSERT INTO `orderproducts` (`orderNumber`, `orderDate`, `ID`, `requiredDate`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderservices`
+-- Table structure for table `orderservices`
 --
 
 CREATE TABLE `orderservices` (
@@ -471,7 +594,7 @@ CREATE TABLE `orderservices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `orderservices`
+-- Dumping data for table `orderservices`
 --
 
 INSERT INTO `orderservices` (`orderNumber`, `serviceID`, `ID`, `orderDate`, `status`, `comments`) VALUES
@@ -779,7 +902,7 @@ INSERT INTO `orderservices` (`orderNumber`, `serviceID`, `ID`, `orderDate`, `sta
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -795,7 +918,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`productCode`, `keywords`, `productLine`, `productName`, `image`, `productQuantity`, `price`, `producer`, `productDescription`) VALUES
@@ -1120,7 +1243,7 @@ INSERT INTO `product` (`productCode`, `keywords`, `productLine`, `productName`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `productinvoice`
+-- Table structure for table `productinvoice`
 --
 
 CREATE TABLE `productinvoice` (
@@ -1130,7 +1253,7 @@ CREATE TABLE `productinvoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `productinvoice`
+-- Dumping data for table `productinvoice`
 --
 
 INSERT INTO `productinvoice` (`orderNumber`, `productCode`, `quantityOrdered`) VALUES
@@ -1477,7 +1600,7 @@ INSERT INTO `productinvoice` (`orderNumber`, `productCode`, `quantityOrdered`) V
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `services`
+-- Table structure for table `services`
 --
 
 CREATE TABLE `services` (
@@ -1489,7 +1612,7 @@ CREATE TABLE `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `services`
+-- Dumping data for table `services`
 --
 
 INSERT INTO `services` (`serviceID`, `serviceName`, `serviceImage`, `serviceDescription`, `price`) VALUES
@@ -1515,7 +1638,7 @@ INSERT INTO `services` (`serviceID`, `serviceName`, `serviceImage`, `serviceDesc
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `userdetails`
+-- Table structure for table `userdetails`
 --
 
 CREATE TABLE `userdetails` (
@@ -1529,7 +1652,7 @@ CREATE TABLE `userdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `userdetails`
+-- Dumping data for table `userdetails`
 --
 
 INSERT INTO `userdetails` (`ID`, `customerName`, `preferName`, `gender`, `dateOfBirth`, `address`, `employeeNumber`) VALUES
@@ -1837,7 +1960,7 @@ INSERT INTO `userdetails` (`ID`, `customerName`, `preferName`, `gender`, `dateOf
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -1849,7 +1972,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ID`, `username`, `password`, `email`, `phonenumber`) VALUES
@@ -2155,24 +2278,31 @@ INSERT INTO `users` (`ID`, `username`, `password`, `email`, `phonenumber`) VALUE
 (10299, 'Wbtgpm10', 'Ohgblo4292', 'vuongha111993@gmail.com', '0903804354');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `employees`
+-- Indexes for table `discountproduct`
+--
+ALTER TABLE `discountproduct`
+  ADD PRIMARY KEY (`discountID`),
+  ADD KEY `discountProduct_ibfk_1` (`productCode`);
+
+--
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`employeeNumber`);
 
 --
--- Chỉ mục cho bảng `orderproducts`
+-- Indexes for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   ADD PRIMARY KEY (`orderNumber`),
   ADD KEY `fk1_orderproducts` (`ID`);
 
 --
--- Chỉ mục cho bảng `orderservices`
+-- Indexes for table `orderservices`
 --
 ALTER TABLE `orderservices`
   ADD PRIMARY KEY (`orderNumber`),
@@ -2180,105 +2310,120 @@ ALTER TABLE `orderservices`
   ADD KEY `fk2_orderservices` (`serviceID`);
 
 --
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`productCode`);
 
 --
--- Chỉ mục cho bảng `productinvoice`
+-- Indexes for table `productinvoice`
 --
 ALTER TABLE `productinvoice`
   ADD PRIMARY KEY (`orderNumber`) USING BTREE,
   ADD KEY `productCode` (`productCode`);
 
 --
--- Chỉ mục cho bảng `services`
+-- Indexes for table `services`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`serviceID`);
 
 --
--- Chỉ mục cho bảng `userdetails`
+-- Indexes for table `userdetails`
 --
 ALTER TABLE `userdetails`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
-ALTER TABLE `product`
-  MODIFY `productCode` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `discountproduct`
+--
+ALTER TABLE `discountproduct`
+  MODIFY `discountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
--- AUTO_INCREMENT cho bảng `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
   MODIFY `employeeNumber` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT cho bảng `orderproducts`
+-- AUTO_INCREMENT for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   MODIFY `orderNumber` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1339;
 
 --
--- AUTO_INCREMENT cho bảng `orderservices`
+-- AUTO_INCREMENT for table `orderservices`
 --
 ALTER TABLE `orderservices`
   MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100300;
 
 --
--- AUTO_INCREMENT cho bảng `productinvoice`
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `productCode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10315;
+
+--
+-- AUTO_INCREMENT for table `productinvoice`
 --
 ALTER TABLE `productinvoice`
   MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1339;
 
 --
--- AUTO_INCREMENT cho bảng `services`
+-- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `serviceID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10300;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `orderproducts`
+-- Constraints for table `discountproduct`
+--
+ALTER TABLE `discountproduct`
+  ADD CONSTRAINT `discountProduct_ibfk_1` FOREIGN KEY (`productCode`) REFERENCES `product` (`productCode`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   ADD CONSTRAINT `fk1_orderproducts` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orderservices`
+-- Constraints for table `orderservices`
 --
 ALTER TABLE `orderservices`
   ADD CONSTRAINT `fk1_orderservices` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_orderservices` FOREIGN KEY (`serviceID`) REFERENCES `services` (`serviceID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `productinvoice`
+-- Constraints for table `productinvoice`
 --
 ALTER TABLE `productinvoice`
   ADD CONSTRAINT `fk1_productinvoice` FOREIGN KEY (`orderNumber`) REFERENCES `orderproducts` (`orderNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_productinvoice` FOREIGN KEY (`productCode`) REFERENCES `product` (`productCode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `userdetails`
+-- Constraints for table `userdetails`
 --
 ALTER TABLE `userdetails`
   ADD CONSTRAINT `fk1_userdetails` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
