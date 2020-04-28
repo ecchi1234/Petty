@@ -963,7 +963,7 @@ INSERT INTO `orderservices` (`orderNumber`, `serviceID`, `ID`, `orderDate`, `sta
 -- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE `products` (
   `productCode` int(10) NOT NULL,
   `keywords` text NOT NULL,
   `productLine` varchar(50) NOT NULL,
@@ -979,7 +979,7 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productCode`, `keywords`, `productLine`, `productName`, `image`, `productQuantity`, `price`, `producer`, `productDescription`) VALUES
+INSERT INTO `products` (`productCode`, `keywords`, `productLine`, `productName`, `image`, `productQuantity`, `price`, `producer`, `productDescription`) VALUES
 (10001, 'Đồ dùng, chăm sóc, sức khỏe, vệ sinh, răng,chó, Bộ chăm sóc răng Arquivet, OEM', 'Đồ dùng cho chó', 'Bộ chăm sóc răng Arquivet', 'https://salt.tikicdn.com/cache/200x200/ts/product/59/16/6d/b5f7b82ff31e7fd556e6019dd580754f.png', 50, 105000, 'OEM', 'Kem đánh răng Tthơm miệng cho chó - 100g, loại bỏ nguyên nhân gây vi khuẩn hôi miệng. Giúp ngăn ngừa mảng bám, cao răng, viêm nướu và duy trì sự khỏe mạnh cho răng'),
 (10002, 'Đồ dùng, chăm sóc, sức khỏe, vệ sinh, sữa, mùi, chó, Sữa tắm khử mùi DIVA, DIVA', 'Đồ dùng cho chó', 'Sữa tắm khử mùi DIVA', 'https://salt.tikicdn.com/cache/200x200/ts/product/3f/b7/eb/24b5e8157969b3ef4a82edb0ea386d1f.jpg', 50, 185000, 'DIVA', 'Nuôi dưỡng cho bộ lông thêm bóng mượt, hương thơm quyến rũ, không gây kích ứng da'),
 (10003, 'Đồ dùng, chăm sóc, sức khỏe, vệ sinh, sữa, da, chó, Sữa tắm bảo vệ da cho chó SOS, SOS', 'Đồ dùng cho chó', 'Sữa tắm bảo vệ da cho chó SOS', 'https://salt.tikicdn.com/cache/200x200/ts/product/2b/47/c8/0d538cd278d47f1c088d5e98946c89f3.jpg', 50, 91000, 'SOS', 'Là sản phẩm giúp phục hồi, bảo vệ da, ngăn ngừa viêm da và có tác dụng diệt ve nấm, bọ chét….Đây là loại chăm sóc lông, khử mùi, diệt khuẩn. Với công dụng làm sạch, chăm sóc da, loại bỏ bụi bẩn, khử mùi, diệt khuẩn, lưu giữ lại hương thơm lâu lên đến hơn 10 ngày, đặc biệt KHÔNG GÂY HẠI CHO DA phòng trừ ve rận cho tất cả các giống chó, với tính năng thích hợp cho nhiều giống chó, không gây kích ứng da.'),
@@ -2370,7 +2370,7 @@ INSERT INTO `userdetail` (`ID`, `customerName`, `preferName`, `gender`, `dateOfB
 -- Dumping data for table `userdetails`
 --
 
-INSERT INTO `userdetails` (`ID`, `customerName`, `preferName`, `gender`, `dateOfBirth`, `address`, `employeeNumber`) VALUES
+INSERT INTO `userdetail` (`ID`, `customerName`, `preferName`, `gender`, `dateOfBirth`, `address`, `employeeNumber`) VALUES
 (10000, 'Trần Đức Anh', 'Trần Đức Anh', 'Nam', '2000-01-28', 'Nghệ An', 100),
 (10001, 'Vũ Duy Ánh', 'Vũ Duy Ánh', 'Nam', '2000-02-05', 'Nam Định', 101),
 (10002, 'Nguyễn Phương Bắc', 'Nguyễn Phương Bắc', 'Nam', '2000-01-18', 'Bắc Giang', 102),
@@ -3035,7 +3035,7 @@ ALTER TABLE `orderservices`
 =======
 -- Indexes for table `product`
 --
-ALTER TABLE `product`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`productCode`);
 
 --
@@ -3065,7 +3065,7 @@ ALTER TABLE `services`
 <<<<<<< HEAD
 -- Indexes for table `userdetail`
 =======
--- Indexes for table `userdetails`
+-- Indexes for table `userdetail`
 >>>>>>> b12d41b2d3496dca5c5ffc2ba011d7f6180063c5
 --
 ALTER TABLE `userdetail`
@@ -3113,7 +3113,7 @@ ALTER TABLE `orderservices`
 =======
 -- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `product`
+ALTER TABLE `products`
   MODIFY `productCode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10315;
 
 --
@@ -3155,7 +3155,7 @@ ALTER TABLE `users`
 >>>>>>> b12d41b2d3496dca5c5ffc2ba011d7f6180063c5
 --
 ALTER TABLE `discountproduct`
-  ADD CONSTRAINT `discountProduct_ibfk_1` FOREIGN KEY (`productCode`) REFERENCES `product` (`productCode`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `discountProduct_ibfk_1` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orderproducts`
@@ -3185,7 +3185,7 @@ ALTER TABLE `productinvoice`
 >>>>>>> b12d41b2d3496dca5c5ffc2ba011d7f6180063c5
 --
 ALTER TABLE `userdetail`
-  ADD CONSTRAINT `fk1_userdetails` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk1_userdetail` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
