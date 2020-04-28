@@ -32,7 +32,7 @@
         <div class="item-catalog">Liên hệ</div>
         <div class="item-catalog">Blog</div>
     </div>
-    <div class="container">
+    <div class="container search-product">
     <?php
         // Include config file
         require_once "config.php";
