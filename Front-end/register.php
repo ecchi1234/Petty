@@ -117,24 +117,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <!--Header-->
-    <div class="container-fluid">
-        <div class="container" id="petty-header" style="width: 100%; height: 100%;">
-            <div class="logo"></div>
-            <form class="search" action="search.php" method="GET">
-                <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-                <button type="submit" id="btnSearch" onclick="window.location.href = 'search.html';"><i id="search-icon"></i></button>
-            </form>
-            <span><i class="fas fa-bell" style="color: white; position: absolute; right: 350px; font-size: 20px; top: 19px;"></i></span>
-            <div class="user mt-2 ml-4">
-                <span><i class="fas fa-user-alt" style="color: #ef5030; font-size: 20px;"></i></span>
-                <a href="login.php" style="color: #fff;">Đăng ký/đăng nhập</a>
-            </div>
-            <div class="cart">
-                <i></i>
-                <span>Giỏ hàng</span>
-            </div>
-        </div>
-    </div>
+    <?php
+        include "header.php";
+    ?>
     <!--Menu-->
     <div class="catalog">
         <div class="item-catalog home">Trang chủ</div>
@@ -146,12 +131,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!--Content-->
     <div class="content container" style="min-height: 300px; display: flex; padding-top: 15px; padding-bottom: 15px;">
         <div class="mr-4">
-            <img src="../Front-end/asset/asset/resource/img/cat2.png">
+            <img src="../Front-end/asset/resource/img/cat2.png">
         </div>
         <div>
-            <div>
-                Logo petty ở đây
-            </div>
             <div class="shadow" style="width: 500px;padding: 20px;">
                 <h2 style="text-align: center; font-family: 'My Font Regular'; color: #ef5030;"><i class="fas fa-paw"></i>Đăng ký<i class="fas fa-paw"></i></h2>
                 <p style="text-align: center;">Please fill this form to create an account.</p>
@@ -216,23 +198,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 
     <!--Footer-->
-    <div class="footer">
-        <div id="petty-logo"></div>
-        <div class="information">
-            <p><i id="mobile"></i>000-000-000</p>
-            <p><i id="email"></i>Email: nnchi@gmail.com</p>
-            <p><i id="address"></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
-        </div>
-        <div class="media">
-            <p class="media-text">Follow Us</p>
-            <i id="facebook"></i>
-        </div>
-    </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="JS/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <?php
+        include "footer.php";
+    ?>
 </body>
 </html>

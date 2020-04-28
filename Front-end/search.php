@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
+    {
+        $_SESSION['cart'] = array();
+        $_SESSION['number'] = array();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -12,25 +21,9 @@
 </head>
 <body>
     <!--Header-->
-    <div class="container-fluid">
-        <div class="container" id="petty-header" style="width: 100%; height: 100%;">
-            <div class="logo"></div>
-            <form class="search" action="search.php" method="GET">
-                <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-                <button type="submit" id="btnSearch" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
-            </form>
-            <span><i class="fas fa-bell" style="color: white; position: absolute; right: 334px; font-size: 20px; top: 19px;"></i></span>
-            <div class="user">
-                <span style="color: white; margin-right: 10px;">ecchi123</span>
-                <img class="rounded-circle" src="https://static.wikia.nocookie.net/a3dddab1-5138-4786-ad66-03920667dc3a" style="width: 45px; height: auto; border: 1px solid #ef5030;">
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="cart">
-                <i></i>
-                <span>Giỏ hàng</span>
-            </div>
-        </div>
-    </div>
+    <?php
+        include "header.php";
+    ?>
     <!--Menu-->
     <div class="catalog">
         <div class="item-catalog">Trang chủ</div>
@@ -50,7 +43,7 @@
             $key = trim($_GET['key']);
 
             // create a base query and words string
-            $query_string = "SELECT * FROM products WHERE ";
+            $query_string = "SELECT *,FORMAT(price, 0) as f_price FROM products WHERE ";
             $display_words = "";
 
             // seperate each of the keyword
@@ -107,7 +100,7 @@
                         "<div class='col-md-3 col-sm-6'>
                             <div class='product-grid'>
                                 <div class='product-image'>
-                                    <a href='#' class='image'>
+                                    <a href='product-detail.php?id=".$row['productCode']."' class='image'>
                                         <img class='pic-1' src='".$row['image']."'>
                                         <img class='pic-2' src='".$row['image']."'>
                                     </a>
@@ -122,7 +115,7 @@
                                     </ul>
                                     <h3 class='title'><a href='#'>".$row['productName']."</a></h3>
 
-                                    <div class='price'>$".$row['price']."<span></span></div>
+                                    <div class='price'>".$row['f_price']."đ<span></span></div>
                                     <ul class='social'>
 
                                         <li><a href='#'><i class='fa fa-shopping-cart'></i></a></li>
@@ -163,34 +156,34 @@
                     ";
                 }
                 else if($i > MAX_PAGE_NUMBER_IN_PAGE && $page > intval(MAX_PAGE_NUMBER_IN_PAGE/2) && $page < $i - intval(MAX_PAGE_NUMBER_IN_PAGE/2)) {
-                    echo "<div>
+                    echo "
                         <ul style='list-style-type: none;'>"  ;
                     $i = $page + intval(MAX_PAGE_NUMBER_IN_PAGE/2) + 1;
                     while (--$i >= $page - intval(MAX_PAGE_NUMBER_IN_PAGE/2) ) {
                         echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
                     }
                     echo "</div>
-                        </ul>
+                        
                     ";
                 }
                 else if($i > MAX_PAGE_NUMBER_IN_PAGE && $page > intval(MAX_PAGE_NUMBER_IN_PAGE/2) && $page >= $i - intval(MAX_PAGE_NUMBER_IN_PAGE/2)){
-                    echo "<div>
+                    echo "
                         <ul style='list-style-type: none;'>"  ;
                     $max = $i;
                     while (--$i >= $max - MAX_PAGE_NUMBER_IN_PAGE)  {
                         echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
                     }
-                    echo "</div>
+                    echo "
                         </ul>";
                 }
                 else{
-                    echo "<div>
+                    echo "
                         <ul style='list-style-type: none;'>"  ;
                     $j = MAX_PAGE_NUMBER_IN_PAGE;
                     while (--$j >= 0)  {
                         echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($j)."'>".($j + 1)."</a></li>";
                     }
-                    echo "</div>
+                    echo "
                         </ul>";
                 }
             }
@@ -203,21 +196,8 @@
     </div>
 
     <!--Footer-->
-    <div class="footer">
-        <div id="petty-logo"></div>
-        <div class="information">
-            <p><i id="mobile"></i>000-000-000</p>
-            <p><i id="email"></i>Email: nnchi@gmail.com</p>
-            <p><i id="address"></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
-        </div>
-        <div class="media">
-            <p class="media-text">Follow Us</p>
-            <i id="facebook"></i>
-        </div>
-    </div>
-    <!--<script src="main.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <?php
+        include "footer.php";
+    ?>
 </body>
 </html>

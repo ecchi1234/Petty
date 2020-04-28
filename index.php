@@ -1,34 +1,56 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Petty</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  
-    <link rel="stylesheet" href="./asset/css/base.css">
-    <link rel="stylesheet" href="./asset/css/main.css">
+    <link rel="stylesheet" href="./Front-end/asset/css/base.css">
+    <link rel="stylesheet" href="./Front-end/asset/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Front-end/asset/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../Front-end/asset/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./Front-end/asset/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./Front-end/asset/css/owl.theme.default.min.css">
 </head>
 <body>
     <!--Header-->
-    <div class="container-fluid">
-        <div class="container" id="petty-header" style="width: 100%; height: 100%;">
-            <div class="logo"></div>
-            <form class="search" action="search.php" method="GET">
-                <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-                <button type="submit" id="btnSearch" onclick="window.location.href = 'search.html';"><i id="search-icon"></i></button>
+    <div class='container-fluid'>
+        <div class='container' id='petty-header' style='width: 100%; height: 100%;'>
+            <a class='logo' href='index.php'></a>
+            <form class='search' action='Front-end/search.php' method='GET'>
+                <input class='txtSearch' name='key' type='text' placeholder='Tìm kiếm'>
+                <button type='submit' id='btnSearch' onclick='window.location.href = "Front-end/search.php";'><i id='search-icon'></i></button>
             </form>
-            <span><i class="fas fa-bell" style="color: white; position: absolute; right: 334px; font-size: 20px; top: 19px;"></i></span>
-            <div class="user">
-                <span style="color: white; margin-right: 10px;">ecchi123</span>
-                <img class="rounded-circle" src="https://static.wikia.nocookie.net/a3dddab1-5138-4786-ad66-03920667dc3a" style="width: 45px; height: auto; border: 1px solid #ef5030;">
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="cart">
-                <i></i>
-                <span>Giỏ hàng</span>
-            </div>
+            <span><i class='fas fa-bell' style='color: white; position: absolute; right: 350px; font-size: 20px; top: 19px;'></i></span>
+            <div class='user mt-2 ml-4'>
+                <span><i class='fas fa-user-alt' style='color: #ef5030; font-size: 20px;'></i></span>
+                <a href='Front-end/login.php' style='color: #fff;'>
+                    <?php
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+                {
+                    echo $_SESSION["username"];
+                }
+                else
+                {
+                    echo "Đăng ký/đăng nhập";
+                }
+                echo "</a>
+                        </div>
+                        <a href='Front-end/cart.php'>
+                            <div class='cart'>
+                                <i></i>
+                                <span>Giỏ hàng</span>
+                                <div class='product-count'>";
+                                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && sizeOf($_SESSION['cart']) > 0)
+                                {
+                                    echo sizeOf($_SESSION['cart']);
+                                }
+                ?>
+                </div>
+                </div>
+            </a>
         </div>
     </div>
     <!--Menu-->
@@ -52,7 +74,7 @@
             </ul>
             <!-- The slideshow -->
             <div class="carousel-inner">
-              <div class="carousel-item active" style="background-image: url('../Front-end/asset/resource/img/cat1.jpg');">
+              <div class="carousel-item active" style="background-image: url('./Front-end/asset/resource/img/cat1.jpg');">
                 
               </div>
               <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
@@ -228,7 +250,7 @@
                       
                       </div>
                 </div>
-                <img style="margin-left: 10px;"src="asset/resource/img/cat.png">
+                <img style="margin-left: 10px;"src="Front-end/asset/resource/img/cat.png">
             </div>
             <div class="list" style="display: flex;">
                 <div class="list-about">
@@ -277,7 +299,7 @@
         <div class="item feedback shadow">
             <h1 style="font-family: 'My Font Bold'; color: #108896; font-size: 50px; margin: 50px;">Khách hàng của Petty</h1>
             <div style="display: flex;">
-                <img src="asset/resource/img/cat2.png">
+                <img src="./Front-end/asset/resource/img/cat2.png">
                 <div class="item sale-product container" style="padding: 30px; width: 700px;">
                     <div class="owl-carousel owl-theme" id="feedback">
                         <div class="feedback-item">
@@ -364,23 +386,23 @@
     </div>
 
     <!--Footer-->
-    <div class="footer">
-        <div id="petty-logo"></div>
-        <div class="information">
-            <p><i id="mobile"></i>000-000-000</p>
-            <p><i id="email"></i>Email: nnchi@gmail.com</p>
-            <p><i id="address"></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
+    <div class='footer' style='width:100%;'>
+        <div id='petty-logo'></div>
+        <div class='information'>
+            <p><i id='mobile'></i>000-000-000</p>
+            <p><i id='email'></i>Email: nnchi@gmail.com</p>
+            <p><i id='address'></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
         </div>
-        <div class="media">
-            <p class="media-text">Follow Us</p>
-            <i id="facebook"></i>
+        <div class='media'>
+            <p class='media-text'>Follow Us</p>
+            <i id='facebook'></i>
         </div>
     </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="JS/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='Front-end/JS/owl.carousel.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <script src='Front-end/main.js'></script>
 </body>
 </html>

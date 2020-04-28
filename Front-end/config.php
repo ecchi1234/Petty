@@ -1,8 +1,8 @@
 <?php 
-define('DB_SERVER', 'us-cdbr-iron-east-01.cleardb.net');
-define('DB_USERNAME', 'b1fbaebb89d93f');
-define('DB_PASSWORD', '827328ff521c86e');
-define('DB_NAME','heroku_fecc8a230da62cd');
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'id13471755_root');
+define('DB_PASSWORD', 't7jMkBfId*c!)U\?');
+define('DB_NAME','id13471755_petty');
 define('MAX_PRODUCT_IN_PAGE', 20);
 define('MAX_PAGE_NUMBER_IN_PAGE', 5);
 /* Attempt to connect to MySQL database */

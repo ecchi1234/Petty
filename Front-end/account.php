@@ -1,18 +1,23 @@
 <?php
-// Initialize the session
-session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-
+    // Initialize the session
+    session_start();
+     
+    // Check if the user is logged in, if not then redirect him to login page
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: login.php");
+        exit;
+    }
+    if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
+    {
+        $_SESSION['cart'] = array();
+        $_SESSION['number'] = array();
+        $_SESSION['price'] = array();
+    }
     require_once "config.php";
     $id = $_SESSION['id'];
     //initialization variable
-    $name = $image = $prefername = $dateOfBirth =$email = $phoneNumber = $gender = "";
-    $name_err = $phoneNumber_err = $gender_err = $dateOfBirth_err = "";
+    $name = $image = $prefername = $dateOfBirth =$email = $phoneNumber = $gender = $address = "";
+    $name_err = $phoneNumber_err = $gender_err = $dateOfBirth_err = $address_err = "";
     //select from userdetail table
     $sql = "SELECT * FROM userdetail WHERE id = ".$id;
     $query = mysqli_query($link, $sql);
@@ -24,21 +29,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     else
     {   
         $row = mysqli_fetch_assoc($query);
-        $name =  $row['Name'];
+        $name =  $row['customerName'];
         if(isset($row['preferName']))
         {
             $prefername = $row['preferName'];
         }
-        $dateOfBirth = $row['DateOfBirth'];
+        $dateOfBirth = $row['dateOfBirth'];
         $gender = $row['gender'];
+        $address = $row['address'];
         $image = $row['imageLink'];
     }
     //select from users table
     $sql = "SELECT * FROM users WHERE id = ".$id;
     $query = mysqli_query($link, $sql);
-    $row = mysqli_fetch_assoc($query);
-    $email = $row['email'];
-    $phoneNumber = $row['phonenumber'];
+    if($row = mysqli_fetch_assoc($query))
+    {
+        $email = $row['email'];
+        $phoneNumber = $row['phonenumber'];
+    }
     //change user profile
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -84,8 +92,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $gender = trim($_POST["gender"]);
         }
 
+        if(empty(trim($_POST["address"])))
+        {
+            $address_err = "Nhập địa chỉ";
+        }
+        else
+        {
+            $address = trim($_POST["address"]);
+        }
+
         //upload image
-        if(empty($name_err))
+        if(empty($name_err) && empty($phoneNumber_err) && empty($dateOfBirth_err) && empty($gender_err) && empty($address_err))
         {
             $target_dir = "uploads/".$_SESSION['username'];
             $target_file = $target_dir.basename($_FILES["image"]["name"]);
@@ -111,8 +128,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 }
             }
         }
-        echo $uploadOK;
-        echo $name_err;
         //check before insert
         if(empty($name_err) && empty($phoneNumber_err) && empty($dateOfBirth_err) && empty($gender_err))
         {
@@ -121,10 +136,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $query = mysqli_query($link, $sql);
             if(mysqli_num_rows($query) > 0)
             {
-                $sql = "UPDATE userdetail SET Name = ?,  preferName = ?,  DateOfBirth = ?,  gender = ?, imageLink = ? WHERE id = ".$id;
+                $sql = "UPDATE userdetail SET customerName = ?,  preferName = ?,  DateOfBirth = ?,  gender = ?, imageLink = ?, address = ? WHERE id = ".$id;
                 if($stmt = mysqli_prepare($link, $sql)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "sssss", $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink);
+                    mysqli_stmt_bind_param($stmt, "ssssss", $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink, $param_address);
                     
                     // Set parameters
                     $param_name = $name;
@@ -132,6 +147,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     $param_DateOfBirth = $dateOfBirth;
                     $param_gender = $gender;
                     $param_imageLink = $image;
+                    $param_address = $address;
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
 
@@ -145,10 +161,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
             else
             {
-                $sql = "INSERT INTO userdetail (ID, Name, prefername, DateOfBirth, gender, imageLink) VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO userdetail (ID, customerName, prefername, DateOfBirth, gender, imageLink, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 if($stmt = mysqli_prepare($link, $sql)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "isssss",$param_id, $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink);
+                    mysqli_stmt_bind_param($stmt, "issssss",$param_id, $param_name, $param_prefername, $param_DateOfBirth, $param_gender, $param_imageLink, $param_address);
                     
                     // Set parameters
                     $param_id = $id;
@@ -157,6 +173,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     $param_DateOfBirth = $dateOfBirth;
                     $param_gender = $gender;
                     $param_imageLink = $image;
+                    $param_address = $address;
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
 
@@ -207,25 +224,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <!--Header-->
-    <div class="container-fluid">
-        <div class="container" id="petty-header" style="width: 100%; height: 100%;">
-            <div class="logo"></div>
-            <form class="search" action="search.php" method="GET">
-                <input class="txtSearch" type="text" placeholder="Tìm kiếm">
-                <button type="submit" id="btnSearch" onclick="window.location.href = 'search.php';"><i id="search-icon"></i></button>
-            </form>
-            <span><i class="fas fa-bell" style="color: white; position: absolute; right: 334px; font-size: 20px; top: 19px;"></i></span>
-            <div class="user">
-                <span style="color: white; margin-right: 10px;">ecchi123</span>
-                <img class="rounded-circle" src="https://static.wikia.nocookie.net/a3dddab1-5138-4786-ad66-03920667dc3a" style="width: 45px; height: auto; border: 1px solid #ef5030;">
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="cart">
-                <i></i>
-                <span>Giỏ hàng</span>
-            </div>
-        </div>
-    </div>
+    <?php
+        include "header.php";
+    ?>
     <!--Menu-->
     <div class="catalog">
         <div class="item-catalog">Trang chủ</div>
@@ -265,6 +266,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         echo $name;
                     ?>"><span><?php 
                         echo $name_err;
+                    ?></span><br>
+                    <label for="address" class="not-radio">Địa chỉ</label><br>
+                    <input type="text" name="address" class="not-radio" value="<?php
+                        echo $address;
+                    ?>"><span><?php 
+                        echo $address_err;
                     ?></span><br>
                     <label for="email" class="not-radio">Email</label><br>
                     <input type="email" name="email" class="not-radio" value="<?php
@@ -308,22 +315,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
 
     <!--Footer-->
-    <div class="footer">
-        <div id="petty-logo"></div>
-        <div class="information">
-            <p><i id="mobile"></i>000-000-000</p>
-            <p><i id="email"></i>Email: nnchi@gmail.com</p>
-            <p><i id="address"></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
-        </div>
-        <div class="media">
-            <p class="media-text">Follow Us</p>
-            <i id="facebook"></i>
-        </div>
-    </div>
-    <script src="main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="Front-end/JS/test.js"></script>
+    <?php
+        include "footer.php";
+    ?>
 </body>
 </html>
