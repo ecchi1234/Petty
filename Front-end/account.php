@@ -244,13 +244,13 @@
                 <div class="userpage-brief-right"><?php echo $name?></div>
             </div>
             <div class="userpage-sidebar-menu">
-                <div class="sidebar-item" id="account"><i class="fa fa-user-o"></i>Tài khoản của tôi</div>
-                <div class="sidebar-item" id="order-history"><i class="fa fa-shopping-bag"></i>Lịch sử mua hàng</div>
-                <div class="sidebar-item" id="wishlist"><i class="fa fa-heart"></i>Yêu thích</div>
-                <div class="sidebar-item" id="comment"><i class="fa fa-pencil-square-o"></i>Nhận xét</div>
-                <div class="sidebar-item" id="order-tracking"><i class="fa fa-truck"></i>Theo dõi đơn hàng</div>
-                <div class="sidebar-item" id="news"><i class="fa fa-bell"></i>Thông báo của tôi</div>
-                <div class="sidebar-item" id="coupon"><i class="fa fa-bolt"></i></i>Mã giảm giá</div>
+            <div class="sidebar-item" id="account"><i class="fas fa-smile"></i>Tài khoản của tôi</div>
+                <div class="sidebar-item" id="order-history"><i class="fas fa-shopping-bag"></i>Lịch sử mua hàng</div>
+                <div class="sidebar-item" id="wishlist"><i class="fas fa-heart"></i>Yêu thích</div>
+                <div class="sidebar-item" id="comment"><i class="fas fa-edit"></i>Nhận xét</div>
+                <div class="sidebar-item" id="order-tracking"><i class="fas fa-truck"></i>Theo dõi đơn hàng</div>
+                <div class="sidebar-item" id="news"><i class="fas fa-bell"></i>Thông báo của tôi</div>
+                <div class="sidebar-item" id="coupon"><i class="fas fa-bolt"></i></i>Mã giảm giá</div>
             </div>
         </div>
         <div class="user-information">
