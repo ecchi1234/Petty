@@ -17,7 +17,7 @@
     $id = $_SESSION['id'];
     //initialization variable
     $name = $image = $prefername = $dateOfBirth =$email = $phoneNumber = $gender = $address = "";
-    $name_err = $phoneNumber_err = $gender_err = $dateOfBirth_err = $address_err = "";
+    $name_err = $prefername_err = $phoneNumber_err = $gender_err = $dateOfBirth_err = $address_err = "";
     //select from userdetail table
     $sql = "SELECT * FROM userdetail WHERE id = ".$id;
     $query = mysqli_query($link, $sql);
@@ -52,16 +52,24 @@
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         //name
-        if(empty(trim($_POST["name"])))
+        if(empty(trim(preg_replace('/([^\pL\.\ ]+)/u', '', $_POST["name"]))))
         {
             $name_err = "Xin nhập tên";
         }
         else
         {
-            $name = trim($_POST["name"]);
+            $name = trim(preg_replace('/([^\pL\.\ ]+)/u', '', $_POST["name"]));
         }
         //prefername
-        $prefername = trim($_POST["prefername"]);
+        if(empty(trim(preg_replace('/([^\pL\.\ ]+)/u', '', $_POST["prefername"]))))
+        {
+            $prefername_err = "Xin nhập tên";
+        }
+        else
+        {
+            $prefername = trim(preg_replace('/([^\pL\.\ ]+)/u', '', $_POST["prefername"]));
+        }
+        
 
         $email = trim($_POST["email"]);
 
@@ -260,7 +268,9 @@
                     <label for="prefername" class="not-radio">Tên hiển thị</label><br>
                     <input type="text" name="prefername" class="not-radio" value="<?php  
                         echo $prefername;
-                    ?>"><br>
+                    ?>"><span><?php 
+                        echo $prefername_err;
+                    ?></span><br>
                     <label for="name" class="not-radio">Tên</label><br>
                     <input type="text" name="name" class="not-radio" value="<?php
                         echo $name;
