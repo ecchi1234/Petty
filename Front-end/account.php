@@ -240,7 +240,7 @@
     <div class="userpage-content">
         <div class="userpage-sidebar">
             <div class="userpage-brief">
-                <div class="user-avatar"><i class="fa fa-user"></i></div>
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
                 <div class="userpage-brief-right"><?php echo $name?></div>
             </div>
             <div class="userpage-sidebar-menu">
@@ -307,7 +307,7 @@
                     <button type="submit">Lưu</button>
                 </div>
                 <div class="upload-avatar">
-                    <img class="fa fa-user-circle-o" src=<?php echo $image?>>
+                    <img class="far fa-images" src=<?php echo $image?>>
                     <input type="file" name="image" value="Chọn ảnh">
                 </div>
             </form>
