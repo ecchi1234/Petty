@@ -1,5 +1,9 @@
 <?php
     // Initialize the session
+    $currentParams = session_get_cookie_params();
+
+    session_set_cookie_params($currentParams['lifetime'], '/apppath/', 'localhost/petty', $currentParams['secure'], $currentParams['httponly']);
+
     session_start();
      
     // Check if the user is logged in, if not then redirect him to login page

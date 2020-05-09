@@ -146,7 +146,7 @@
                 </div>
                 
             </div>
-            <button class="continue-shop" onclick='window.location.href = "index.php" '><i class="fas fa-long-arrow-alt-left"></i>Tiếp tục xem hàng</button>
+            <button class="continue-shop" onclick='window.location.href = "../index.php" '><i class="fas fa-long-arrow-alt-left"></i>Tiếp tục xem hàng</button>
         </div>
     </div>
     <div id='test'></div>

@@ -1,4 +1,9 @@
 <?php
+
+    $currentParams = session_get_cookie_params();
+
+    session_set_cookie_params($currentParams['lifetime'], '/apppath/', 'localhost/petty', $currentParams['secure'], $currentParams['httponly']);
+
     session_start();
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
@@ -41,7 +46,7 @@
                         
             // save the keywords from the url
             $key = trim($_GET['key']);
-
+            $key = preg_replace('/([^\pL\.\ ]+)/u', '', $key);
             // create a base query and words string
             $query_string = "SELECT *,FORMAT(price, 0) as f_price FROM products WHERE ";
             $display_words = "";
