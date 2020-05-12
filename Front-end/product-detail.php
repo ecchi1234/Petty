@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once "config.php";
-    $name = $n_price = $price = $image = $producer = $description = '';
+    $name = $productLine = $n_price = $price = $image = $producer = $description = '';
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
         $_SESSION['cart'] = array();
@@ -18,6 +18,7 @@
         {
             $row = mysqli_fetch_assoc($query);
             $name = $row['productName'];
+            $productLine = $row['productLine'];
             $image = $row['image'];
             $n_price = $row['price'];
             $price = $row['f_price']."đ";
@@ -323,15 +324,51 @@
             <h3 class="title related-title m-4">Sản phẩm liên quan</h3>
             <div class="row">
                 <!--Một ô sản phẩm tương ứng với một cái div có class col-md-3 col-sm-6-->
-                <div class="col-md-3 col-sm-6">
+                <?php
+                $sql = "SELECT * FROM products WHERE productLine = '".$productLine."' AND producer ='".$producer."' AND productCode <> ".$_GET['id']." LIMIT 4";
+                $query_relate = mysqli_query($link, $sql);
+                while($row_relate = mysqli_fetch_assoc($query_relate))
+                {
+                    echo "
+                    <div class='col-md-3 col-sm-6'>
+                    <div class='product-grid'>
+                        <div class='product-image'>
+                            <a href='#' class='image'>
+                                <img class='pic-1' src='".$row_relate['image']."'>
+                                <img class='pic-2' src='".$row_relate['image']."'>
+                            </a>
+                        </div>
+                        <div class='product-content'>
+                            <ul class='rating'>
+                                <li class='fa fa-star'></li>
+                                <li class='fa fa-star'></li>
+                                <li class='fa fa-star'></li>
+                                <li class='fa fa-star disable'></li>
+                                <li class='fa fa-star disable'></li>
+                            </ul>
+                            <h3 class='title'><a href='#'>".$row_relate['productName']."</a></h3>
+                            <div class='price'>".$row_relate['productName']."</div>
+                            <ul class='social'>
+                                <li><a href='#'><i class='fa fa-shopping-cart'></i></a></li>
+                                <li><a href='#'><i class='fa fa-heart'></i></a></li>
+                                <li><a href='#'><i class='fa fa-eye'></i></a></li>
+                                <li><a href='#'><i class='fa fa-random'></i></a></li>
+                            </ul>
+                        </div>
+                    </div>  
+                    </div>
+                    ";
+                }
+                ?>
+                <!-- <div class="col-md-3 col-sm-6">
                     <div class="product-grid">
                         <div class="product-image">
                             <a href="#" class="image">
                                 <img class="pic-1" src="../Front-end/asset/resource/img/Cat.jpg">
                                 <img class="pic-2" src="../Front-end/asset/resource/img/Cat.jpg">
-                            </a>
+                            </a> -->
                             <!--Khi nào sản phẩm ý có khuyến mãi thì thêm cái span này-->
-                            <span class="product-discount-label">-33%</span>
+                            <!-- <span class="product-discount-label">-33%</span>
                         </div>
                         <div class="product-content">
                             <ul class="rating">
@@ -341,9 +378,9 @@
                                 <li class="fa fa-star"></li>
                                 <li class="fa fa-star disable"></li>
                             </ul>
-                            <h3 class="title"><a href="#">Mèo Hoàng gia</a></h3>
+                            <h3 class="title"><a href="#">Mèo Hoàng gia</a></h3> -->
                             <!--Nếu có khuyến mãi thì thêm một span bên cạnh giá gốc-->
-                            <div class="price">$20.00<span>$30.00</span></div>
+                            <!-- <div class="price">$20.00<span>$30.00</span></div>
                             <ul class="social">
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -352,90 +389,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                                <img class="pic-2" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                <!--Thêm hàng mới ở đây-->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                                <img class="pic-2" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="https://salt.tikicdn.com/cache/200x200/media/catalog/product/1/2/12--beef-_-lamb-400g.u4064.d20170514.t150635.313880.jpg?fbclid=IwAR3T6Gcp1VTl1Do_atFbJ8suizg1M1vc-kp6Q1T7BsTzvyjwNxB91ZTv6rU">
-                                <img class="pic-2" src="https://salt.tikicdn.com/cache/200x200/media/catalog/product/1/2/12--beef-_-lamb-400g.u4064.d20170514.t150635.313880.jpg?fbclid=IwAR3T6Gcp1VTl1Do_atFbJ8suizg1M1vc-kp6Q1T7BsTzvyjwNxB91ZTv6rU">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                
+                </div> -->
             </div>
             <!--Chỗ hiện mặt hàng-->
             <form class="more"><button type="button">Xem thêm</button></form>

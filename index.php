@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once('Front-end/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -97,30 +98,28 @@
         <div class="item sale-product shadow-sm p-4 mb-4 bg-white container" style="padding: 30px;">
             <div class="sale-product-title" style="font-size: 1.5rem; margin-bottom: 20px;">Sản phẩm được yêu thích</div>
             <div class="owl-carousel owl-theme">
-                <div>
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/sua-tam-cho-cho-long-trang-spirit-white-dog.jpg">
-                    <span class="product-discount-label">-33%</span> 
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2013/05/nuoc-sot-cho-meo-vi-gan-whiskas-liver-flavour-in-sauce.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div>
-                    <img src="https://www.petmart.vn/wp-content/uploads/2016/09/sua-tam-cho-cho-co-da-nhay-cam-bbn-smooth-shampoo.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2016/09/sua-tam-cho-cho-co-da-nhay-cam-bbn-smooth-shampoo.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/xuong-cho-cho-vi-thit-xong-khoi-vegebrand-meat-bacon-bone-small.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
+                <?php
+                    $sql = "SELECT `productCode`, SUM(`quantityOrdered`) FROM `productinvoice` GROUP BY `productCode` ORDER BY  SUM(`quantityOrdered`) DESC LIMIT 10";
+                    $query = mysqli_query($link, $sql);
+                    $result_count = mysqli_num_rows($query);
+                    if($result_count > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($query))
+                        {
+                            $sql = "SELECT image FROM products WHERE productCode =".$row['productCode'];
+                            $query_t = mysqli_query($link, $sql);
+                            $row_t = mysqli_fetch_assoc($query_t);
+                            if($row_t != NULL)
+                                    echo "<div>
+                            <img src='".$row_t['image']."'>
+                        </div>";
+                        }
+                    }
+                ?>
+                <!-- <div> 
                     <img src="https://www.petmart.vn/wp-content/uploads/2019/04/banh-thuong-cho-cho-vi-thit-bo-va-rau-xanh-vegebrand-7-dental-benefits-vegetable-beef-stick.jpg">
                     <span class="product-discount-label">-33%</span>  
-                </div>
+                </div> -->
               </div>
         </div>
         <div class="item sale-product container" style="padding: 30px;">
