@@ -156,6 +156,7 @@ body{
     box-sizing: border-box;
     line-height: 30px;
     vertical-align: middle;
+    transition: background-color 0.5s;
 }
 .item-catalog:focus{
     background-color: #ef5030;
@@ -253,6 +254,7 @@ button.more-info{
     padding: 5px;
     color: #fff;
     box-sizing: border-box;
+    transition: background-color 0.5s;
 }
 button.more-info:hover{
     background-color: #108896;
@@ -302,6 +304,7 @@ button.more-info:hover{
     border: none;
     text-align: center;
     font-family: 'My Font Bold';
+    transition: background-color 0.5s;
 }
 .card-header a{
     color: #fff;
@@ -1034,4 +1037,148 @@ div.rounded-circle{
 }
 .petty-form .item-reg label{
     font-family: 'My Font Bold';
+}
+/*css cho dropdown menu ở đầu các trang*/
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+.dropdown>.dropdown-toggle:active {
+/*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.dropdown-item{
+    transition: background-color 0.5s, border-radius 0.5s, color 0.5s;
+}
+.dropdown-item:hover{
+    background-color: #f19f1f;
+    color: #fff;
+    border-radius: 10px;
+}
+.dropdown-menu{
+    padding: 5px;
+}
+/*css cho phần giới thiệu về petty*/
+.title-about{
+    font-family: 'My Font Bold', sans-serif;
+    font-size: 30px;
+    color: #108896;
+}
+.about-logo-petty{
+    height: 200px;
+    width: 200px;
+    background-image: url("../resource/icon/logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+}
+.underline{
+    background-color: #ff6600;
+    height: 2px;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.about-page{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.item-about{
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.many{
+    background-image: url("../resource/icon/many.png");
+}
+.service-quality{
+    background-image: url("../resource/icon/day.png")
+}
+.advice{
+    background-image: url("../resource/icon/help.png");
+}
+li p{
+    text-align: center;
+    font-family: 'My Font Bold', sans-serif;
+    font-size: 20px;
+}
+.title-about .fas.fa-paw{
+    color: #ef5030;
+}
+.button-group{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.card-img-top{
+    height: 220px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.shop-img{
+    background-image: url("../resource/img/dog-food-eating.jpg");
+}
+.service-img{
+    background-image: url("../resource/img/Hamster.jpg");
+}
+/*css cho phần các nhóm dịch vụ*/
+.serviceline-overview{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.description-serviceline{
+    background-color: #ffefd5;
+    padding: 20px;
+    border-radius: 20px;
+}
+.description-serviceline h3{
+    font-family: 'My Font Bold', sans-serif;
+    text-align: center;
+}
+
+.img-serviceline{
+    height: 400px;
+    width: 1000px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("https://images.unsplash.com/photo-1510074170509-3958bcb8ab3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=642&q=80");
+    border-radius: 20px;
+    border-bottom: 10px solid #108896;
+    margin-right: 100px;
+}
+
+.heading-list{
+    background-image: url("../resource/icon/bone.png");
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+}
+.list li{
+    display: flex;
+    align-items: center;
+    font-family: 'My Font Bold', sans-serif;
+    font-size: 20px;
+    color: #108896;
 }

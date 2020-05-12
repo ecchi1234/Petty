@@ -125,9 +125,9 @@
                 </div>
                 <div class="product-description">
                     <p>
-                        <?php echo $producer;?>
-                    </p>
-                    <br>
+                        <span style="font-family: 'My Font Paragraph Bold';">Thương hiệu: </span>
+                        <span><?php echo $producer;?></span>
+                    </p>    
                     <p>
                         <?php echo $description;?>
                     </p>

@@ -50,7 +50,18 @@
     <div class="catalog">
         <div class="item-catalog home">Trang chủ</div>
         <div class="item-catalog">Giới thiệu</div>
-        <div class="item-catalog">Dịch vụ</div>
+        <div class="item-catalog online-shopping">Mua hàng online</div>
+        <div class="item-catalog dropdown service">
+            <div type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="color: #fff;">
+                Dịch vụ
+            </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Dịch vụ chung</a>
+                <a class="dropdown-item" href="#">Dịch vụ cho chó</a>
+                <a class="dropdown-item" href="#">Dịch vụ cho mèo</a>
+                <a class="dropdown-item" href="#">Dịch vụ cho các thú cưng khác</a>
+            </div>   
+        </div>
         <div class="item-catalog">Liên hệ</div>
         <div class="item-catalog">Blog</div>
     </div>
@@ -58,12 +69,12 @@
     <div class="product-detail-page content container" style="min-height: 300px;">
         <h3 class="title-catalog">Danh mục</h3>
         <div class="view-product">
-            <div class="product-image">
-                <img src="https://www.petmart.vn/wp-content/uploads/2015/12/pate-cho-meo-vi-chai-bien-tuna-mussel.jpg">
+            <div class="product-image" style="margin-right: 20px;">
+                <img src="https://ingridkuhn.com/themes/petz/img/service2.jpg">
             </div>
             <div class="product-detail">
                 <div class="product-name">
-                    <h3>Pate cho mèo vị trai biển CatSeaFish Tuna With Mussel</h3>
+                    <h3>Dịch vụ tiêm vắc xin cho chó, mèo</h3>
                 </div>
                 <div class="product-status">
                     <div class="rating">
@@ -82,10 +93,6 @@
                     <h2>490.000đ</h2>
                 </div>
                 <div class="product-description">
-                    <p>
-                         <span style="font-family: 'My Font Paragraph Bold';">Thương hiệu: </span>
-                        <span>Ecchi</span>
-                    </p>    
                    <p>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                         Odio molestiae ut porro ab. Molestiae labore quos, ea odio 
@@ -93,31 +100,11 @@
                         sed consequatur placeat repellendus.
                    </p>
                 </div>
-                <div class="product-quantity">
-                    <div class="input-group quantity-block">
-                        <span class="left" style="border: 1px solid #ccc; border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
-                            <button type="button" class="quantity-left-minus btn">
-                                <i class="fas fa-minus">
-                                </i>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" class="input-number" value="1" min="1" max="100" style="text-align: center; width: 50px;">
-                        <span class="right" style="border: 1px solid #ccc; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                            <button type="button" class="quantity-right-plus btn">
-                                <i class="fas fa-plus">
-                                </i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
                 <div class="add-cart" style="margin-top: 20px;">
                     <button type="submit" id="addcart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Chọn mua</span>
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Đặt lịch</span>
                     </button>
-                    <span class="add-wishlist">
-                        <i class="far fa-heart"></i>
-                    </span>
                 </div>
             </div>
        </div>
@@ -318,129 +305,7 @@
         </div>
       </div>
        <!--Hết phần review của khách hàng-->
-       <!--Phần sản phẩm liên quan-->
-       <!--Chỗ này cho hiện 4 sản phẩm liên quan nhất thôi, nhiều hơn thì bấm xem thêm-->
-       <div class="related-products" style="position: relative;">
-            <h3 class="title related-title m-4">Sản phẩm liên quan</h3>
-            <div class="row">
-                <!--Một ô sản phẩm tương ứng với một cái div có class col-md-3 col-sm-6-->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="../Front-end/asset/resource/img/Cat.jpg">
-                                <img class="pic-2" src="../Front-end/asset/resource/img/Cat.jpg">
-                            </a>
-                            <!--Khi nào sản phẩm ý có khuyến mãi thì thêm cái span này-->
-                            <span class="product-discount-label">-33%</span>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Mèo Hoàng gia</a></h3>
-                            <!--Nếu có khuyến mãi thì thêm một span bên cạnh giá gốc-->
-                            <div class="price">$20.00<span>$30.00</span></div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                                <img class="pic-2" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                <!--Thêm hàng mới ở đây-->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                                <img class="pic-2" src="../Front-end/asset/resource/img/BlackPug.jpg">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="pic-1" src="https://salt.tikicdn.com/cache/200x200/media/catalog/product/1/2/12--beef-_-lamb-400g.u4064.d20170514.t150635.313880.jpg?fbclid=IwAR3T6Gcp1VTl1Do_atFbJ8suizg1M1vc-kp6Q1T7BsTzvyjwNxB91ZTv6rU">
-                                <img class="pic-2" src="https://salt.tikicdn.com/cache/200x200/media/catalog/product/1/2/12--beef-_-lamb-400g.u4064.d20170514.t150635.313880.jpg?fbclid=IwAR3T6Gcp1VTl1Do_atFbJ8suizg1M1vc-kp6Q1T7BsTzvyjwNxB91ZTv6rU">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <ul class="rating">
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star disable"></li>
-                                <li class="fa fa-star disable"></li>
-                            </ul>
-                            <h3 class="title"><a href="#">Chó Pug Đen</a></h3>
-                            <div class="price">$29.00</div>
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                </div>
-                
-            </div>
-            <!--Chỗ hiện mặt hàng-->
-            <form class="more"><button type="button">Xem thêm</button></form>
-       </div> 
+       
     </div>
 
     <!--Footer-->
