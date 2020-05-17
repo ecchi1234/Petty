@@ -65,6 +65,16 @@ public class MainMenu extends JPanel {
             frame.add(users);
             destroy();
         });
+        order.addActionListener(e -> {
+            Order order = new Order(frame);
+            frame.add(order);
+            destroy();
+        });
+        statistic.addActionListener(e -> {
+            Statistic statistic = new Statistic(frame);
+            frame.add(statistic);
+            destroy();
+        });
         quit.addActionListener(e -> {
             this.setVisible(false);
             frame.dispose();

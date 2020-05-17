@@ -1,9 +1,4 @@
 <?php
-
-    $currentParams = session_get_cookie_params();
-
-    session_set_cookie_params($currentParams['lifetime'], '/apppath/', 'localhost/petty', $currentParams['secure'], $currentParams['httponly']);
-
     session_start();
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
@@ -30,13 +25,9 @@
         include "header.php";
     ?>
     <!--Menu-->
-    <div class="catalog">
-        <div class="item-catalog">Trang chủ</div>
-        <div class="item-catalog">Giới thiệu</div>
-        <div class="item-catalog">Dịch vụ</div>
-        <div class="item-catalog">Liên hệ</div>
-        <div class="item-catalog">Blog</div>
-    </div>
+    <?php
+        include "menu.php";
+    ?>
     <div class="container search-product">
     <?php
         // Include config file

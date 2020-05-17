@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 public class Users extends JPanel {
     private JTable table;
@@ -106,19 +105,20 @@ public class Users extends JPanel {
         String url = "jdbc:mysql://localhost/petty";
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(url, "root", "");
-        String query = "SELECT * FROM userdetail WHERE Name LIKE '%" + search.getText() + "%' " +
-                "ORDER BY SUBSTRING_INDEX(CONCAT(' ', NAME),' ',-1) COLLATE utf8mb4_vietnamese_ci";
+        String query = "SELECT * FROM userdetail WHERE customerName LIKE '%" + search.getText() + "%' " +
+                "ORDER BY SUBSTRING_INDEX(CONCAT(' ', customerName),' ',-1) COLLATE utf8mb4_vietnamese_ci";
         PreparedStatement statement = conn.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
         while(resultSet.next())
         {
             String ID = resultSet.getString("ID");
-            String Name = resultSet.getString("Name");
+            String Name = resultSet.getString("customerName");
             String preferName = resultSet.getString("preferName");
             String dateOfBirth = resultSet.getString("DateOfBirth");
+            String address = resultSet.getString("address");
             String gender = resultSet.getString("gender");
             String imageLink = resultSet.getString("imageLink");
-            String[] s = { ID, Name, preferName, dateOfBirth, gender, imageLink};
+            String[] s = { ID, Name, preferName, dateOfBirth, address, gender, imageLink};
             model.addRow(s);
         }
         conn.close();
@@ -130,9 +130,9 @@ public class Users extends JPanel {
         Connection conn = DriverManager.getConnection(url, "root", "");
         for (int i = 0; i < table.getRowCount(); ++i)
         {
-            String query = "UPDATE userdetail SET Name = ?, preferName = ?, Dateofbirth = ? , Gender = ?, imagelink = ? WHERE ID= " + table.getValueAt(i, 0);
+            String query = "UPDATE userdetail SET customerName = ?, preferName = ?, Dateofbirth = ?, address = ? , Gender = ?, imagelink = ? WHERE ID= " + table.getValueAt(i, 0);
             PreparedStatement statement = conn.prepareStatement(query);
-            for(int j = 1; j < 6; ++j)
+            for(int j = 1; j < 7; ++j)
             {
                 statement.setString(j, table.getValueAt(i, j).toString());
             }
@@ -150,13 +150,14 @@ public class Users extends JPanel {
 
     private void initTable()
     {
-        String[] column = {"ID","Name","preferName","Date of birth","Gender","image link"};
+        String[] column = {"ID","Tên khách hàng","Tên hiển thị","Ngày sinh", "địa chỉ", "Giới tính","Link ảnh"};
         String[][] data = {};
         table = new JTable(new DefaultTableModel(data, column));
-        tableColumn = table.getColumnModel().getColumn(4);
+        tableColumn = table.getColumnModel().getColumn(5);
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("Nam");
         comboBox.addItem("Nữ");
+        comboBox.addItem("Khác");
         tableColumn.setCellEditor(new DefaultCellEditor(comboBox));
         try {
             initData();
@@ -179,19 +180,20 @@ public class Users extends JPanel {
         String url = "jdbc:mysql://localhost/petty";
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(url, "root", "");
-        String query = "SELECT * FROM userdetail ORDER BY SUBSTRING_INDEX(CONCAT(' ', NAME),' ',-1) COLLATE utf8mb4_vietnamese_ci";
+        String query = "SELECT * FROM userdetail ORDER BY SUBSTRING_INDEX(CONCAT(' ', customerNAME),' ',-1) COLLATE utf8mb4_vietnamese_ci";
         PreparedStatement statement = conn.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
         while(resultSet.next())
         {
             String ID = resultSet.getString("ID");
-            String Name = resultSet.getString("Name");
+            String Name = resultSet.getString("customerName");
             String preferName = resultSet.getString("preferName");
             String dateOfBirth = resultSet.getString("DateOfBirth");
+            String address = resultSet.getString("address");
             String gender = resultSet.getString("gender");
             String imageLink = resultSet.getString("imageLink");
             model = (DefaultTableModel) table.getModel();
-            String[] s = { ID, Name, preferName, dateOfBirth, gender, imageLink};
+            String[] s = { ID, Name, preferName, dateOfBirth, address, gender, imageLink};
             model.addRow(s);
         }
         conn.close();

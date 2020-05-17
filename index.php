@@ -55,13 +55,26 @@
         </div>
     </div>
     <!--Menu-->
-    <div class="catalog">
-        <div class="item-catalog home">Trang chủ</div>
-        <div class="item-catalog">Giới thiệu</div>
-        <div class="item-catalog">Mua hàng online</div>
-        <div class="item-catalog">Dịch vụ</div>
-        <div class="item-catalog">Liên hệ</div>
-        <div class="item-catalog">Blog</div>
+    <div class='catalog'>
+        <div class='item-catalog home'><a style="text-decoration: none;color: #ffff" href="index.php">Trang chủ</a></div>
+        <div class='item-catalog about-petty'><a style="text-decoration: none;color: #ffff" href="Front-end/about.php">Giới thiệu<a/></div>
+        <div class='item-catalog online-shopping'>Mua hàng online</div>
+        <div class='item-catalog dropdown service'>
+            <div type='button' class='btn dropdown-toggle' data-toggle='dropdown' style='color: #fff;'>
+                Dịch vụ
+            </div>
+            <div class='dropdown-menu'>
+                <?php
+                    $sql = "SELECT * FROM serviceline WHERE 1 ORDER BY `order`";
+                    $query = mysqli_query($link, $sql);
+                    while ($row = mysqli_fetch_assoc($query)) {
+                        echo "<a class='dropdown-item' href='Front-end\serviceline.php?id=".$row['ID']."'>".$row['serviceLine']."</a>";
+                    }
+                ?>
+            </div>   
+        </div>
+        <div class='item-catalog'><a style="text-decoration: none;color: #ffff" href="Front-end/contact.php">Liên hệ<a/></div>
+        <div class='item-catalog'>Blog</div>
     </div>
     <!--Content-->
     <div class="content">
@@ -99,7 +112,7 @@
             <div class="sale-product-title" style="font-size: 1.5rem; margin-bottom: 20px;">Sản phẩm được yêu thích</div>
             <div class="owl-carousel owl-theme">
                 <?php
-                    $sql = "SELECT `productCode`, SUM(`quantityOrdered`) FROM `productinvoice` GROUP BY `productCode` ORDER BY  SUM(`quantityOrdered`) DESC LIMIT 10";
+                    $sql = "SELECT o.`productCode`, SUM(`quantityOrdered`), d.discountRate FROM `orderdetail` o LEFT JOIN discountproduct d ON o.productCode = d.productCode AND d.endTime > NOW() WHERE 1 GROUP BY `productCode` ORDER BY  SUM(`quantityOrdered`) DESC LIMIT 10";
                     $query = mysqli_query($link, $sql);
                     $result_count = mysqli_num_rows($query);
                     if($result_count > 0)
@@ -110,83 +123,52 @@
                             $query_t = mysqli_query($link, $sql);
                             $row_t = mysqli_fetch_assoc($query_t);
                             if($row_t != NULL)
-                                    echo "<div>
-                            <img src='".$row_t['image']."'>
-                        </div>";
+                                    echo "<div><a href='Front-end/product-detail.php?id=".$row['productCode']."'>
+                            <img src='".$row_t['image']."'>";
+                            if($row['discountRate'] != NULL)
+                                echo "<span class='product-discount-label'>-".$row['discountRate']."%</span> 
+                            </a>
+                            </div>";
+                            else
+                                echo "</a>
+                            </div>";
                         }
                     }
                 ?>
-                <!-- <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/banh-thuong-cho-cho-vi-thit-bo-va-rau-xanh-vegebrand-7-dental-benefits-vegetable-beef-stick.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div> -->
               </div>
         </div>
         <div class="item sale-product container" style="padding: 30px;">
             <div class="sale-product-title" style="font-size: 1.5rem; margin-bottom: 20px;">Sản phẩm đang giảm giá</div>
             <div class="owl-carousel owl-theme">
-                <div>
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/sua-tam-cho-cho-long-trang-spirit-white-dog.jpg">
-                    <span class="product-discount-label">-33%</span> 
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2013/05/nuoc-sot-cho-meo-vi-gan-whiskas-liver-flavour-in-sauce.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div>
-                    <img src="https://www.petmart.vn/wp-content/uploads/2016/09/sua-tam-cho-cho-co-da-nhay-cam-bbn-smooth-shampoo.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2016/09/sua-tam-cho-cho-co-da-nhay-cam-bbn-smooth-shampoo.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/xuong-cho-cho-vi-thit-xong-khoi-vegebrand-meat-bacon-bone-small.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
-                <div> 
-                    <img src="https://www.petmart.vn/wp-content/uploads/2019/04/banh-thuong-cho-cho-vi-thit-bo-va-rau-xanh-vegebrand-7-dental-benefits-vegetable-beef-stick.jpg">
-                    <span class="product-discount-label">-33%</span>  
-                </div>
+                <?php
+                    $sql = "SELECT *,(SELECT image FROM products p WHERE p.productCode = d.productCode) as image FROM discountproduct d WHERE endTime > NOW() GROUP BY productCode ORDER BY endTime DESC";
+                    $query = mysqli_query($link, $sql);
+                    while ($row = mysqli_fetch_assoc($query)) {
+                        echo "<div><a href='Front-end/product-detail.php?id=".$row['productCode']."'>
+                        <img src='".$row['image']."'>
+                        <span class='product-discount-label'>-".$row['discountRate']."%</span>
+                        </a> 
+                        </div>";
+                    }
+                ?>
               </div>
         </div>
         <div class="item service shadow">
             <div class="title">Dịch vụ của chúng tôi</div>
-            <div class="service-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae 
-                temporibus eos aliquid sapiente dolores quas. Dolorem, excepturi quidem accusantium ut natus 
-                neque dignissimos laborum voluptate ipsa obcaecati incidunt suscipit temporibus.</div>
+            <div class="service-description">Những dịch vụ tuyệt vời cho thú cưng của bạn. Được thực hiện bởi các chuyên viên dày dặn kinh nghiệm về chăm sóc động vật, giúp thú cưng của bạn có những giờ phút thoải mái nhất.</div>
             <div class="service-list container owl-carousel owl-theme">
-                <div class="service-item shadow vet">
-                    <div class="service-image"></div>
-                    <div class="service-title">Vet Services</div>
-                    <div class="service-description-sub">Some text</div>
-                    <button class="more-info">Read More</button>
-                </div>
-                <div class="service-item shadow great-products">
-                    <div class="service-image"></div>
-                    <div class="service-title">Great Products</div>
-                    <div class="service-description-sub">Some text</div>
-                    <button class="more-info">Read More</button>
-                </div>
-                <div class="service-item shadow hotel">
-                    <div class="service-image"></div>
-                    <div class="service-title">Pet Hotel</div>
-                    <div class="service-description-sub">Some text</div>
-                    <button class="more-info">Read More</button>
-                </div>
-                <div class="service-item shadow dog-walking">
-                    <div class="service-image"></div>
-                    <div class="service-title">Dog Walking</div>
-                    <div class="service-description-sub">Some text</div>
-                    <button class="more-info">Read More</button>
-                </div>
-                <div class="service-item shadow exotic-pets">
-                    <div class="service-image"></div>
-                    <div class="service-title">Exotic Pets</div>
-                    <div class="service-description-sub">Some text</div>
-                    <button class="more-info">Read More</button>
-                </div>
+            <?php
+                $sql = 'SELECT s.*, (SELECT serviceLine FROM serviceline sl WHERE s.serviceline = sl.ID) as serviceline_s FROM services s WHERE 1';
+                $query = mysqli_query($link, $sql);
+                while ($row = mysqli_fetch_assoc($query)) {
+                    echo "<div class='service-item shadow vet'>
+                <div class='service-image' style='background-image:url(".$row['serviceImage'].");'></div>
+                <div class='service-title'>".$row['serviceName']."</div>
+                <div class='service-description-sub'>".$row['serviceline_s']."</div>
+                <button class='more-info' onclick='window.location.href = \"Front-end/service-single.php?id=".$row['serviceID']."\";'>Đặt lịch</button>
+                </div>";
+                }    
+            ?>
             </div>
         </div>
         <!--giới thiệu về petty-->

@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Insert extends JPanel{
     private JButton insertProduct;
+    private JButton insertCustomer;
     private JButton insertService;
     private JButton back;
     public static int buttonLocX = 100;
@@ -32,8 +33,11 @@ public class Insert extends JPanel{
         insertService = new JButton("Nhập dịch vụ");
         insertService.setBounds(buttonLocX, 200, buttonWidth, buttonHeight);
         this.add(insertService);
+        insertCustomer = new JButton("Nhập khách hàng");
+        insertCustomer.setBounds(buttonLocX, 300, buttonWidth, buttonHeight);
+        this.add(insertCustomer);
         back = new JButton("Quay lại");
-        back.setBounds(buttonLocX, 300, buttonWidth, buttonHeight);
+        back.setBounds(buttonLocX, 400, buttonWidth, buttonHeight);
         this.add(back);
         addListener();
     }
@@ -47,6 +51,11 @@ public class Insert extends JPanel{
         });
         insertService.addActionListener(e -> {
 
+        });
+        insertCustomer.addActionListener(e -> {
+            InsertCustomer insertCustomer = new InsertCustomer(frame);
+            frame.add(insertCustomer);
+            this.destroy();
         });
         back.addActionListener(e -> {
             MainMenu mainMenu = new MainMenu(frame);

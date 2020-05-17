@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Petty extends JFrame{
     public static int width = 1200;
@@ -15,8 +16,23 @@ public class Petty extends JFrame{
         setLayout(null);
         setTitle("Petty");
         setBackground(Color.LIGHT_GRAY);
+        runMySQL();
         MainMenu menu = new MainMenu(this);
         this.add(menu);
+    }
+
+    private void runMySQL()
+    {
+        String command = "C:\\xampp\\mysql\\bin\\mysqld.exe";
+
+        try
+        {
+            Process process = Runtime.getRuntime().exec(command);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args)
@@ -24,5 +40,6 @@ public class Petty extends JFrame{
         EventQueue.invokeLater(() -> {
             Petty petty = new Petty();
         });
+
     }
 }

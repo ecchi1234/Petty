@@ -1,29 +1,25 @@
 <?php
     session_start();
-    require_once "config.php";
-    $name = $productLine = $n_price = $price = $image = $producer = $description = '';
+    require_once('config.php');
+    $name = $price = $serviceLine = $description = " ";
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
         $_SESSION['cart'] = array();
         $_SESSION['number'] = array();
         $_SESSION['price'] = array();
     }
-    // print_r($_SESSION['cart']);
-    // print_r($_SESSION['number']);
     if(isset($_GET['id']) && $_GET['id'] != '')
     {
-        $query_string = "SELECT *,FORMAT(price, 0) as f_price FROM products WHERE productCode =".$_GET['id'];
+        $query_string = "SELECT *,FORMAT(price, 0) as f_price,(SELECT serviceLine FROM serviceLine sl WHERE sl.ID = s.serviceLine) as service_line FROM services s WHERE serviceID =".$_GET['id'];
         $query = mysqli_query($link, $query_string);
         if(mysqli_num_rows($query) > 0)
         {
             $row = mysqli_fetch_assoc($query);
-            $name = $row['productName'];
-            $productLine = $row['productLine'];
-            $image = $row['image'];
-            $n_price = $row['price'];
+            $name = $row['serviceName'];
+            $serviceLine = $row['service_line'];
+            $image = $row['serviceImage'];
             $price = $row['f_price']."đ";
-            $producer = $row['producer'];
-            $description = $row['productDescription'];
+            $description = $row['serviceDescription'];
         }
     }
 ?>
@@ -42,52 +38,9 @@
 </head>
 <body>
     <!--Header-->
-    <div class="container-fluid">
-        <div class='container' id='petty-header' style='width: 100%; height: 100%;'>
-            <a class='logo' href='../index.php'></a>
-            <form class='search' action='search.php' method='GET'>
-                <input class='txtSearch' name='key' type='text' placeholder='Tìm kiếm'>
-                <button type='submit' id='btnSearch' onclick='window.location.href = "search.php";'><i id='search-icon'></i></button>
-            </form>
-            <span><i class='fas fa-bell' style='color: white; position: absolute; right: 350px; font-size: 20px; top: 19px;'></i></span>
-            <div class='user mt-2 ml-4'>
-                <span><i class='fas fa-user-alt' style='color: #ef5030; font-size: 20px;'></i></span>
-                <a href='login.php' style='color: #fff;'>
-                <?php
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
-                {
-                    echo $_SESSION["username"];
-                }
-                else
-                {
-                    echo "Đăng ký/đăng nhập";
-                }
-                ?>
-                </a>
-            </div>
-            <a href="cart.php">
-                <div class="cart">
-                    <i></i>
-                    <span>Giỏ hàng</span>
-                    <div class="product-count"><?php 
-                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && sizeOf($_SESSION['cart']) > 0)
-                    echo sizeOf($_SESSION['cart']);?></div>
-                </div>
-            </a>
-        </div>
-        <div class="container" style="position: relative;">
-            <div class="toast" data-autohide="false" style="position: absolute; right: 0px;">
-                <div class="toast-header">
-                    <span class="fas fa-check-circle mr-2 text-success"></span>
-                    <strong class="mr-auto text-success">Thêm vào giỏ hàng thành công!</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                </div>
-                <div class="toast-body" style="text-align: center;">
-                    <a href="cart.php"><button>Xem giỏ hàng và thanh toán</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        include "header.php";
+    ?>
     <!--Menu-->
     <?php
         include "menu.php";
@@ -96,15 +49,14 @@
     <div class="product-detail-page content container" style="min-height: 300px;">
         <h3 class="title-catalog">Danh mục</h3>
         <div class="view-product">
-            <div class="product-image">
-                <img src="<?php echo $image?>">
+            <div class="product-image" style="margin-right: 20px;">
+                <img src="<?=$image?>">
             </div>
             <div class="product-detail">
                 <div class="product-name">
-                    <h3><?php echo $name?></h3>
+                    <h3><?=$name?></h3>
                 </div>
                 <div class="product-status">
-                    <!-- rating -->
                     <div class="rating">
                         <span class="level">5.0</span>
                         <span class="label">
@@ -118,52 +70,25 @@
                     <div class="number-of-rating"><a href="#demo">100 <span>đánh giá</span></a></div>
                 </div>
                 <div class="product-price">
-                    <h2><?php echo $price;?></h2>
+                    <h2><?php $price?></h2>
                 </div>
                 <div class="product-description">
-                    <p>
-                        <span style="font-family: 'My Font Paragraph Bold';">Thương hiệu: </span>
-                        <span><?php echo $producer;?></span>
-                    </p>    
-                    <p>
-                        <?php echo $description;?>
-                    </p>
-                </div>
-                <!-- change quantity button -->
-                <div class="product-quantity">
-                    <div class="input-group quantity-block">
-                        <span class="left" style="border: 1px solid #ccc; border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
-                            <button type="button" id="minus-quantity" class="btn">
-                                <i class="fas fa-minus">
-                                </i>
-                            </button>
-                        </span>
-                        <input type="number" id="quantity" class="input-number" name="quantity"  min="1" max="100" value="1" oninput="validity.valid||(value=0);" style="text-align: center; width: 50px;">
-                        <span class="right" style="border: 1px solid #ccc; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                            <button type="button" id="plus-quantity" class="btn">
-                                <i class="fas fa-plus">
-                                </i>
-                            </button>
-                        </span>
-                    </div>
+                   <p>
+                        <?=$serviceLine?>
+                   </p>
                 </div>
                 <div class="add-cart" style="margin-top: 20px;">
-                    <button type="button" id="addcart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Chọn mua</span>
+                    <button type="submit" id="addcart">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Đặt lịch</span>
                     </button>
-                    <span class="add-wishlist">
-                        <i class="far fa-heart"></i>
-                    </span>
                 </div>
             </div>
        </div>
        <div class="detailed-description">
             <h3 class="title">Mô tả sản phẩm</h3>
             <div class="text">
-                <?php
-                    echo $description;
-                ?>
+                <?=$description?>
             </div>
        </div>
        <!--Phần review của khách hàng-->
@@ -220,6 +145,7 @@
                     <button data-toggle="modal" data-target="#comment-modal">Viết nhận xét của bạn</button>
                 </div>
             </div>
+
             <div class="product-review-box" style="padding: 20px;">
                 <div class="review-filter">
                     <form>
@@ -313,112 +239,53 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Đây là modal cho comment-->
-        <div class="modal fade" id="comment-modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-          
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Viết nhận xét</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-          
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <form>
-                    <label for="star-rating" style="margin-right: 10px;">1.Đánh giá của bạn về sản phẩm này: </label>
-                    <span id="star-row">
-                        <i id="s1" class="vote-star fas fa-star"></i>
-                        <i id="s2" class="vote-star fas fa-star"></i>
-                        <i id="s3" class="vote-star fas fa-star"></i>
-                        <i id="s4" class="vote-star fas fa-star"></i>
-                        <i id="s5" class="vote-star fas fa-star"></i>
-                    </span>
-                    <br>
-                    <label for="comment-heading">2.Tiêu đề của nhận xét: </label>
-                    <input class="form-control" type="text" placeholder="Tiêu đề..."></input><br>
-                    <label for="comment">3.Viết nhận xét của bạn bên dưới:</label>
-                    <textarea class="form-control" rows="5" id="comment" placeholder="Viết nhận xét của bạn ở đây..."></textarea>
-                  </form>
-                </div>
-          
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn" data-dismiss="modal" style="background-color: #f19f1f; color: #fff;">Gửi nhận xét</button>
-                </div>
-          
-              </div>
+       </div>
+       <!--Đây là modal cho comment-->
+       <div class="modal fade" id="comment-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Viết nhận xét</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-        </div>
-        <!--Hết phần review của khách hàng-->
-        <!--Phần sản phẩm liên quan-->
-        <!--Chỗ này cho hiện 4 sản phẩm liên quan nhất thôi, nhiều hơn thì bấm xem thêm-->
-        <div class="related-products" style="position: relative;">
-            <h3 class="title related-title m-4">Sản phẩm liên quan</h3>
-            <div class="row">
-                <?php
-                $sql = "SELECT *, FORMAT(price, 0) as f_price FROM products WHERE productLine = '".$productLine."' AND producer ='".$producer."' AND productCode <> ".$_GET['id']." LIMIT 4";
-                $query_relate = mysqli_query($link, $sql);
-                while($row_relate = mysqli_fetch_assoc($query_relate))
-                {
-                    echo "
-                    <div class='col-md-3 col-sm-6'>
-                    <div class='product-grid'>
-                        <div class='product-image'>
-                            <a href='#' class='image'>
-                                <img class='pic-1' src='".$row_relate['image']."'>
-                                <img class='pic-2' src='".$row_relate['image']."'>
-                            </a>
-                        </div>
-                        <div class='product-content'>
-                            <ul class='rating'>
-                                <li class='fa fa-star'></li>
-                                <li class='fa fa-star'></li>
-                                <li class='fa fa-star'></li>
-                                <li class='fa fa-star disable'></li>
-                                <li class='fa fa-star disable'></li>
-                            </ul>
-                            <h3 class='title'><a href='#'>".$row_relate['productName']."</a></h3>
-                            <div class='price'>".$row_relate['f_price']."đ</div>
-                            <ul class='social'>
-                                <li><a href='#'><i class='fa fa-shopping-cart'></i></a></li>
-                                <li><a href='#'><i class='fa fa-heart'></i></a></li>
-                                <li><a href='#'><i class='fa fa-eye'></i></a></li>
-                                <li><a href='#'><i class='fa fa-random'></i></a></li>
-                            </ul>
-                        </div>
-                    </div>  
-                    </div>
-                    ";
-                }
-                ?>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form>
+                <label for="star-rating" style="margin-right: 10px;">1.Đánh giá của bạn về sản phẩm này: </label>
+                <span id="star-row">
+                    <i id="s1" class="vote-star fas fa-star"></i>
+                    <i id="s2" class="vote-star fas fa-star"></i>
+                    <i id="s3" class="vote-star fas fa-star"></i>
+                    <i id="s4" class="vote-star fas fa-star"></i>
+                    <i id="s5" class="vote-star fas fa-star"></i>
+                </span>
+                <br>
+                <label for="comment-heading">2.Tiêu đề của nhận xét: </label>
+                <input class="form-control" type="text" placeholder="Tiêu đề..."></input><br>
+                <label for="comment">3.Viết nhận xét của bạn bên dưới:</label>
+                <textarea class="form-control" rows="5" id="comment" placeholder="Viết nhận xét của bạn ở đây..."></textarea>
+              </form>
             </div>
-            <!--Chỗ hiện mặt hàng-->
-            <form class="more"><button type="button">Xem thêm</button></form>
-       </div> 
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn" data-dismiss="modal" style="background-color: #f19f1f; color: #fff;">Gửi nhận xét</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+       <!--Hết phần review của khách hàng-->
+       
     </div>
 
     <!--Footer-->
-    <div class="footer">
-        <div id="petty-logo"></div>
-        <div class="information">
-            <p><i id="mobile"></i>000-000-000</p>
-            <p><i id="email"></i>Email: nnchi@gmail.com</p>
-            <p><i id="address"></i>144, Xuan Thuy, Cau Giay, Ha Noi</p>
-        </div>
-        <div class="media">
-            <p class="media-text">Follow Us</p>
-            <i id="facebook"></i>
-        </div>
-    </div>
-    </div>
-    <div id="test"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="JS/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <?php
+        include "footer.php";
+    ?>
     <script>
         $(document).ready(function(){
             $(".vote-star").click(function(){
@@ -436,37 +303,10 @@
                 }
             });
             $('#addcart').click(function(){
-                var check = <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) echo"true"; else echo "false";?>;
-                if(check == true)
-                {
-                    $('.toast').toast('show');
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-                    var number = document.getElementById("quantity").value;
-                    var id = <?php echo $_GET['id'];?>;
-                    var price = <?php echo $n_price;?>;
-                    $.ajax({
-                        url:"addToCart.php",
-                        method:"POST",
-                        data: {number: number, id: id, price:price},
-                        success: function(data)
-                        {
-                            $('.product-count').html(data);
-                        }
-                    });
-                }
-            }); 
-            $('#minus-quantity').click(function(){
-                if(parseInt(document.getElementById("quantity").value) > 1)
-                {
-                    var i = parseInt(document.getElementById("quantity").value) - 1;
-                    document.getElementById("quantity").value = i;
-                }
-            });
-            $('#plus-quantity').click(function(){
-                var i = parseInt(document.getElementById("quantity").value) + 1;
-                document.getElementById("quantity").value = i;
-            });
+                $('.toast').toast('show');
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }) 
         });
     </script>
 </body>

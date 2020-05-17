@@ -33,13 +33,9 @@
         include "header.php";
     ?>
     <!--Menu-->
-    <div class="catalog">
-        <div class="item-catalog home">Trang chủ</div>
-        <div class="item-catalog">Giới thiệu</div>
-        <div class="item-catalog">Dịch vụ</div>
-        <div class="item-catalog">Liên hệ</div>
-        <div class="item-catalog">Blog</div>
-    </div>
+    <?php
+        include "menu.php";
+    ?>
     <!--Content-->
     <div class="content" style="min-height: 300px;">
         <div class="title-image-cart" style="position: relative;">
