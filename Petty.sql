@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 06, 2020 lúc 08:27 PM
--- Phiên bản máy phục vụ: 10.4.11-MariaDB
--- Phiên bản PHP: 7.4.5
+-- Host: 127.0.0.1
+-- Generation Time: May 17, 2020 at 12:57 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `lib`
+-- Database: `petty`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `discountproduct`
+-- Table structure for table `discountproduct`
 --
 
 CREATE TABLE `discountproduct` (
@@ -36,24 +37,24 @@ CREATE TABLE `discountproduct` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `discountproduct`
+-- Dumping data for table `discountproduct`
 --
 
 INSERT INTO `discountproduct` (`discountID`, `productCode`, `discountRate`, `startTime`, `endTime`) VALUES
-(1, 10007, 2, '2019-08-06', '2019-09-06'),
-(2, 10010, 5, '2019-08-03', '2019-09-03'),
+(1, 10007, 2, '2019-08-06', '2022-09-06'),
+(2, 10010, 5, '2019-08-03', '2020-09-03'),
 (3, 10022, 10, '2019-10-01', '2019-11-01'),
-(4, 10017, 5, '2019-10-13', '2019-11-13'),
-(5, 10021, 2, '2019-09-01', '2019-09-10'),
-(6, 10025, 2, '2019-08-15', '2019-08-25'),
-(7, 10029, 4, '2019-12-01', '2020-01-01'),
-(8, 10030, 3, '2019-07-15', '2019-08-15'),
-(9, 10031, 8, '2019-06-30', '2019-07-31'),
-(10, 10032, 7, '2019-09-20', '2019-10-20'),
+(4, 10017, 5, '2019-10-13', '2025-11-13'),
+(5, 10021, 2, '2019-09-01', '2025-09-10'),
+(6, 10025, 2, '2019-08-15', '2025-08-25'),
+(7, 10029, 4, '2019-12-01', '2025-01-01'),
+(8, 10030, 3, '2019-07-15', '2025-08-15'),
+(9, 10031, 8, '2019-06-30', '2025-07-31'),
+(10, 10032, 7, '2019-09-20', '2025-10-20'),
 (11, 10033, 2, '2019-10-01', '2019-11-01'),
 (12, 10035, 5, '2019-08-03', '2019-09-07'),
 (13, 10036, 3, '2019-11-01', '2020-01-01'),
-(14, 10038, 10, '2019-10-01', '2019-11-01'),
+(14, 10038, 10, '2019-10-01', '2022-11-01'),
 (15, 10039, 5, '2019-10-13', '2019-11-13'),
 (16, 10040, 2, '2019-09-01', '2019-09-10'),
 (17, 10041, 2, '2019-08-15', '2019-08-25'),
@@ -187,14 +188,14 @@ INSERT INTO `discountproduct` (`discountID`, `productCode`, `discountRate`, `sta
 (145, 10291, 3, '2020-04-01', '2020-05-01'),
 (146, 10292, 2, '2020-04-04', '2020-05-05'),
 (147, 10295, 4, '2020-04-03', '2020-05-04'),
-(148, 10298, 2, '2020-04-23', '2020-05-23'),
+(148, 10298, 2, '2020-04-23', '2022-05-23'),
 (149, 10299, 3, '2020-04-22', '2020-05-22'),
 (150, 10144, 8, '2020-04-15', '2020-05-15');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -207,7 +208,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`employeeNumber`, `employeeName`, `gender`, `email`, `phoneNumber`, `address`) VALUES
@@ -266,7 +267,7 @@ INSERT INTO `employees` (`employeeNumber`, `employeeName`, `gender`, `email`, `p
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderdetail`
+-- Table structure for table `orderdetail`
 --
 
 CREATE TABLE `orderdetail` (
@@ -276,7 +277,7 @@ CREATE TABLE `orderdetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `orderdetail`
+-- Dumping data for table `orderdetail`
 --
 
 INSERT INTO `orderdetail` (`orderNumber`, `productCode`, `quantityOrdered`) VALUES
@@ -673,7 +674,7 @@ INSERT INTO `orderdetail` (`orderNumber`, `productCode`, `quantityOrdered`) VALU
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderproducts`
+-- Table structure for table `orderproducts`
 --
 
 CREATE TABLE `orderproducts` (
@@ -686,7 +687,7 @@ CREATE TABLE `orderproducts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `orderproducts`
+-- Dumping data for table `orderproducts`
 --
 
 INSERT INTO `orderproducts` (`orderNumber`, `orderDate`, `requiredDate`, `shippedDate`, `status`, `employeeNumber`) VALUES
@@ -1083,7 +1084,7 @@ INSERT INTO `orderproducts` (`orderNumber`, `orderDate`, `requiredDate`, `shippe
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderservices`
+-- Table structure for table `orderservices`
 --
 
 CREATE TABLE `orderservices` (
@@ -1096,7 +1097,7 @@ CREATE TABLE `orderservices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `orderservices`
+-- Dumping data for table `orderservices`
 --
 
 INSERT INTO `orderservices` (`orderNumber`, `serviceID`, `ID`, `orderDate`, `status`, `employeeNumber`) VALUES
@@ -1453,7 +1454,7 @@ INSERT INTO `orderservices` (`orderNumber`, `serviceID`, `ID`, `orderDate`, `sta
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `productreview`
+-- Table structure for table `productreview`
 --
 
 CREATE TABLE `productreview` (
@@ -1464,7 +1465,7 @@ CREATE TABLE `productreview` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `productreview`
+-- Dumping data for table `productreview`
 --
 
 INSERT INTO `productreview` (`productCode`, `ID`, `stars`, `comments`) VALUES
@@ -1786,7 +1787,7 @@ INSERT INTO `productreview` (`productCode`, `ID`, `stars`, `comments`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -1803,7 +1804,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`productCode`, `keywords`, `productLine`, `productName`, `image`, `productQuantity`, `price`, `producer`, `productDescription`, `releaseTime`) VALUES
@@ -2173,11 +2174,36 @@ INSERT INTO `products` (`productCode`, `keywords`, `productLine`, `productName`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `services`
+-- Table structure for table `serviceline`
+--
+
+CREATE TABLE `serviceline` (
+  `ID` int(11) NOT NULL,
+  `serviceLine` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `imageLink` text NOT NULL,
+  `order` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `serviceline`
+--
+
+INSERT INTO `serviceline` (`ID`, `serviceLine`, `description`, `imageLink`, `order`) VALUES
+(1, 'Dịch vụ cho chó', 'Những dịch vụ chăm sóc cho chó', 'https://images.unsplash.com/photo-1510074170509-3958bcb8ab3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=642&q=80', 2),
+(2, 'Dịch vụ cho mèo', 'Những dịch vụ chăm sóc cho mèo', 'https://www.chotot.com/kinhnghiem/wp-content/uploads/2018/06/meo-scottish-fold-meo-tai-cup-cho-tot.jpg', 3),
+(3, 'Dịch vụ cho thú cưng khác', 'Những dịch vụ cho các loài động vật khác', 'https://mrpetapp.com/wp-content/uploads/2016/11/pets_big.png', 4),
+(4, 'Dịch vụ chung', 'Dịch vụ cho tất cả thú cưng', 'https://www.businesstimes.com.sg/sites/default/files/styles/large_popup/public/image/2020/01/11/BT_20200111_PG1BRUNCHREVISE_4002715-1.jpg?itok=KVXsWuAL', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
 --
 
 CREATE TABLE `services` (
   `serviceID` int(10) NOT NULL,
+  `serviceLine` int(11) NOT NULL,
   `serviceName` varchar(100) NOT NULL,
   `serviceImage` text DEFAULT NULL,
   `serviceDescription` text DEFAULT NULL,
@@ -2185,33 +2211,33 @@ CREATE TABLE `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `services`
+-- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`serviceID`, `serviceName`, `serviceImage`, `serviceDescription`, `price`) VALUES
-(2000, 'Dịch vụ cắt tỉa lông cho chó', 'data:image/jpeg;base64,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', '-Thời gian: 8h-17h các ngày trong tuần\r\n-Thú cưng của bạn sẽ được hưởng những dịch vụ làm đẹp an toàn và tốt nhất hiện nay bao gồm:\r\n\r\n1. Dịch vụ tắm chải thú cưng\r\n2. Dịch vụ cắt tỉa lông\r\n3. Dịch vụ nhuộm lông, làm móng\r\n4. Dịch vụ vệ sinh tai, làm sạch tuyến hậu môn\r\n\r\n', 2000000),
-(2001, 'Bệnh viện thú cưng', 'https://www.whitemarshvet.com/wp-content/uploads/emergency-vet-services.jpg', '-Thời gian:phục vụ 24/24\r\n\r\n-Thú cưng của bạn sẽ được chăm sóc tận tình với đội ngũ bác sĩ giàu kinh nghiệm', 400000),
-(2002, 'Dịch Vụ Giữ Thú Cưng - Nhận Giữ Vật Nuôi', 'https://cf.shopee.com.my/file/9968ac09186bdf6218796ac81f383b0c', '- Chó mèo là một trong những con vật nuôi cực kỳ gần gũi với con người.Chó mèo là một người bạn cực kỳ xinh xắn và trung thành. Ngày nay Chó mèo được xem như là một thành viên trong gia đình, việc chăm sóc và chơi đùa cùng chúng làm con người cảm thấy thư giản và thoải mái hơn sau những giờ làm việc. bạn đang chuẩn bị một chuyến đi công tác vài ngày? Hay cả gia đình bạn chuẩn bị đi du lịch, bạn lo lắng không có ai chăm sóc cho thú cưng của bạn? bạn rất muốn dẫn chúng đi theo những điều kiện ra xôi không cho phép bạn làm điều đó. Hãy để dịch vụ giữ thú cưng của PETTY CARE chúng tôi giúp bạn. Với dịch vụ giữ thú cưng của chúng tôi, bạn sẽ yên tâm về thú cưng của mình mỗi khi đi xa, du lịch hay công tác. Các khách sạn thú cưng của chúng tôi sẽ giúp bé yêu của bạn thoái mái giống như chính ở nhà mình.\n- Dịch vụ giữ thú cưng của bệnh viện chúng tôi bao gồm: \n       + Chế độ ăn cho vật nuôi được đảm bảo đầy đủ dinh dưỡng hoặc theo khẩu phần riêng của chủ.\n       + Thời gian ăn uống khoa học đúng giờ Đi dạo và vui chơi cùng những bạn bè cún khác ( không áp dụng cho mèo ).\n       + Thú cưng của bạn sẽ được tắm rửa và cắt tỉa lông sạch sẽ', 200000),
-(2003, 'Huấn luyện chó', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-train-a-dog-1582231729.jpg?crop=0.668xw:1.00xh;0,0&resize=640:*', '-Thời gian: theo khóa học từ 2 đến 4 tháng theo lịch rảnh của khách\r\n\r\nThú cưng của bạn sẽ được huấn luyện chuyên nghiệp và giúp bạn gần gũi với thú cưng của mình hơn', 1500000),
-(2004, 'Dắt chó đi dạo', 'https://nationaltoday.com/wp-content/uploads/2020/02/national-dog-walking-day.jpg', '-Thời gian: 7h-17h các ngày trong tuần\r\n\r\nNếu thú cưng của bạn muốn được ra ngoài nhưng bạn lại không có thời gian, bạn hãy sử dụng dịch vụ này. Thú cưng của bạn sẽ được đội ngũ của chúng tôi chăm sóc', 100000),
-(2005, 'Bảo hiểm thú cưng', 'https://www.rspcapetinsurance.org.au/RSPCA/media/Images/Hero/why-rspca-hero.jpg', '-Thời gian: Đăng kí tham gia bảo hiểm từ 8h-17h từ thứ 2 đến thứ 7\r\n\r\n-Thú cưng của bạn sẽ được tận hưởng nhiều dịch vụ ưu đại ở hệ thống của chúng tôi', 850000),
-(2006, 'Bác Sỹ Thú Y Tại Nhà', 'https://www.thebalancecareers.com/thmb/SlNHz3zXY7aKTu8QlmOMdF-RFEw=/3415x3415/smart/filters:no_upscale()/vet-examing-boxer-puppy-555782789-596844295f9b582c3566433c.jpg', '- Bạn không có nhiều thời gian để đưa thú cưng của mình đến  phòng khám thú y khi bé yêu của bạn đang bị vấn đề về sức khỏe. Bạn đừng lo lắng về vấn đề này. Chúng tôi sẽ giải quyết giúp bạn PETTY HOSPITAL– cung cấp dịch vụ bác sĩ thú y tại nhà. Những bác sĩ có trình độ chuyên môn cao của chúng tôi sẽ đến tận nhà bạn để chăm sóc cho vật cưng được tốt nhất.\n- Dịch vụ bác sĩ thú y tại nhà của chúng tôi bao gồm: \n       + Có mặt tại nhà ngay lập tức để khám kịp thời cho thú cưng.\n       + Kiểm tra và chăm sóc sức khỏe định kỳ.\n       + Tư vấn những giải pháp để thú cưng luôn được khỏe mạnh.\n       + Kèm theo dịch vụ chăm sóc thú cưng tại nhà, cắt tỉa lông chó mèo, dịch vụ tắm chó mèo.\n Hãy gọi ngay cho chúng tôi qua Hotline: 0932.904.796 để chúng tôi được phục vụ thú cưng của bạn được tốt nhất.', 900000),
-(2007, 'Dịch Vụ Spa Thú Cưng', 'https://i.pinimg.com/originals/89/60/48/896048009ee6d7a0598d9a2153c73ce1.jpg', 'PETTY HOSPITAL chúng tôi là dịch vụ đi tiên phong trong lĩnh vực khám chữa bệnh và làm đẹp cho thú cưng theo tiêu chuẩn Nhật Bản. Với quy mô lớn, cơ sở hạ tầng, cơ sở vật chất được đầu tư một cách kỹ lưỡng, có hệ thống khử trùng và khử mùi cực kỳ hiện đại, không chỉ đảm bảo sức khỏe cho thú cưng của bạn mà còn đảm bảo sức khỏe cho bạn mỗi khi đưa thú cưng đến với PETTY HOSPITAL để khám chữa bệnh và làm đẹp. Ngoài ra, hệ thống spa cũng được đầu tư các trang thiết bị đầy đủ nhằm đáp ứng nhu cầu làm đẹp cho thú cưng. Với các thiết bị chuyên nghiệp, cùng đội ngũ chuyên gia cắt tỉa được đào tạo bài bản, sẽ đáp ứng được nhu cầu làm đẹp đa dạng dành cho các thú cưng như: cắt tỉa lông thẩm mỹ, nhuộm lông tạo kiểu, các kiểu kẹp nơ, cà vôi răng, ráy tai, cắt móng, sơn móng,v.v…..', 1000000),
-(2008, 'Dịch Vụ Tắm Chó Mèo Tại Nhà', 'https://fonjonpetcare.com/wp-content/uploads/2015/07/1d217b5f45529178a6452862bd705c86.jpg', 'Bạn không có thời gian để vệ sinh cho thú yêu của bạn được sạch sẽ hay không biết làm thế nào để tắm rửa cho thu cưng được tốt nhất. Bạn không có nhiều thời gian để chăm sóc chúng, công việc ở công ty và gia đình đã làm tốn quá nhiều thời gian của bạn, nhìn chú chó mèo nhà bạn không được sạch sẽ và có mùi hôi làm bạn cảm thấy khó chịu. Nhằm giúp đỡ cho những quý khách hàng không có nhiều thời gian và kiến thức cạn hẹp trong việc chăm sóc chó mèo. PETTY cung cấp dịch vụ tắm chó mèo tại nhà giúp bạn không phải bận tâm làm thế nào để giúp cho bé yêu được sạch sẽ nữa. Mỗi thú cưng sẽ có mẫn cảm hay dị ứng nhất định nếu không biết cách sẽ gây hại nghiêm trọng, chúng tôi sử dụng những dòng sản phẩm cao cấp đảm bảo an toàn cho bé yêu của bạn một cách tốt nhất. Với dịch vụ chăm sóc tại nhà này thú cưng của bạn sẽ được thoải mái và tự do hơn khi được cắt tỉa lông và tắm rửa, hơn nữa còn giúp bạn tiết kiệm được rất nhiều thời gian và chi phí cho việc đi lại.', 150000),
-(2009, 'Dịch Vụ Cắt Tỉa Lông Cho Mèo', 'https://www.thesprucepets.com/thmb/XUphx17ZXIgya8BHldbExXG5opc=/2848x2848/smart/filters:no_upscale()/grooming-cat-120689839-57d967d33df78c583396e386.jpg', '- Chó mèo là những động vật cực kỳ hiếu động, chúng thường xuyên chạy nhảy ở ngoài trời nên bộ lông của chúng sẽ bị bám rất nhiều bụi bẩn, việc cắt tỉa lông cho chúng là điều cần thiết và quan trọng, để bảo vệ sức khỏe gia đình bạn và bảo vệ sức khỏe cho thú cưng của bạn. Những chú chó hoặc mèo có bộ lông quá dày và dài thường là điều kiện phát triển cực tốt của các loại ký sinh trùng như rận, bọ chét, ve, v.v….nếu bạn không cắt tỉa lông và tắm gội thường xuyên cho chúng thì những con vật này có thể lây lan sang người bạn hoặc con cái của bạn, gây ra nhiều bệnh rất nguy hiểm. Việc cắt tỉa lông cho chó mèo đòi hỏi phải có nhiều thời gian và kinh nghiệm thì mới có thể làm được. Thời gian để cắt tỉa lông cho chó mèo khoảng 80 phút – 180 phút. Việc cắt tỉa lông đúng cách sẽ giúp cho thú cưng của bạn trở nên gọn gàng và sạch sẽ hơn và giúp loại bỏ đi những phần lông không cần thiết, tế bào chết. Bạn không biết làm thế nào để thú nuôi của bạn trở nên đẳng cấp hơn cá tính hơn. Chúng tôi sẽ giúp bạn làm điều đó. Với dịch vụ cắt tỉa lông chó mèo chúng tôi giúp vật cưng của bạn trở nên hoàn hảo nhất.\n- Dịch vụ cắt tỉa lông chó mèo tại PETTY bao gồm: \n         + Dịch vụ tắm cho mèo, chải lông, loại bỏ lông rối.\n         + Vệ sinh chân cho thú cưng, cắt bỏ đi bớt những phần móng quá dài. \n         + Vệ sinh các vết bẩn trong tai, nhổ lông tai, vệ sinh tuyến hôi và vùng đi vệ sinh.\n         + Nhỏ các loại thuốc đặc trị bệnh ghẻ, rận, bọ chét, ghèn trong mắt, v.v….\n         + Cắt tỉa lông tạo kiểu Dịch vụ Spa Chó Mèo,  vệ sinh răng miệng, lấy cao răng \n         + Đặc biệt hơn nữa bạn sẽ được các chuyên gia của chúng tôi tư vấn làm thế nào để giúp bé yêu của bạn giữ được kiểu lông lâu hơn và chăm sóc cho lông và da được tốt hơn.\nMọi thông tin chi tiết liên hệ với chúng tôi qua Hotline: 0932.904.796', 100000),
-(2010, 'Dịch Vụ Chăm Sóc Thú Cưng Tại Nhà', 'https://mercatoshoppingmall.com/wp-content/uploads/2018/07/pets-plus.jpg', '- Bạn muốn thú cưng của mình được chăm sóc chu đáo, khám và kiểm tra tình hình sức khỏe theo định kỳ. Chúng tôi đưa ra giải pháp dịch vụ chăm sóc thú cưng tại nhà giúp bạn tiết kiệm thời gian và không phải vận chuyển bé yêu đến trung tâm chăm sóc thú y. PETTY – cung cấp dịch vụ chăm sóc thú cưng tại nhà. Những chuyên gia của chúng tôi có trình độ chuyên môn và kinh nghiệm nhiều năm sẽ giúp cho bạn có thể chăm sóc được thú cưng của mình dễ dàng tại ngay nhà bạn.\n- Dịch vụ chăm sóc thú cưng tại nhà của chúng tôi bao gồm:\n        + Có mặt tại nhà ngay lập tức để chăm sóc cho thú cưng của bạn.\n        + Kiểm tra và vệ sinh sạch sẽ, cắt tỉa móng, lông gọn gàng.\n        + Tư vấn những giải pháp để thú cưng luôn được khỏe mạnh.\n- Tại sao bạn nên lựa chọn dịch vụ của chúng tôi: \n        + Các nhân viên được đào tạo qua nhiều trường lớp, có kinh nghiệm nhiều năm trong việc chăm sóc thú cưng tại nhà. \n        + Các bác sĩ có trình độ chuyên môn cao, sẽ khám chữa bệnh cho thú cưng của bạn một cách tận tình nhất. \n        + Chúng tôi sẽ chăm sóc thú cưng của bạn, giúp chúng ăn, ngủ vui chơi cùng chúng và dọn vệ sinh, v.v…\n        + Nếu các bé đang bị bệnh chúng tôi sẽ cho uống các loại thuốc đặc trị hoặc đưa về bệnh viện để theo dõi và điều trị, tư vấn cho bạn nhiều phương pháp nuôi dạy thú cưng và các biện pháp để bảo vệ sức khỏe cho chúng.', 650000),
-(2011, 'Khách Sạn Chó Mèo', 'https://kap.nekoya.co/wp-content/uploads/sites/2/2018/08/Cat-Boarding-Singapore-Nekoya-Cat-Hotel-6.jpg', 'PETTY là một  địa chỉ khác cũng rất được các bạn trẻ tin tưởng và hay gửi gắm thú cưng của mình để chăm sóc. Sở hữu cho mình một hệ thống chuồng trại sạch đẹp, thoáng mát. Tại đây, thú cưng của bạn sẽ được theo dõi thường xuyên để nhân viên có thể dễ dàng chăm sóc cho sức khỏe  và bổ sung thêm các loại thực phẩm, dinh dưỡng tốt nhất.', 500000),
-(2012, 'Khách sạn dành cho Vẹt', 'http://petmeshop.com/wp-content/uploads/2014/10/do-choi-trong-to-300x284.jpg', '- PETTY chuyên nhận chăm sóc vẹt cưng khi bạn vắng nhà với dịch vụ “khách sạn vẹt cưng”.\r\n\r\n- Với dịch vụ “khách sạn vẹt cưng”, bạn có thể yên tâm gửi vẹt cưng của bạn trong những lúc bận rộn hay đi du lịch, công tác. Với hệ thống chuồng thoáng mát, đảm bảo vệ sinh, thiết kế các gốc đứng chuyên nghiệp cho vẹt, không gian ấm cúng và thân thiện với nhiều loài vẹt được thuần hoá tốt, bạn có thể yên tâm với dịch vụ chăm sóc vẹt cưng của PETTY khi bạn vắng nhà.', 200000),
-(2013, 'Dịch Vụ Trị Bệnh Cho Vẹt', 'https://www.thesprucepets.com/thmb/67tr2LlVG7KQFO5xd13B7G_nvIg=/2690x2690/smart/filters:no_upscale()/experienced-veterinarian-examining-young-ara-parrots-health--885602566-5b4c075346e0fb005bc165c6.jpg', 'CÁC BỆNH THƯỜNG GẶP Ở VẸT: \r\n– Ho, sổ mũi, cảm cúm, tiêu chảy (biểu hiện Sổ mũi, ho, sốt, tiêu chảy hoặc khi thấy chim bỏ ăn, biểu hiện buồn buồn không hoạt náo như bình thường, xệ cánh, xù lông, run rẩy)\r\n– Viêm phế quản, viêm phổi (thở khò khè, vẫn hoạt động bình thường hoặc ít vận động khi bệnh nặng)\r\n– Tiêu chảy, đường ruột – Tiêu ra máu \r\n– Sưng hạch \r\n– Sưng chân, viêm khớp, gãy chân, gãy cánh\r\n – Nấm, viêm da, rụng lông, ve rận, bọ chét\r\n – Đau mắt (mắt nhắm không mở được) ***Lưu ý: Để nước thuốc cho vẹt uống trong ngày, không để qua ngày. Nếu thấy chim không tự uống có thể bơm cho chim uống cách 2 tiếng/lần. Uống đến khi chim khỏe mạnh bình thường. Hiệu quả hơn khi dùng đèn sưởi 40 độ trong lúc trị bệnh', 250000),
-(2014, 'Xét Nghiệm Giới Tính DNA trống mái cho Vẹt', 'https://lh3.googleusercontent.com/proxy/OjxaDz4Q13JtAouDNHij4saRfauE_q7kPGa-ewqHUup4u7YY_DsjUO_t7FJ_Fxti5PS4zsWferFOiMNaJyTrOjXTMo4WEtUYT3ZDnp8hhQ', '-Các bước tiến hành: \r\n+ B1: Gửi mẫu xét nghiệm (3 mẫu lông chim có chân hoặc mẫu trứng của chim con vừa nở)\r\n+ B2: Đợi kết quả sau 2 tuần (Giấy chứng nhận có có giá trị pháp kí toàn cầu)\r\n- Quy trình được thực hiện bởi: \r\n+ Máy 1 D-HPLC (máy sắc ký lỏng cao áp biến tính)\r\n+ Máy đọc trình tự gen ABI 3130, Applied Biosystems \r\n+ Máy nhân gen Real Time PCR_TaqMan®', 500000),
-(2015, 'Dịch Vụ Ngừa Bệnh Cho Vẹt', 'https://i.pinimg.com/736x/90/7f/57/907f573616dda17ea71428dcf5db9319.jpg', 'CÁC LOẠI CHỦNG NGỪA: \r\n– Cảm cúm, bệnh đường ruột – Định kỳ hằng tháng (200.000đ/lần)\r\n– Sổ lãi – Định kỳ 3 tháng (200.000đ/lần) \r\n– Cầu trùng (Tiêu ra máu) – Định kỳ 3 tháng (300.000đ/lần) \r\n– NewCastle (Dịch tả) – Định kỳ 4 tháng, chim lưu trú tại Pet Me 3 ngày (500.000đ) \r\n– Nấm phổi – Định kỳ hằng tháng (100.000đ/lần) \r\n– Hen/ Thương Hàn/ Tụ huyết trùng – Định kỳ hằng tháng (100.000đ/lần) ***Lưu ý: Để nước thuốc cho vẹt uống trong ngày, không để qua ngày. Hiệu quả hơn khi dùng đèn sưởi 40 độ trong lúc chủng ngừa.', 300000),
-(2016, 'Ký gửi Vẹt', 'data:image/jpeg;base64,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', 'PETTY nhận chăm sóc ký gửi vẹt két, giúp bạn tìm được ngôi nhà mới cho chú vẹt cưng Bạn không đủ thời gian để chăm sóc chú vẹt (két) của bạn? Bạn cần tìm một gia đình mới cho vẹt cưng nhưng không biết phải làm sao vì bạn quá bận và cũng vì vẹt là một loại thú nuôi khá riêng biệt? Hãy đem vẹt đến PETTY vì chúng tôi có dịch vụ ký gửi vẹt. Chúng tôi sẽ tìm kiếm những khách hàng thích hợp với mong muốn sở hữu một chú vẹt thông minh đáng yêu để trở thành bạn đồng hành mới cho vẹt cưng của bạn.', 100000),
-(2017, 'Làm đẹp cho Vẹt', 'https://www.thesprucepets.com/thmb/aTYzWacWg5mTEDfF7gXIT2q2lgY=/3168x3168/smart/filters:no_upscale()/pet-parrot-on-human-hand-1022424278-5c3ded0ac9e77c00016e6e2b.jpg', 'PETTY chuyên cung cấp các dịch vụ cắt tỉa lông cánh, móng và tắm cho vẹt (két). Dịch vụ được thực hiện bởi người huấn luyện và chăm sóc vẹt chuyên nghiệp, kinh nghiệm lâu năm và yêu vẹt, Pet Me shop đảm bảo mang lại cho chú vẹt của bạn sự sạch sẽ, thơm mát, dáng dấp xinh đẹp với bộ cánh cắt tỉa gọn gàng và những bộ móng được cắt dũa đẹp đẽ. Đặt biệt hơn, trong quá trình cắt tỉa lông cánh, móng chân và tắm mát, các bé vẹt của bạn sẽ được các chuyên viên lành nghề của PETTY kiểm tra tình hình sức khỏe chung về lông cánh và móng của vẹt. Trong trường hợp có những bất thường về sức khoẻ lông cánh và móng, Pet Me Shop sẽ tư vấn những phương pháp hỗ trợ. Việc kiểm tra và tư vấn được thực hiện hoàn toàn miễn phí với mục đích giúp bạn chăm sóc tốt hơn nữa chú vẹt cưng của mình.', 150000);
+INSERT INTO `services` (`serviceID`, `serviceLine`, `serviceName`, `serviceImage`, `serviceDescription`, `price`) VALUES
+(2000, 1, 'Dịch vụ cắt tỉa lông cho chó', 'data:image/jpeg;base64,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', '-Thời gian: 8h-17h các ngày trong tuần\r\n-Thú cưng của bạn sẽ được hưởng những dịch vụ làm đẹp an toàn và tốt nhất hiện nay bao gồm:\r\n\r\n1. Dịch vụ tắm chải thú cưng\r\n2. Dịch vụ cắt tỉa lông\r\n3. Dịch vụ nhuộm lông, làm móng\r\n4. Dịch vụ vệ sinh tai, làm sạch tuyến hậu môn\r\n\r\n', 2000000),
+(2001, 4, 'Bệnh viện thú cưng', 'https://www.whitemarshvet.com/wp-content/uploads/emergency-vet-services.jpg', '-Thời gian:phục vụ 24/24\r\n\r\n-Thú cưng của bạn sẽ được chăm sóc tận tình với đội ngũ bác sĩ giàu kinh nghiệm', 400000),
+(2002, 4, 'Dịch Vụ Giữ Thú Cưng - Nhận Giữ Vật Nuôi', 'https://cf.shopee.com.my/file/9968ac09186bdf6218796ac81f383b0c', '- Chó mèo là một trong những con vật nuôi cực kỳ gần gũi với con người.Chó mèo là một người bạn cực kỳ xinh xắn và trung thành. Ngày nay Chó mèo được xem như là một thành viên trong gia đình, việc chăm sóc và chơi đùa cùng chúng làm con người cảm thấy thư giản và thoải mái hơn sau những giờ làm việc. bạn đang chuẩn bị một chuyến đi công tác vài ngày? Hay cả gia đình bạn chuẩn bị đi du lịch, bạn lo lắng không có ai chăm sóc cho thú cưng của bạn? bạn rất muốn dẫn chúng đi theo những điều kiện ra xôi không cho phép bạn làm điều đó. Hãy để dịch vụ giữ thú cưng của PETTY CARE chúng tôi giúp bạn. Với dịch vụ giữ thú cưng của chúng tôi, bạn sẽ yên tâm về thú cưng của mình mỗi khi đi xa, du lịch hay công tác. Các khách sạn thú cưng của chúng tôi sẽ giúp bé yêu của bạn thoái mái giống như chính ở nhà mình.\n- Dịch vụ giữ thú cưng của bệnh viện chúng tôi bao gồm: \n       + Chế độ ăn cho vật nuôi được đảm bảo đầy đủ dinh dưỡng hoặc theo khẩu phần riêng của chủ.\n       + Thời gian ăn uống khoa học đúng giờ Đi dạo và vui chơi cùng những bạn bè cún khác ( không áp dụng cho mèo ).\n       + Thú cưng của bạn sẽ được tắm rửa và cắt tỉa lông sạch sẽ', 200000),
+(2003, 1, 'Huấn luyện chó', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-train-a-dog-1582231729.jpg?crop=0.668xw:1.00xh;0,0&resize=640:*', '-Thời gian: theo khóa học từ 2 đến 4 tháng theo lịch rảnh của khách\r\n\r\nThú cưng của bạn sẽ được huấn luyện chuyên nghiệp và giúp bạn gần gũi với thú cưng của mình hơn', 1500000),
+(2004, 1, 'Dắt chó đi dạo', 'https://nationaltoday.com/wp-content/uploads/2020/02/national-dog-walking-day.jpg', '-Thời gian: 7h-17h các ngày trong tuần\r\n\r\nNếu thú cưng của bạn muốn được ra ngoài nhưng bạn lại không có thời gian, bạn hãy sử dụng dịch vụ này. Thú cưng của bạn sẽ được đội ngũ của chúng tôi chăm sóc', 100000),
+(2005, 4, 'Bảo hiểm thú cưng', 'https://www.rspcapetinsurance.org.au/RSPCA/media/Images/Hero/why-rspca-hero.jpg', '-Thời gian: Đăng kí tham gia bảo hiểm từ 8h-17h từ thứ 2 đến thứ 7\r\n\r\n-Thú cưng của bạn sẽ được tận hưởng nhiều dịch vụ ưu đại ở hệ thống của chúng tôi', 850000),
+(2006, 4, 'Bác Sỹ Thú Y Tại Nhà', 'https://www.thebalancecareers.com/thmb/SlNHz3zXY7aKTu8QlmOMdF-RFEw=/3415x3415/smart/filters:no_upscale()/vet-examing-boxer-puppy-555782789-596844295f9b582c3566433c.jpg', '- Bạn không có nhiều thời gian để đưa thú cưng của mình đến  phòng khám thú y khi bé yêu của bạn đang bị vấn đề về sức khỏe. Bạn đừng lo lắng về vấn đề này. Chúng tôi sẽ giải quyết giúp bạn PETTY HOSPITAL– cung cấp dịch vụ bác sĩ thú y tại nhà. Những bác sĩ có trình độ chuyên môn cao của chúng tôi sẽ đến tận nhà bạn để chăm sóc cho vật cưng được tốt nhất.\n- Dịch vụ bác sĩ thú y tại nhà của chúng tôi bao gồm: \n       + Có mặt tại nhà ngay lập tức để khám kịp thời cho thú cưng.\n       + Kiểm tra và chăm sóc sức khỏe định kỳ.\n       + Tư vấn những giải pháp để thú cưng luôn được khỏe mạnh.\n       + Kèm theo dịch vụ chăm sóc thú cưng tại nhà, cắt tỉa lông chó mèo, dịch vụ tắm chó mèo.\n Hãy gọi ngay cho chúng tôi qua Hotline: 0932.904.796 để chúng tôi được phục vụ thú cưng của bạn được tốt nhất.', 900000),
+(2007, 4, 'Dịch Vụ Spa Thú Cưng', 'https://i.pinimg.com/originals/89/60/48/896048009ee6d7a0598d9a2153c73ce1.jpg', 'PETTY HOSPITAL chúng tôi là dịch vụ đi tiên phong trong lĩnh vực khám chữa bệnh và làm đẹp cho thú cưng theo tiêu chuẩn Nhật Bản. Với quy mô lớn, cơ sở hạ tầng, cơ sở vật chất được đầu tư một cách kỹ lưỡng, có hệ thống khử trùng và khử mùi cực kỳ hiện đại, không chỉ đảm bảo sức khỏe cho thú cưng của bạn mà còn đảm bảo sức khỏe cho bạn mỗi khi đưa thú cưng đến với PETTY HOSPITAL để khám chữa bệnh và làm đẹp. Ngoài ra, hệ thống spa cũng được đầu tư các trang thiết bị đầy đủ nhằm đáp ứng nhu cầu làm đẹp cho thú cưng. Với các thiết bị chuyên nghiệp, cùng đội ngũ chuyên gia cắt tỉa được đào tạo bài bản, sẽ đáp ứng được nhu cầu làm đẹp đa dạng dành cho các thú cưng như: cắt tỉa lông thẩm mỹ, nhuộm lông tạo kiểu, các kiểu kẹp nơ, cà vôi răng, ráy tai, cắt móng, sơn móng,v.v…..', 1000000),
+(2008, 4, 'Dịch Vụ Tắm Tại Nhà', 'https://fonjonpetcare.com/wp-content/uploads/2015/07/1d217b5f45529178a6452862bd705c86.jpg', 'Bạn không có thời gian để vệ sinh cho thú yêu của bạn được sạch sẽ hay không biết làm thế nào để tắm rửa cho thu cưng được tốt nhất. Bạn không có nhiều thời gian để chăm sóc chúng, công việc ở công ty và gia đình đã làm tốn quá nhiều thời gian của bạn, nhìn chú chó mèo nhà bạn không được sạch sẽ và có mùi hôi làm bạn cảm thấy khó chịu. Nhằm giúp đỡ cho những quý khách hàng không có nhiều thời gian và kiến thức cạn hẹp trong việc chăm sóc chó mèo. PETTY cung cấp dịch vụ tắm chó mèo tại nhà giúp bạn không phải bận tâm làm thế nào để giúp cho bé yêu được sạch sẽ nữa. Mỗi thú cưng sẽ có mẫn cảm hay dị ứng nhất định nếu không biết cách sẽ gây hại nghiêm trọng, chúng tôi sử dụng những dòng sản phẩm cao cấp đảm bảo an toàn cho bé yêu của bạn một cách tốt nhất. Với dịch vụ chăm sóc tại nhà này thú cưng của bạn sẽ được thoải mái và tự do hơn khi được cắt tỉa lông và tắm rửa, hơn nữa còn giúp bạn tiết kiệm được rất nhiều thời gian và chi phí cho việc đi lại.', 150000),
+(2009, 2, 'Dịch Vụ Cắt Tỉa Lông Cho Mèo', 'https://www.thesprucepets.com/thmb/XUphx17ZXIgya8BHldbExXG5opc=/2848x2848/smart/filters:no_upscale()/grooming-cat-120689839-57d967d33df78c583396e386.jpg', '- Chó mèo là những động vật cực kỳ hiếu động, chúng thường xuyên chạy nhảy ở ngoài trời nên bộ lông của chúng sẽ bị bám rất nhiều bụi bẩn, việc cắt tỉa lông cho chúng là điều cần thiết và quan trọng, để bảo vệ sức khỏe gia đình bạn và bảo vệ sức khỏe cho thú cưng của bạn. Những chú chó hoặc mèo có bộ lông quá dày và dài thường là điều kiện phát triển cực tốt của các loại ký sinh trùng như rận, bọ chét, ve, v.v….nếu bạn không cắt tỉa lông và tắm gội thường xuyên cho chúng thì những con vật này có thể lây lan sang người bạn hoặc con cái của bạn, gây ra nhiều bệnh rất nguy hiểm. Việc cắt tỉa lông cho chó mèo đòi hỏi phải có nhiều thời gian và kinh nghiệm thì mới có thể làm được. Thời gian để cắt tỉa lông cho chó mèo khoảng 80 phút – 180 phút. Việc cắt tỉa lông đúng cách sẽ giúp cho thú cưng của bạn trở nên gọn gàng và sạch sẽ hơn và giúp loại bỏ đi những phần lông không cần thiết, tế bào chết. Bạn không biết làm thế nào để thú nuôi của bạn trở nên đẳng cấp hơn cá tính hơn. Chúng tôi sẽ giúp bạn làm điều đó. Với dịch vụ cắt tỉa lông chó mèo chúng tôi giúp vật cưng của bạn trở nên hoàn hảo nhất.\n- Dịch vụ cắt tỉa lông chó mèo tại PETTY bao gồm: \n         + Dịch vụ tắm cho mèo, chải lông, loại bỏ lông rối.\n         + Vệ sinh chân cho thú cưng, cắt bỏ đi bớt những phần móng quá dài. \n         + Vệ sinh các vết bẩn trong tai, nhổ lông tai, vệ sinh tuyến hôi và vùng đi vệ sinh.\n         + Nhỏ các loại thuốc đặc trị bệnh ghẻ, rận, bọ chét, ghèn trong mắt, v.v….\n         + Cắt tỉa lông tạo kiểu Dịch vụ Spa Chó Mèo,  vệ sinh răng miệng, lấy cao răng \n         + Đặc biệt hơn nữa bạn sẽ được các chuyên gia của chúng tôi tư vấn làm thế nào để giúp bé yêu của bạn giữ được kiểu lông lâu hơn và chăm sóc cho lông và da được tốt hơn.\nMọi thông tin chi tiết liên hệ với chúng tôi qua Hotline: 0932.904.796', 100000),
+(2010, 4, 'Dịch Vụ Chăm Sóc Thú Cưng Tại Nhà', 'https://mercatoshoppingmall.com/wp-content/uploads/2018/07/pets-plus.jpg', '- Bạn muốn thú cưng của mình được chăm sóc chu đáo, khám và kiểm tra tình hình sức khỏe theo định kỳ. Chúng tôi đưa ra giải pháp dịch vụ chăm sóc thú cưng tại nhà giúp bạn tiết kiệm thời gian và không phải vận chuyển bé yêu đến trung tâm chăm sóc thú y. PETTY – cung cấp dịch vụ chăm sóc thú cưng tại nhà. Những chuyên gia của chúng tôi có trình độ chuyên môn và kinh nghiệm nhiều năm sẽ giúp cho bạn có thể chăm sóc được thú cưng của mình dễ dàng tại ngay nhà bạn.\n- Dịch vụ chăm sóc thú cưng tại nhà của chúng tôi bao gồm:\n        + Có mặt tại nhà ngay lập tức để chăm sóc cho thú cưng của bạn.\n        + Kiểm tra và vệ sinh sạch sẽ, cắt tỉa móng, lông gọn gàng.\n        + Tư vấn những giải pháp để thú cưng luôn được khỏe mạnh.\n- Tại sao bạn nên lựa chọn dịch vụ của chúng tôi: \n        + Các nhân viên được đào tạo qua nhiều trường lớp, có kinh nghiệm nhiều năm trong việc chăm sóc thú cưng tại nhà. \n        + Các bác sĩ có trình độ chuyên môn cao, sẽ khám chữa bệnh cho thú cưng của bạn một cách tận tình nhất. \n        + Chúng tôi sẽ chăm sóc thú cưng của bạn, giúp chúng ăn, ngủ vui chơi cùng chúng và dọn vệ sinh, v.v…\n        + Nếu các bé đang bị bệnh chúng tôi sẽ cho uống các loại thuốc đặc trị hoặc đưa về bệnh viện để theo dõi và điều trị, tư vấn cho bạn nhiều phương pháp nuôi dạy thú cưng và các biện pháp để bảo vệ sức khỏe cho chúng.', 650000),
+(2011, 2, 'Khách Sạn Mèo', 'https://kap.nekoya.co/wp-content/uploads/sites/2/2018/08/Cat-Boarding-Singapore-Nekoya-Cat-Hotel-6.jpg', 'PETTY là một  địa chỉ khác cũng rất được các bạn trẻ tin tưởng và hay gửi gắm thú cưng của mình để chăm sóc. Sở hữu cho mình một hệ thống chuồng trại sạch đẹp, thoáng mát. Tại đây, thú cưng của bạn sẽ được theo dõi thường xuyên để nhân viên có thể dễ dàng chăm sóc cho sức khỏe  và bổ sung thêm các loại thực phẩm, dinh dưỡng tốt nhất.', 500000),
+(2012, 3, 'Khách sạn dành cho Vẹt', 'http://petmeshop.com/wp-content/uploads/2014/10/do-choi-trong-to-300x284.jpg', '- PETTY chuyên nhận chăm sóc vẹt cưng khi bạn vắng nhà với dịch vụ “khách sạn vẹt cưng”.\r\n\r\n- Với dịch vụ “khách sạn vẹt cưng”, bạn có thể yên tâm gửi vẹt cưng của bạn trong những lúc bận rộn hay đi du lịch, công tác. Với hệ thống chuồng thoáng mát, đảm bảo vệ sinh, thiết kế các gốc đứng chuyên nghiệp cho vẹt, không gian ấm cúng và thân thiện với nhiều loài vẹt được thuần hoá tốt, bạn có thể yên tâm với dịch vụ chăm sóc vẹt cưng của PETTY khi bạn vắng nhà.', 200000),
+(2013, 3, 'Dịch Vụ Trị Bệnh Cho Vẹt', 'https://www.thesprucepets.com/thmb/67tr2LlVG7KQFO5xd13B7G_nvIg=/2690x2690/smart/filters:no_upscale()/experienced-veterinarian-examining-young-ara-parrots-health--885602566-5b4c075346e0fb005bc165c6.jpg', 'CÁC BỆNH THƯỜNG GẶP Ở VẸT: \r\n– Ho, sổ mũi, cảm cúm, tiêu chảy (biểu hiện Sổ mũi, ho, sốt, tiêu chảy hoặc khi thấy chim bỏ ăn, biểu hiện buồn buồn không hoạt náo như bình thường, xệ cánh, xù lông, run rẩy)\r\n– Viêm phế quản, viêm phổi (thở khò khè, vẫn hoạt động bình thường hoặc ít vận động khi bệnh nặng)\r\n– Tiêu chảy, đường ruột – Tiêu ra máu \r\n– Sưng hạch \r\n– Sưng chân, viêm khớp, gãy chân, gãy cánh\r\n – Nấm, viêm da, rụng lông, ve rận, bọ chét\r\n – Đau mắt (mắt nhắm không mở được) ***Lưu ý: Để nước thuốc cho vẹt uống trong ngày, không để qua ngày. Nếu thấy chim không tự uống có thể bơm cho chim uống cách 2 tiếng/lần. Uống đến khi chim khỏe mạnh bình thường. Hiệu quả hơn khi dùng đèn sưởi 40 độ trong lúc trị bệnh', 250000),
+(2014, 3, 'Xét Nghiệm Giới Tính DNA trống mái cho Vẹt', 'https://petmeshop.com/wp-content/uploads/2014/09/Vet-Major-Mitchell-Cockatoo-3.jpg', '-Các bước tiến hành: \r\n+ B1: Gửi mẫu xét nghiệm (3 mẫu lông chim có chân hoặc mẫu trứng của chim con vừa nở)\r\n+ B2: Đợi kết quả sau 2 tuần (Giấy chứng nhận có có giá trị pháp kí toàn cầu)\r\n- Quy trình được thực hiện bởi: \r\n+ Máy 1 D-HPLC (máy sắc ký lỏng cao áp biến tính)\r\n+ Máy đọc trình tự gen ABI 3130, Applied Biosystems \r\n+ Máy nhân gen Real Time PCR_TaqMan®', 500000),
+(2015, 3, 'Dịch Vụ Ngừa Bệnh Cho Vẹt', 'https://i.pinimg.com/736x/90/7f/57/907f573616dda17ea71428dcf5db9319.jpg', 'CÁC LOẠI CHỦNG NGỪA: \r\n– Cảm cúm, bệnh đường ruột – Định kỳ hằng tháng (200.000đ/lần)\r\n– Sổ lãi – Định kỳ 3 tháng (200.000đ/lần) \r\n– Cầu trùng (Tiêu ra máu) – Định kỳ 3 tháng (300.000đ/lần) \r\n– NewCastle (Dịch tả) – Định kỳ 4 tháng, chim lưu trú tại Pet Me 3 ngày (500.000đ) \r\n– Nấm phổi – Định kỳ hằng tháng (100.000đ/lần) \r\n– Hen/ Thương Hàn/ Tụ huyết trùng – Định kỳ hằng tháng (100.000đ/lần) ***Lưu ý: Để nước thuốc cho vẹt uống trong ngày, không để qua ngày. Hiệu quả hơn khi dùng đèn sưởi 40 độ trong lúc chủng ngừa.', 300000),
+(2016, 3, 'Ký gửi Vẹt', 'data:image/jpeg;base64,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', 'PETTY nhận chăm sóc ký gửi vẹt két, giúp bạn tìm được ngôi nhà mới cho chú vẹt cưng Bạn không đủ thời gian để chăm sóc chú vẹt (két) của bạn? Bạn cần tìm một gia đình mới cho vẹt cưng nhưng không biết phải làm sao vì bạn quá bận và cũng vì vẹt là một loại thú nuôi khá riêng biệt? Hãy đem vẹt đến PETTY vì chúng tôi có dịch vụ ký gửi vẹt. Chúng tôi sẽ tìm kiếm những khách hàng thích hợp với mong muốn sở hữu một chú vẹt thông minh đáng yêu để trở thành bạn đồng hành mới cho vẹt cưng của bạn.', 100000),
+(2017, 3, 'Làm đẹp cho Vẹt', 'https://www.thesprucepets.com/thmb/aTYzWacWg5mTEDfF7gXIT2q2lgY=/3168x3168/smart/filters:no_upscale()/pet-parrot-on-human-hand-1022424278-5c3ded0ac9e77c00016e6e2b.jpg', 'PETTY chuyên cung cấp các dịch vụ cắt tỉa lông cánh, móng và tắm cho vẹt (két). Dịch vụ được thực hiện bởi người huấn luyện và chăm sóc vẹt chuyên nghiệp, kinh nghiệm lâu năm và yêu vẹt, Pet Me shop đảm bảo mang lại cho chú vẹt của bạn sự sạch sẽ, thơm mát, dáng dấp xinh đẹp với bộ cánh cắt tỉa gọn gàng và những bộ móng được cắt dũa đẹp đẽ. Đặt biệt hơn, trong quá trình cắt tỉa lông cánh, móng chân và tắm mát, các bé vẹt của bạn sẽ được các chuyên viên lành nghề của PETTY kiểm tra tình hình sức khỏe chung về lông cánh và móng của vẹt. Trong trường hợp có những bất thường về sức khoẻ lông cánh và móng, Pet Me Shop sẽ tư vấn những phương pháp hỗ trợ. Việc kiểm tra và tư vấn được thực hiện hoàn toàn miễn phí với mục đích giúp bạn chăm sóc tốt hơn nữa chú vẹt cưng của mình.', 150000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `userdetail`
+-- Table structure for table `userdetail`
 --
 
 CREATE TABLE `userdetail` (
@@ -2225,7 +2251,7 @@ CREATE TABLE `userdetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `userdetail`
+-- Dumping data for table `userdetail`
 --
 
 INSERT INTO `userdetail` (`ID`, `customerName`, `preferName`, `gender`, `dateOfBirth`, `address`, `imageLink`) VALUES
@@ -2527,12 +2553,13 @@ INSERT INTO `userdetail` (`ID`, `customerName`, `preferName`, `gender`, `dateOfB
 (10296, 'Nguyễn Văn Huy', 'Nguyễn Văn Huy', 'Nam', '2000-05-17', 'Bắc Ninh', 'N/A'),
 (10297, 'Vũ Thị Thu Hương', 'Vũ Thị Thu Hương', 'Nữ', '2000-07-01', 'Thanh Hóa', 'N/A'),
 (10298, 'Lồ Văn Khang', 'Lồ Văn Khang', 'Nam', '2000-09-24', 'Lào Cai', 'N/A'),
-(10299, 'Nguyễn Ngọc Khánh', 'Nguyễn Ngọc Khánh', 'Nam', '2000-11-05', 'Hà Tây', 'N/A');
+(10299, 'Nguyễn Ngọc Khánh', 'Nguyễn Ngọc Khánh', 'Nam', '2000-11-05', 'Hà Tây', 'N/A'),
+(10300, 'Lương Thế Đại', 'Diaz', 'nam', '2000-11-06', 'Hà Nội', '');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -2544,7 +2571,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ID`, `username`, `password`, `email`, `phonenumber`) VALUES
@@ -2847,41 +2874,42 @@ INSERT INTO `users` (`ID`, `username`, `password`, `email`, `phonenumber`) VALUE
 (10296, 'Ovwszk91', 'Wdolav6192', 'dinhvandinh123@gmail.com', '0903803596'),
 (10297, 'Pqjwiw37', 'Tpclwa8370', 'viettamduc.truyenthong3@gmail.com', '0903803831'),
 (10298, 'Valtgq05', 'Wbdwcd8251', 'tranmailan2010@gmail.com', '0903804221'),
-(10299, 'Wbtgpm10', 'Ohgblo4292', 'vuongha111993@gmail.com', '0903804354');
+(10299, 'Wbtgpm10', 'Ohgblo4292', 'vuongha111993@gmail.com', '0903804354'),
+(10300, 'ltdai010', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'luongdai246@gmail.com', '0975407559');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `discountproduct`
+-- Indexes for table `discountproduct`
 --
 ALTER TABLE `discountproduct`
   ADD PRIMARY KEY (`discountID`),
   ADD KEY `discountProduct_ibfk_1` (`productCode`);
 
 --
--- Chỉ mục cho bảng `employees`
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`employeeNumber`);
 
 --
--- Chỉ mục cho bảng `orderdetail`
+-- Indexes for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD PRIMARY KEY (`orderNumber`) USING BTREE,
   ADD KEY `productCode` (`productCode`);
 
 --
--- Chỉ mục cho bảng `orderproducts`
+-- Indexes for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   ADD PRIMARY KEY (`orderNumber`),
   ADD KEY `fk2_orderproducts` (`employeeNumber`);
 
 --
--- Chỉ mục cho bảng `orderservices`
+-- Indexes for table `orderservices`
 --
 ALTER TABLE `orderservices`
   ADD PRIMARY KEY (`orderNumber`),
@@ -2890,7 +2918,7 @@ ALTER TABLE `orderservices`
   ADD KEY `fk3_orderservices` (`employeeNumber`);
 
 --
--- Chỉ mục cho bảng `productreview`
+-- Indexes for table `productreview`
 --
 ALTER TABLE `productreview`
   ADD PRIMARY KEY (`productCode`,`ID`) USING BTREE,
@@ -2898,107 +2926,120 @@ ALTER TABLE `productreview`
   ADD KEY `ID` (`ID`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`productCode`);
 
 --
--- Chỉ mục cho bảng `services`
+-- Indexes for table `serviceline`
 --
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`serviceID`);
+ALTER TABLE `serviceline`
+  ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `userdetail`
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`serviceID`),
+  ADD KEY `FK_serviceLine` (`serviceLine`);
+
+--
+-- Indexes for table `userdetail`
 --
 ALTER TABLE `userdetail`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID` (`ID`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `discountproduct`
+-- AUTO_INCREMENT for table `discountproduct`
 --
 ALTER TABLE `discountproduct`
   MODIFY `discountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT cho bảng `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
   MODIFY `employeeNumber` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT cho bảng `orderdetail`
+-- AUTO_INCREMENT for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
   MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1389;
 
 --
--- AUTO_INCREMENT cho bảng `orderproducts`
+-- AUTO_INCREMENT for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   MODIFY `orderNumber` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1389;
 
 --
--- AUTO_INCREMENT cho bảng `orderservices`
+-- AUTO_INCREMENT for table `orderservices`
 --
 ALTER TABLE `orderservices`
   MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100350;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `productCode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10359;
 
 --
--- AUTO_INCREMENT cho bảng `services`
+-- AUTO_INCREMENT for table `serviceline`
+--
+ALTER TABLE `serviceline`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `serviceID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10300;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10301;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `discountproduct`
+-- Constraints for table `discountproduct`
 --
 ALTER TABLE `discountproduct`
   ADD CONSTRAINT `discountProduct_ibfk_1` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`) ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orderdetail`
+-- Constraints for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD CONSTRAINT `fk1_productinvoice` FOREIGN KEY (`orderNumber`) REFERENCES `orderproducts` (`orderNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_productinvoice` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orderproducts`
+-- Constraints for table `orderproducts`
 --
 ALTER TABLE `orderproducts`
   ADD CONSTRAINT `fk2_orderproducts` FOREIGN KEY (`employeeNumber`) REFERENCES `employees` (`employeeNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orderservices`
+-- Constraints for table `orderservices`
 --
 ALTER TABLE `orderservices`
   ADD CONSTRAINT `fk1_orderservices` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -3006,14 +3047,20 @@ ALTER TABLE `orderservices`
   ADD CONSTRAINT `fk3_orderservices` FOREIGN KEY (`employeeNumber`) REFERENCES `employees` (`employeeNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `productreview`
+-- Constraints for table `productreview`
 --
 ALTER TABLE `productreview`
   ADD CONSTRAINT `fk1_productreview` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_productreview` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `userdetail`
+-- Constraints for table `services`
+--
+ALTER TABLE `services`
+  ADD CONSTRAINT `FK_serviceLine` FOREIGN KEY (`serviceLine`) REFERENCES `serviceline` (`ID`);
+
+--
+-- Constraints for table `userdetail`
 --
 ALTER TABLE `userdetail`
   ADD CONSTRAINT `fk1_userdetails` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
