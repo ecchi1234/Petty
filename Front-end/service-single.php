@@ -10,7 +10,7 @@
     }
     if(isset($_GET['id']) && $_GET['id'] != '')
     {
-        $query_string = "SELECT *,FORMAT(price, 0) as f_price,(SELECT serviceLine FROM serviceLine sl WHERE sl.ID = s.serviceLine) as service_line FROM services s WHERE serviceID =".$_GET['id'];
+        $query_string = "SELECT *,FORMAT(price, 0) as f_price,(SELECT serviceLine FROM serviceline sl WHERE sl.ID = s.serviceLine) as service_line FROM services s WHERE serviceID =".$_GET['id'];
         $query = mysqli_query($link, $query_string);
         if(mysqli_num_rows($query) > 0)
         {
