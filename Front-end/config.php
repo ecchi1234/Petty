@@ -1,12 +1,8 @@
 <?php 
-// define('DB_SERVER', 'localhost');
-// define('DB_USERNAME', 'id13471755_root');
-// define('DB_PASSWORD', 't7jMkBfId*c!)U\?');
-// define('DB_NAME','id13471755_petty');
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME','petty');
+define('DB_USERNAME', 'id13471755_root');
+define('DB_PASSWORD', 't7jMkBfId*c!)U\?');
+define('DB_NAME','id13471755_petty');
 
 define('MAX_PRODUCT_IN_PAGE', 20);
 define('MAX_PAGE_NUMBER_IN_PAGE', 5);
