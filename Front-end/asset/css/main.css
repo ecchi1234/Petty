@@ -298,7 +298,7 @@ button.more-info:hover{
 }
 /*---------------------------------------*/
 /*css cho phần about us*/
-.card-header{
+.about .card-header{
     min-width: 498px;
     background-color: #ef5030;
     border: none;
@@ -313,7 +313,7 @@ button.more-info:hover{
     margin-bottom: 20px;
     border: none;
 }
-.card-header:hover{
+.about .card-header:hover{
     background-color: #108896;
     cursor: pointer;
 }
@@ -1180,4 +1180,10 @@ li p{
     font-family: 'My Font Bold', sans-serif;
     font-size: 20px;
     color: #108896;
+}
+/*css cho trang đặt lịch*/
+.bookservice{
+    background-image: url('https://pethealth.vn/wp-content/uploads/2018/04/benh-care.jpg');
+    background-size: cover;
+    background-position: center;
 }
