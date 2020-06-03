@@ -2,12 +2,20 @@
     session_start();
     require_once('config.php');
     $name = $price = $serviceLine = $description = " ";
+    $star = 0;
+    $star_1 = 0;
+    $star_2 = 0;
+    $star_3 = 0;
+    $star_4 = 0;
+    $star_5 = 0;
+    $count_review = 0;
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
         $_SESSION['cart'] = array();
         $_SESSION['number'] = array();
         $_SESSION['price'] = array();
     }
+
     if(isset($_GET['id']) && $_GET['id'] != '')
     {
         $query_string = "SELECT *,FORMAT(price, 0) as f_price,(SELECT serviceLine FROM serviceline sl WHERE sl.ID = s.serviceLine) as service_line FROM services s WHERE serviceID =".$_GET['id'];
@@ -20,6 +28,48 @@
             $image = $row['serviceImage'];
             $price = $row['f_price']."đ";
             $description = $row['serviceDescription'];
+        }
+        $query_string = "SELECT COUNT(*) as c FROM servicereview WHERE serviceID =".$_GET['id'];
+        $query = mysqli_query($link, $query_string);
+        if($row = mysqli_fetch_assoc($query))
+        {
+            $count_review = $row['c'];
+        }
+        $sql = "SELECT FORMAT(AVG(`stars`), 0) as avg FROM `servicereview` WHERE `serviceID` = ".$_GET['id']." ORDER BY `serviceID`";
+        $query = mysqli_query($link, $sql);
+        if($row = mysqli_fetch_assoc($query))
+        {
+            if(isset($row['avg']))
+                $star = $row['avg'];
+            $sql = "SELECT FORMAT(100*COUNT(*)/IF((SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")=0, 1, (SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")), 0) as rate FROM servicereview WHERE serviceID = ".$_GET['id']." AND stars = 1";
+            $query = mysqli_query($link, $sql);
+            if($row_t = mysqli_fetch_assoc($query))
+            {
+                $star_1 = $row_t['rate'];
+            }
+            $sql = "SELECT FORMAT(100*COUNT(*)/IF((SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")=0, 1, (SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")), 0) as rate FROM servicereview WHERE serviceID = ".$_GET['id']." AND stars = 2";
+            $query = mysqli_query($link, $sql);
+            if($row_t = mysqli_fetch_assoc($query)){
+                $star_2 = $row_t['rate'];
+            }
+            $sql = "SELECT FORMAT(100*COUNT(*)/IF((SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")=0, 1, (SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")), 0) as rate FROM servicereview WHERE serviceID = ".$_GET['id']." AND stars = 3";
+            $query = mysqli_query($link, $sql);
+            if($row_t = mysqli_fetch_assoc($query))
+            {
+                $star_3 = $row_t['rate'];
+            }
+            $sql = "SELECT FORMAT(100*COUNT(*)/IF((SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")=0, 1, (SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")), 0) as rate FROM servicereview WHERE serviceID = ".$_GET['id']." AND stars = 4";
+            $query = mysqli_query($link, $sql);
+            if($row_t = mysqli_fetch_assoc($query))
+            {
+                $star_4 = $row_t['rate'];
+            }
+            $sql = "SELECT FORMAT(100*COUNT(*)/IF((SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")=0, 1, (SELECT COUNT(*) FROM servicereview WHERE serviceID = ".$_GET['id'].")), 0) as rate FROM servicereview WHERE serviceID = ".$_GET['id']." AND stars = 5";
+            $query = mysqli_query($link, $sql);
+            if($row_t = mysqli_fetch_assoc($query))
+            {
+                $star_5 = $row_t['rate'];
+            }
         }
     }
 ?>
@@ -58,19 +108,26 @@
                 </div>
                 <div class="product-status">
                     <div class="rating">
-                        <span class="level">5.0</span>
+                        <span class="level"><?=$star?></span>
                         <span class="label">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <?php
+                                for ($i=0; $i < 5; $i++) { 
+                                    if($i < $star)
+                                    {
+                                        echo "<i class='fas fa-star'></i>";
+                                    }
+                                    else
+                                    {
+                                        echo "<i class='fas fa-star' style='color:black;'></i>";
+                                    }
+                                }
+                            ?>
                         </span>
                     </div>
-                    <div class="number-of-rating"><a href="#demo">100 <span>đánh giá</span></a></div>
+                    <div class="number-of-rating"><a href="#demo"><?=$count_review?> <span>đánh giá</span></a></div>
                 </div>
                 <div class="product-price">
-                    <h2><?php $price?></h2>
+                    <h2><?=$price?></h2>
                 </div>
                 <div class="product-description">
                    <p>
@@ -78,7 +135,7 @@
                    </p>
                 </div>
                 <div class="add-cart" style="margin-top: 20px;">
-                    <button type="submit" id="addcart">
+                    <button type="submit" id="addcart" onclick='window.location.href = "bookservices.php?id=<?=$_GET['id']?>";'>
                         <i class="fas fa-calendar-check"></i>
                         <span>Đặt lịch</span>
                     </button>
@@ -97,7 +154,7 @@
             <div class="rating-overview row shadow">
                 <div class="rating-average col-3" style="padding: 30px;">
                     <p>Đánh giá trung bình</p>
-                    <h1 style="color: #ef5030;">5/5</h1>
+                    <h1 style="color: #ef5030;"><?=$star?>/5</h1>
                     <span class="label">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -110,31 +167,31 @@
                     <div class="rate-item rate-5">
                         <div class="rating-num" style="margin-right: 5px;">5<i class="fas fa-star"></i></div>
                         <div class="progress" style="width: 300px;">
-                            <div class="progress-bar" style="width:70%">70%</div>
+                            <div class="progress-bar" style="width:<?php if($star_5 > 10) echo $star_5; else echo "15";?>%"><?=$star_5?>%</div>
                         </div>
                     </div>
                     <div class="rate-item rate-4">
                         <div class="rating-num" style="margin-right: 5px;">4<i class="fas fa-star"></i></div>
                         <div class="progress" style="width: 300px;">
-                            <div class="progress-bar" style="width:70%">70%</div>
+                            <div class="progress-bar" style="width:<?php if($star_4 > 10) echo $star_4; else echo "15";?>%"><?=$star_4?>%</div>
                         </div>
                     </div>
                     <div class="rate-item rate-3">
                         <div class="rating-num" style="margin-right: 5px;">3<i class="fas fa-star"></i></div>
                         <div class="progress" style="width: 300px;">
-                            <div class="progress-bar" style="width:70%">70%</div>
+                            <div class="progress-bar" style="width:<?php if($star_3 > 10) echo $star_3; else echo "15";?>%"><?=$star_3?>%</div>
                         </div>
                     </div>
                     <div class="rate-item rate-5">
                         <div class="rating-num" style="margin-right: 5px;">2<i class="fas fa-star"></i></div>
                         <div class="progress" style="width: 300px;">
-                            <div class="progress-bar" style="width:70%">70%</div>
+                            <div class="progress-bar" style="width:<?php if($star_2 > 10) echo $star_2; else echo "15";?>%"><?=$star_2?>%</div>
                         </div>
                     </div>
                     <div class="rate-item rate-5">
                         <div class="rating-num" style="margin-right: 5px;">1<i class="fas fa-star"></i></div>
                         <div class="progress" style="width: 300px;">
-                            <div class="progress-bar" style="width:15%">0%</div>
+                            <div class="progress-bar" style="width:<?php if($star_1 > 10) echo $star_1; else echo "15";?>%"><?=$star_1?>%</div>
                         </div>
                     </div>
 
@@ -160,84 +217,48 @@
                         </select>
                     </form>
                 </div>
-                <div class="item-review row" style="padding: 20px;">
-                    <div class="col-2" style="text-align: center;">
-                        <img src="../Front-end/asset/resource/img/avatar.jpg" class="rounded-circle" style="width: 80px;">
-                        <div class="customer-name">Nguyễn Ngọc Chi</div>
-                        <div class="posted-time">2 tháng trước</div>
-                    </div>
-                    <div class="col review-description">
-                        <div>
-                            <span class="label">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="ml-2">Hài lòng</span>
-                        </div>
-                        <div style="color: #ccc;"><i>Đã mua sản phẩm</i></div>
-                        <div>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                            Eos aut praesentium voluptatem expedita maiores. Maiores 
-                            quos tempora accusantium dolorem in, magni tenetur, ea deleniti 
-                            voluptas aperiam, ullam laudantium exercitationem eum.
-                        </div>
-                    </div>
-                </div>
-                <div class="item-review row" style="padding: 20px;">
-                    <div class="col-2" style="text-align: center;">
-                        <img src="../Front-end/asset/resource/img/avatar.jpg" class="rounded-circle" style="width: 80px;">
-                        <div class="customer-name">Nguyễn Ngọc Chi</div>
-                        <div class="posted-time">2 tháng trước</div>
-                    </div>
-                    <div class="col review-description">
-                        <div>
-                            <span class="label">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="ml-2">Hài lòng</span>
-                        </div>
-                        <div style="color: #ccc;"><i>Đã mua sản phẩm</i></div>
-                        <div>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                            Eos aut praesentium voluptatem expedita maiores. Maiores 
-                            quos tempora accusantium dolorem in, magni tenetur, ea deleniti 
-                            voluptas aperiam, ullam laudantium exercitationem eum.
-                        </div>
-                    </div>
-                </div>
-                <div class="item-review row" style="padding: 20px;">
-                    <div class="col-2" style="text-align: center;">
-                        <img src="../Front-end/asset/resource/img/avatar.jpg" class="rounded-circle" style="width: 80px;">
-                        <div class="customer-name">Nguyễn Ngọc Chi</div>
-                        <div class="posted-time">2 tháng trước</div>
-                    </div>
-                    <div class="col review-description">
-                        <div>
-                            <span class="label">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="ml-2">Hài lòng</span>
-                        </div>
-                        <div style="color: #ccc;"><i>Đã mua sản phẩm</i></div>
-                        <div>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                            Eos aut praesentium voluptatem expedita maiores. Maiores 
-                            quos tempora accusantium dolorem in, magni tenetur, ea deleniti 
-                            voluptas aperiam, ullam laudantium exercitationem eum.
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    $sql = 'SELECT * FROM servicereview WHERE serviceID = '.$_GET['id'];
+                    $query = mysqli_query($link, $sql);
+                    while($row = mysqli_fetch_assoc($query))
+                    {
+                        $sql = 'SELECT * FROM users WHERE ID = '.$row['customerID'];
+                        $query_t = mysqli_query($link, $sql);
+                        if($row_t = mysqli_fetch_assoc($query_t))
+                        {
+                            echo "<div class='item-review row' style='padding: 20px;'>
+                            <div class='col-2' style='text-align: center;'>
+                                <img src='https://cdn4.iconfinder.com/data/icons/interface-14/256/interface_user-512.png' class='rounded-circle' style='width: 80px;'>
+                                    <div class='customer-name'>".$row_t['username']."</div>
+                                    <div class='posted-time'>2 tháng trước</div>
+                            </div>
+                            <div class='col review-description'>
+                                <div>
+                                    <span class='label'>";
+                            for($i=0; $i<5; ++$i)
+                            {
+                                if($i < $row['stars'])
+                                {
+                                    echo "<i class='fas fa-star'></i>";
+                                }
+                                else
+                                {
+                                    echo "<i class='fas fa-star' style='color:black'></i>";
+                                }
+                            }
+                            echo " 
+                                    </span>
+                                    <span class='ml-2'>".$row['subtitle']."</span>
+                                </div>
+                                <div style='color: #ccc;'><i>Đã mua sản phẩm</i></div>
+                                <div>".
+                                    $row['comment']   
+                                ."</div>
+                            </div>
+                            </div>";
+                        } 
+                    }
+                ?>
             </div>
        </div>
        <!--Đây là modal cho comment-->
@@ -264,7 +285,7 @@
                 </span>
                 <br>
                 <label for="comment-heading">2.Tiêu đề của nhận xét: </label>
-                <input class="form-control" type="text" placeholder="Tiêu đề..."></input><br>
+                <input class="form-control" type="text" id='subtitle' placeholder="Tiêu đề..."></input><br>
                 <label for="comment">3.Viết nhận xét của bạn bên dưới:</label>
                 <textarea class="form-control" rows="5" id="comment" placeholder="Viết nhận xét của bạn ở đây..."></textarea>
               </form>
@@ -272,7 +293,7 @@
       
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn" data-dismiss="modal" style="background-color: #f19f1f; color: #fff;">Gửi nhận xét</button>
+              <button type="button" class="btn" id="submit-comment" data-dismiss="modal" style="background-color: #f19f1f; color: #fff;">Gửi nhận xét</button>
             </div>
       
           </div>
@@ -288,9 +309,10 @@
     ?>
     <script>
         $(document).ready(function(){
+            var starNumber = 0;
             $(".vote-star").click(function(){
                 var n = parseInt(this.getAttribute("id").substring(1, 2));
-                console.log('s'+n);
+                starNumber = n;
                 for (var i = 1; i <= 5; ++i) {
                     if(i <= n)
                     {
@@ -299,6 +321,27 @@
                     else
                     {
                         $('#s'+i).css("color", "black");
+                    }
+                }
+            });
+            $('#submit-comment').click(function(){
+                if(<?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) echo"true"; else echo "false";?>)
+                {
+                    var subtitle = document.getElementById('subtitle').value;
+                    var comment = document.getElementById('comment').value;
+                    var userID = <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) echo $_SESSION['id']; else echo 0;?>;
+                    var serviceID = <?=$_GET['id']?>;
+                    if(starNumber != 0 && subtitle != '' && comment != '')
+                    {
+                        $.ajax({
+                            url:'addServiceComment.php',
+                            method:'POST',
+                            data:{userID:userID, serviceID:serviceID, subtitle:subtitle, comment:comment, starNumber:starNumber},
+                            success:function(data)
+                            {
+                                console.log(data);
+                            }
+                        })  
                     }
                 }
             });

@@ -3,16 +3,17 @@
     require_once "config.php";
     // Check if the user is logged in, if not then redirect him to login page
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+        header("location: login.php");
 
+        
+        exit;
+    }
     if(!isset($_SESSION['cart']) || !isset($_SESSION['number']))
     {
         $_SESSION['cart'] = array();
         $_SESSION['number'] = array();
         $_SESSION['price'] = array();
     }
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +139,7 @@
                     <h2 class="submoney" id='totalPrice' style="color: #ef5030;"><?php echo number_format($total)?></h2>
                 </div>
                 <div class="col">
-                    <button style="width: 170px; padding: 12px; background-color: #ef5030; border: none; border-radius: 5px; color: #fff;">Mua hàng</button>
+                    <button style="width: 170px; padding: 12px; background-color: #ef5030; border: none; border-radius: 5px; color: #fff;" onclick='window.location.href = "checkout.php" '>Mua hàng</button>
                 </div>
                 
             </div>

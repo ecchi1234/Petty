@@ -361,6 +361,10 @@
             </div>
             
         </div>
+        <!--Phần liên hệ-->
+        <div class="item contact">Liên hệ
+        </div>
+
     </div>
 
     <!--Footer-->

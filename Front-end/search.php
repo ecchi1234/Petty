@@ -143,10 +143,11 @@
                 if($i < MAX_PAGE_NUMBER_IN_PAGE)
                 {
                     echo "<div>
-                        <ul style='list-style-type: none;'>
+                        <ul style='list-style-type: none; justify-content: flex-start;
+    flex-direction: row-reverse;'>
                     ";
                     while (--$i >= 0) {
-                        echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
+                        echo "<li><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
                     }
                     echo "</div>
                         </ul>
@@ -154,10 +155,11 @@
                 }
                 else if($i > MAX_PAGE_NUMBER_IN_PAGE && $page > intval(MAX_PAGE_NUMBER_IN_PAGE/2) && $page < $i - intval(MAX_PAGE_NUMBER_IN_PAGE/2)) {
                     echo "
-                        <ul style='list-style-type: none;'>"  ;
+                        <ul style='list-style-type: none; justify-content: flex-start;
+    flex-direction: row-reverse;'>"  ;
                     $i = $page + intval(MAX_PAGE_NUMBER_IN_PAGE/2) + 1;
                     while (--$i >= $page - intval(MAX_PAGE_NUMBER_IN_PAGE/2) ) {
-                        echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
+                        echo "<li><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
                     }
                     echo "</div>
                         
@@ -165,20 +167,22 @@
                 }
                 else if($i > MAX_PAGE_NUMBER_IN_PAGE && $page > intval(MAX_PAGE_NUMBER_IN_PAGE/2) && $page >= $i - intval(MAX_PAGE_NUMBER_IN_PAGE/2)){
                     echo "
-                        <ul style='list-style-type: none;'>"  ;
+                        <ul style='list-style-type: none; justify-content: flex-start;
+    flex-direction: row-reverse;'>"  ;
                     $max = $i;
                     while (--$i >= $max - MAX_PAGE_NUMBER_IN_PAGE)  {
-                        echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
+                        echo "<li><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($i)."'>".($i + 1)."</a></li>";
                     }
                     echo "
                         </ul>";
                 }
                 else{
                     echo "
-                        <ul style='list-style-type: none;'>"  ;
+                        <ul style='list-style-type: none; justify-content: flex-start;
+    flex-direction: row-reverse;'>"  ;
                     $j = MAX_PAGE_NUMBER_IN_PAGE;
                     while (--$j >= 0)  {
-                        echo "<li style='float: right;'><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($j)."'>".($j + 1)."</a></li>";
+                        echo "<li><a style='margin-left:10pt;' href='search.php?key=".$key_string."&page=".($j)."'>".($j + 1)."</a></li>";
                     }
                     echo "
                         </ul>";
